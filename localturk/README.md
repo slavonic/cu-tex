@@ -17,7 +17,7 @@ Please, read localturk README: https://github.com/mkroutikov/localturk
    git clone https://github.com/mkroutikov/localturk.git
    ```
 3. install dependencies (utility `npm` should be installed as part of `node` installation. Some Linux
-   distributions use a separate package for `npm`. If so - install `nmp` first!)
+   distributions use a separate package for `npm`. If so - install `npm` first!)
    ```
    cd ~/git/localturk
    npm install
