@@ -46,13 +46,13 @@ Please, read localturk README: https://github.com/mkroutikov/localturk
 
 7. Do not forget to commit `reviewed.txt`
 
- ## Explanation
- localturk reads `words.csv` and writes result to `reviewed.csv`. It "remembers" where you left off by looking
- at the number of rows in the `reviewed.csv`. Never update `words.csv`! The only safe operation is appending more data to it.
- Html template is used to present the data and style the UI.
+## Explanation
+localturk reads `words.csv` and writes result to `reviewed.csv`. It "remembers" where you left off by looking
+at the number of rows in the `reviewed.csv`. Never update `words.csv`! The only safe operation is appending more data to it.
+Html template is used to present the data and style the UI.
  
- Command-line switch `-s` provides "static" directory for the localturk - this is for serving static files to the client
- (depending on template you do or do not need this). In our case we need this because style refers to webfont and we need to serve it out. Use `-s .` if you copied webfont file to current directory. Or provide the
- external directory where font file can be found.
+Command-line switch `-s` provides "static" directory for the localturk - this is for serving static files to the client
+(depending on template you do or do not need this). In our case we need this because style refers to webfont and we need to serve it out. Use `-s .` if you copied webfont file to current directory. Or provide the
+external directory where font file can be found.
  
- Command-line switch `--batch_size` defines how many entries per page are displayed.
+Command-line switch `--batch_size` defines how many entries per page are displayed.
