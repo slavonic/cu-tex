@@ -8,5 +8,7 @@ addons:
         packages:
             textlive-xetex
 
+install:
+
 script:
     - xelatex --interaction=nonstopmode cu-num-test.tex
