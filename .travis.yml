@@ -1,12 +1,10 @@
 # travis CI for testing TeX package cu-num
 os: linux
 
-language: r
-
 addons:
-    apt:
-        packages:
-            textlive-xetex
+  apt:
+    packages:
+    - texlive-binaries
 
 install:
 
