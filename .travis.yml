@@ -1,0 +1,9 @@
+os: linux
+
+# use R VM because it has TeX installed already
+language: r
+
+apt_packages: textlive-xetex
+
+script:
+    - xelatex --interaction=nonstopmode cu-num-test.tex
