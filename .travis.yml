@@ -5,6 +5,7 @@ addons:
   apt:
     packages:
     - texlive-binaries
+    - texlive-xetex
 
 install:
 
