@@ -1,3 +1,5 @@
+# travis CI for testing TeX package cu-num
+
 os: linux
 
 # use R VM because it has TeX installed already
