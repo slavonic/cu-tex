@@ -1,6 +1,8 @@
 # travis CI for testing TeX package cu-num
 os: linux
 
+language: r
+
 addons:
     apt:
         packages:
