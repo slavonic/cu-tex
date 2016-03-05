@@ -100,7 +100,7 @@
 }%
 %
 %
-\def\cu@titlo{҃}%
+\protected\def\cu@titlo{\char"0483}%
 \def\cu@thousand{҂}%
 \protected\def\cu@spacer{\,}%
 %
@@ -226,7 +226,7 @@
 }%
 %
 \def\cu@interleave#1#2\stop@{%
-  \if#1\cu@titlo
+  \ifx#1\cu@titlo
     \cu@ifempty{#2}{#1}{%
        #1\cu@interleave #2\stop@
      }%
