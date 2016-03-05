@@ -1,0 +1,23 @@
+<style type="text/css">
+@font-face{ 
+	font-family: 'ponomar';
+	src: url('PonomarUnicode.woff') format('woff');
+}
+
+input[type=text] {
+  font-family: ponomar;
+  font-size: 18px;
+  margin-left: 20px;
+}
+</style>
+
+<h3>Check hyphenation</h3>
+<ul class="overview-list">
+  <li class="overview-list-item">If word should not be in vocabulary at all, replace with blank.</li>
+</ul>
+<p>
+<!-- localturk-repeat -->
+  <input type="text" value="${word}" size=100 name="reviewed" />
+  <br />
+<!-- localturk-repeat -->
+</p>
