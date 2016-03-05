@@ -1,0 +1,14 @@
+# travis CI for testing TeX package cu-num
+os: linux
+
+addons:
+  apt:
+    packages:
+    - texlive-binaries
+    - texlive-xetex
+
+install:
+
+script:
+    - cd cu-num
+    - xelatex --interaction=nonstopmode cu-num-test.tex
