@@ -227,7 +227,9 @@
 %
 \def\cu@interleave#1#2\stop@{%
   \if#1\cu@titlo
-     #1\cu@interleave #2\stop@
+    \cu@ifempty{#2}{#1}{%
+       #1\cu@interleave #2\stop@
+     }%
   \else
     \cu@ifempty{#2}{%
       \cu@thousand #1%
