@@ -7,7 +7,7 @@ Quick overview of steps:
 1. create two projects `cu-hyp`(base) and `cu-hypX` (auxiliary), from the same dictionary.
 2. batch-train these two projects. `cu-hyp` is trained using batch specs from `specs.py`, while `cu-hypX` is trained using different specs `specsX.py`
 3. replace inhibition (odd) patterns in `cu-hyp` with those from `cu-hypX`
-4. compact patterns (just removed redundant patterns)
+4. compact patterns (just removes redundant patterns)
 5. export TeX file `cu-hyp.tex`
 
 Rationale for using this procedure is below.
