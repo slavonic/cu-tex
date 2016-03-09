@@ -1,12 +1,12 @@
 # Building hyphenation patterns for Church Slavonic
 
-Script `train.sh` lists steps I used to generate hyphenation patterns from hyphenation dictionary [words.tx](https://??)
+Script `train.sh` lists steps I used to generate hyphenation patterns from hyphenation dictionary [words.txt](https://??)
 
 Quick overview of steps:
 
-1. create two projects `cu-hyp` and `cu-hypX` from the same dictionary.
+1. create two projects `cu-hyp`(base) and `cu-hypX` (auxiliary), from the same dictionary.
 2. batch-train these two projects. `cu-hyp` is trained using batch specs from `specs.py`, while `cu-hypX` is trained using different specs `specsX.py`
-3. replace inhibition (odd) patterns in `cu-hyp` from those in `cu-hypX`
+3. replace inhibition (odd) patterns in `cu-hyp` with those from `cu-hypX`
 4. compact patterns (just removed redundant patterns)
 5. export TeX file `cu-hyp.tex`
 
@@ -27,8 +27,8 @@ of training parameters 2-fold and 4-fold cross-validation was performed to confi
 Here is how cross-validation works: we start with a hyphenation dictionary and split it in N equal partitions.
 Then N training datasets and N testing datasets are created (they are called "folds") like follows:
 
-a. i-th testing dataset is just the i-th partition
-b. i-th training dataset is our dictionary with i-th partition *removed*
+* i-th testing dataset is just the i-th partition
+* i-th training dataset is our dictionary with i-th partition *removed*
 
 Now we have N folds. We take each one and use its training set to train patterns, and then test pattern performance on fold'd test words.
 Since test and train sets have no common words, we can expect that the performance results on fond's test set represents real-world
@@ -60,7 +60,7 @@ There is still an effect of "fold boundary contamination". Data partition i will
 will get stronger as number of folds increases. And in the limit where individual partition is just few words, the problem will be similar
 to that of the shuffled list. Since I used at most 4 folds, this cross contamination effect should be negligible.
 
-### Training parameters
+## Training parameters
 Following parameters has to be defined to do the training:
 
 1. number of pattern layers to train. In TeX hyphenation algorithm one can have as few as 1 layer and as many as 9 layers. Even layers
@@ -77,7 +77,7 @@ Important to note that `threshold` parameter depends on the dataset size. If dic
 in order for selector to keep its selectivity at the same level. This is important for cross-validation, where training dataset is smaller
 than the full dataset. Therefore, when applying learned parameters to new dataset this has to be kept in mind.
 
-### Experience of parameter selection for best generalization
+## Experience of parameter selection for best generalization
 
 Experimenting with different number of layers and different range of pattern lengths, I found that
 
