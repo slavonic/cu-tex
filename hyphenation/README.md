@@ -66,14 +66,14 @@ Following parameters has to be defined to do the training:
 1. number of pattern layers to train. In TeX hyphenation algorithm one can have as few as 1 layer and as many as 9 layers. Even layers
 suggest hyphenation points, odd layers suppress hyphenation (aka inhibiting layers).
 2. for each layer decide on the range of pattern lengths. This determines the length of the patterns considered. Range is a pair of integers:
-minimal length and maximal length. Thus, range=(1,2) will consider only patterns of length 1 and 2.
+minimal length and maximal length. Thus, range=1,2 will consider only patterns of length 1 and 2.
 3. selector triplet. Selector decides which patterns are accepted and which are rejected. This depends on the pattern performance.
 For each pattern a statistics is computed as a pair: `num_good` (number of "good" decisions pattern made on the training set) and
 `num_bad` (number of "bad" decisions pattern has made on the training set). Pattern is accepted whenever
 `num_good * good_weight - num_bad * bad_weights >= threshold`. The triplet of integer numbers `(good_weight, bad_weight, threshold)` is the
 selector.
 
-Important to note that `threshold` parameter depends on the dataset size. If dictionary grows, `threshold` must be scaled proportionally
+Important to note is that `threshold` parameter depends on the dataset size. If dictionary grows, `threshold` must be scaled proportionally
 in order for selector to keep its selectivity at the same level. This is important for cross-validation, where training dataset is smaller
 than the full dataset. Therefore, when applying learned parameters to new dataset this has to be kept in mind.
 
@@ -83,24 +83,25 @@ Experimenting with different number of layers and different range of pattern len
 
 1. There is no advantage in having more than two pattern layers. Of course, we do need inhibiting patterns. Therefore, the best
    choice of the number of layers is exactly 2!
-2. Single-letter hyphenation patterns are useless. First, aalgorithm finds just few such patterns. Second, they seem to give raise to
+2. Single-letter hyphenation patterns are useless. First, algorithm finds just few such patterns. Second, they seem to give raise to
    many false hyphenations, so that overall effect is negative.
-3. Single-letter inhibiting patterns are very useful. They allow algorithm to learn places where hyphenation never happens (i.e. before 
+3. Single-letter inhibiting patterns are very useful. They allow algorithm to learn places where hyphenation never happens (i.e. before a
    combining symbol)
 4. Long patterns are bad. Using patterns longer than 4 degrades performance. I have no good explanation for this.
-5. Selector can be made more *selective* by either raising `threshold` or raising `bad_weights`. The empirical observation is that patterns
-   that keep `threahold` at minimum value (1) and control selectivity by just `bad_weight` parameter generalize better.
+5. Selector can be made more *selective* by either raising `threshold` or raising `bad_weight`. The empirical observation is that patterns
+   that keep `threahold` at minimum value (1) and control selectivity via `bad_weight` parameter only, generalize better.
 
 ## Mix-and-match inhibition layers
 In our two-level pattern training configuration first layer (layer 0) is hyphenation layer, and second layer (layer 1) is inhibiting layer.
 
 To minimize generation of false hyphen prediction we need to strive for:
+
 1. hyphenation layer to produce minimal amount of bad suggestions
 2. inhibition layer to be robust to cover as many as possible patterns where hyphenation is forbidden
 
 within a single pattern training session it is impossible to satisfy both requirements:
 if we make selector more selectinve, we then accept only "good" patterns that produce just few false hyphenation points. On such a thin
-dataset its impossible to build a good set of inhibition patterns. And, conversely, if we want to build a good inhibition layer
+dataset it is impossible to build a good set of inhibition patterns. And, conversely, if we want to build a good inhibition layer
 we need to give it an input with many false hits, which means that we need to make hyphenation layer more lax.
 
 The idea of mixing-and-matching inhibition layers tries to overcome this limitation. To do this, we train two independent pattern sets.
