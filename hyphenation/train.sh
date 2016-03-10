@@ -1,7 +1,7 @@
 wc ../data/words.txt
 cat ../data/words.txt > w
 
-rm -f cu-hyp cu-hypX
+rm -f cu-hyp cu-hypX cu-hyp.tex
 #
 pypatgen cu-hyp  new w --margins 1,1
 pypatgen cu-hypX new w --margins 1,1
