@@ -111,3 +111,38 @@ The  auxiliary pattern set is trained
 with very lax selector for hyphenation layer and very selective one for the inhibition layer. We then construct the final patternset
 by replacing inhibition layer in the base with the inhibition layer from the auxiliary one! In practice, this technique is very effective, 
 shaving off 30-50% of errors.
+
+## Cross-validation scripts
+
+Scripts that were used for cross-validation are:
+
+* `cv2.sh` - does two-fold cross-validation
+* `cv3.sh` - does three-fold cross-validation
+* `cv4.sh` - does four-fold cross-validation
+
+See corresponding `cv-?.log` files for the results. Summary is below (note that total weighted number of hyphens in the 
+dictionary is 40405 - it is used to compute percentages below).
+
+----------------------------------------------------------------------------------------------
+|  script  | total number of missed | total number of false | percent missed | percent false |
+----------------------------------------------------------------------------------------------
+|  `cv2`   |  3956                  |  1345                 |  9.8           | 3.3           |
+|  `cv3`   |  3173                  |  1316                 |  7.9           | 3.3           |
+|  `cv4`   |  3296                  |  1287                 |  8.2           | 3.2           |
+----------------------------------------------------------------------------------------------
+
+Number of words in the dictionary is 17507. This gives on the average 2.3 hyphens per word. Therefore, 75% of new words
+will be hyphenated correctly. Other 25% of new words will have some deficiency - either a missing hyphen or an incorrectly
+suggested hyphen.
+
+Since hyphenation algorithm selects a single hyphen from a word, the per-hyphen performance statistics better represents the
+probability of error than word-level statistics.
+
+Since our dictionary covers 90% words in the corpus (and since all words in the dictionary will be 100% correct due to the
+exception list), the overall expected performance on the text is 0.8% probability of missing a hyphen, and 0.35% probability
+of incorrect hyphenation. 
+
+Only incorrect hyphenation is really important, as it easily catches the eye of the reader (whereas missed hyphenation
+just makes TeX pick another hyphenation point - just a less optimal one).
+Assuming that we will need at most 10 hyphenations per page, the risk of getting an incorrect hyphenation is approximately
+3-4% per page.
