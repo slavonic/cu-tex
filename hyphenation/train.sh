@@ -1,5 +1,5 @@
-wc ../cu-tex/data/words.txt
-cat ../cu-tex/data/words.txt > w
+wc ../data/words.txt
+cat ../data/words.txt > w
 
 rm -f cu-hyp cu-hypX
 #

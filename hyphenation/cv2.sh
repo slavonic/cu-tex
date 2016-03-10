@@ -1,5 +1,5 @@
-wc ../cu-tex/data/words.txt
-split -l 8752 ../cu-tex/data/words.txt w2
+wc ../data/words.txt
+split -l 8752 ../data/words.txt w2
 wc w2a?
 
 rm -f cv2-? cv2-??
