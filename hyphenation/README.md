@@ -123,13 +123,11 @@ Scripts that were used for cross-validation are:
 See corresponding `cv-?.log` files for the results. Summary is below (note that total weighted number of hyphens in the 
 dictionary is 40405 - it is used to compute percentages below).
 
-----------------------------------------------------------------------------------------------
 |  script  | total number of missed | total number of false | percent missed | percent false |
-----------------------------------------------------------------------------------------------
+|----------|------------------------|-----------------------|----------------|---------------|
 |  `cv2`   |  3956                  |  1345                 |  9.8           | 3.3           |
 |  `cv3`   |  3173                  |  1316                 |  7.9           | 3.3           |
 |  `cv4`   |  3296                  |  1287                 |  8.2           | 3.2           |
-----------------------------------------------------------------------------------------------
 
 Number of words in the dictionary is 17507. This gives on the average 2.3 hyphens per word. Therefore, 75% of new words
 will be hyphenated correctly. Other 25% of new words will have some deficiency - either a missing hyphen or an incorrectly
