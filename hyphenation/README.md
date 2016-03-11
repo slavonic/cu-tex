@@ -88,9 +88,9 @@ def explode_nfd(string):
 1. Do not split digraph `LOWERCASE UK` with a hyphen: `U+1C82` `U+0443`
 
 2. Do not allow hyphen before the following symbols (combiners[1]):
-   * combining grave: `U+0300`
-   * combining acute: `U+0301`
-   * combining inverted breve: `U+0311`
+   * combining grave: `U+0300` (auto)
+   * combining acute: `U+0301` (auto)
+   * combining inverted breve: `U+0311` (auto)
    * combining Cyrillic psili pneumata: `U+0486`
    * combining Cyrillic dasia pneumata: `U+0485`
    * combining breve: `U+0306`
@@ -112,42 +112,42 @@ def explode_nfd(string):
    * combining kavyka above left: `U+1DF7`
    * combining dot above left: `U+1DF8`
    * combining wide inverted bridge below: `U+1DF9`
-   * combining Cyrillic titlo: `U+0483`
+   * combining Cyrillic titlo: `U+0483` (auto)
    * combining vzmet: `U+A66F`
-   * combining pokrytie: `U+0487`
+   * combining pokrytie: `U+0487` (auto)
    * combining overline: `U+0305`
    * combining double overline: `U+033F`
    * combining Cyrillic letter A: `U+2DF6`
    * : `U+2DE0`
-   * : `U+2DE1`
-   * : `U+2DE2`
-   * : `U+2DE3`
-   * : `U+2DF7`
+   * : `U+2DE1` (auto)
+   * : `U+2DE2` (auto)
+   * : `U+2DE3` (auto)
+   * : `U+2DF7` 
    * : `U+A674`
-   * : `U+2DE4`
-   * : `U+2DE5`
+   * : `U+2DE4` (auto)
+   * : `U+2DE5` (auto)
    * : `U+A675`
    * : `U+A676`
    * : `U+2DF8`
-   * : `U+2DE6`
-   * : `U+2DE7`
-   * : `U+2DE8`
-   * : `U+2DE9`
+   * : `U+2DE6` (auto)
+   * : `U+2DE7` (auto)
+   * : `U+2DE8` (auto)
+   * : `U+2DE9` (auto)
    * : `U+2DEA`
-   * : `U+2DEB`
-   * : `U+2DEC`
-   * : `U+2DED`
+   * : `U+2DEB` (auto)
+   * : `U+2DEC` (auto)
+   * : `U+2DED` (auto)
    * : `U+2DEE`
    * : `U+2DF9`
    * : `U+A677`
    * : `U+A69E`
-   * : `U+2DEF`
+   * : `U+2DEF` (auto)
    * : `U+A67B`
    * : `U+2DF0`
-   * : `U+2DF1`
+   * : `U+2DF1` (auto)
    * : `U+2DF2`
    * : `U+2DF3`
-   * : `U+A678`
+   * : `U+A678` (auto)
    * : `U+A67A`
    * : `U+A679`
    * : `U+2DFA`
@@ -171,6 +171,7 @@ def explode_nfd(string):
    * combining titlo left half: `U+FE2E`
    * combining titlo right half: `U+FE2F`
    * combining conjoining macron: `U+FE26`
-    
+
+In the hand-crafted rules above mark "(auto)" denotes patterns that were found automatically during step 1.
  
 [1]: https://cloud.githubusercontent.com/assets/569458/13713500/42d607e2-e797-11e5-9632-10e8b5f6ada2.png
