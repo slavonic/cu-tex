@@ -86,7 +86,8 @@ def explode_nfd(string):
 ### Adding special rules for combining symbols and digraphs
 
 1. Do not split digraph `LOWERCASE UK` with a hyphen: `U+1C82` `U+0443`
-2. Do not allow hyphen before the following symbols (combiners):
+
+2. Do not allow hyphen before the following symbols ([combiners][1]):
    * combining grave: `U+0300`
    * combining acute: `U+0301`
    * combining inverted breve: `U+0311`
@@ -159,13 +160,17 @@ def explode_nfd(string):
    * : `U+2DF4`
    * : `U+2DF5`
    
-   
-3. Do not hyphenate before or after those symbols:
+3. Do not hyphenate before:
    * yerok `U+2E2F`
+   * yer (ъ) `U+044A`
+   * tall yer `U+1C86`
+
+4. Do not hyphenate before or after those symbols:
    * paerok `U+A67F`
    * kavyka `U+A67E`
    * combining titlo left half: `U+FE2E`
    * combining titlo right half: `U+FE2F`
    * combining conjoining macron: `U+FE26`
     
-   
+ 
+[1] https://cloud.githubusercontent.com/assets/569458/13713500/42d607e2-e797-11e5-9632-10e8b5f6ada2.png
