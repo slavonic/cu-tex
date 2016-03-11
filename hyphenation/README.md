@@ -87,7 +87,7 @@ def explode_nfd(string):
 
 1. Do not split digraph `LOWERCASE UK` with a hyphen: `U+1C82` `U+0443`
 
-2. Do not allow hyphen before the following symbols ([combiners][1]):
+2. Do not allow hyphen before the following symbols (combiners[1]):
    * combining grave: `U+0300`
    * combining acute: `U+0301`
    * combining inverted breve: `U+0311`
@@ -173,4 +173,4 @@ def explode_nfd(string):
    * combining conjoining macron: `U+FE26`
     
  
-[1] https://cloud.githubusercontent.com/assets/569458/13713500/42d607e2-e797-11e5-9632-10e8b5f6ada2.png
+[1]: https://cloud.githubusercontent.com/assets/569458/13713500/42d607e2-e797-11e5-9632-10e8b5f6ada2.png
