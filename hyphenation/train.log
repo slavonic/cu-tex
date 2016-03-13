@@ -1,8 +1,8 @@
    17504   18921  380449 ../data/words.txt
 Creating new project cu-hyp from dictionary w
 Project file cu-hyp
-	created: 2016-03-13 16:23:42.219818
-	last modified: 2016-03-13 16:23:42.220074
+	created: 2016-03-13 16:46:54.556625
+	last modified: 2016-03-13 16:46:54.556875
 	margins: 1,1
 	dictionary size: 17504
 	total hyphens: (weighted) 40406
@@ -12,8 +12,8 @@ Project file cu-hyp
 
 Creating new project cu-hypX from dictionary w
 Project file cu-hypX
-	created: 2016-03-13 16:23:42.897765
-	last modified: 2016-03-13 16:23:42.897997
+	created: 2016-03-13 16:46:55.222410
+	last modified: 2016-03-13 16:46:55.222681
 	margins: 1,1
 	dictionary size: 17504
 	total hyphens: (weighted) 40406
@@ -86,6 +86,7 @@ Performance of cu-hyp on w
 Missed (weighted): 200 (0.495%)
 False (weighted): 113 (0.280%)
 Saved errors to err
+Saved errors to err_patterns.txt
 
 Exporting patterns from cu-hyp and saving them in TeX format to cu-hyp.tex
 Created TeX patterns file cu-hyp.tex
