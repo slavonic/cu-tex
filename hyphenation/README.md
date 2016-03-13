@@ -5,11 +5,15 @@ We create TeX hyphenation patterns in the following stages
 1. Use the hyphenation dictionary to automatically generate patterns. 
    Since dictionary uses [Normal Form C](http://unicode.org/reports/tr15/), all patterns will also be in this form.
 
-2. Expand patterns and exception list by replacing each character with its Normal Form D. Note that for robustness
+2. Analyze errors that patterns make on the hyphenation dictionary and add (long) patterns that cover offending stems. This
+   essentially allows one to move some errors out of exception list into a patterns, hoping that new pattern will
+   cover all word forms (not just forms seen within the training dictionary).
+
+3. Expand patterns and exception list by replacing each character with its Normal Form D. Note that for robustness
    we create all combinations of D and C forms for every character that has these different forms. This is different
    from just converting each pattern and exception to Normal form D.
 
-3. Add special patterns that ensure that no hyphenation happens before a combining character. Since Church Slavonic
+4. Add special patterns that ensure that no hyphenation happens before a combining character. Since Church Slavonic
    uses rich set of diacritical marks, we do not rely on step 1 finding all this places, and just add these rules 
    explicitly
 
@@ -25,9 +29,38 @@ We used [pypatgen](tool for pattern generation).
 
 Training process is detailed in the [following document](TRAINING.md).
 
+Auxilliary output file is `err_patterns.txt` that lists all hyphenation exceptions in the form
+of a full-word pattern. It is used in the next step to make hyphenation rules more general and more compact.
+
+## Add "long" patterns from exceptions
+In the exception list one can often see many variants of a same-root word. It makes sense to make a "long" prefix
+pattern to cover this offending root and all its word forms. For example,
+```
+бо-лѣ́-зней
+бо-лѣ́-знемъ
+бо-лѣ́-знен-нѡ
+бо-лѣ́-знен-ны-ѧ
+бо-лѣ́-зни
+```
+It is much more efficient to replace all these exceptions with a single pattern:
+```
+.болѣ́7зн
+```
+The upside is that other forms of the same root will have correct hyphenation in the root part.
+
+Generally speaking, hyphenation of suffixes is more reliable than hyphenation of roots. Reason is that suffix hyphenation
+is learned from all words in the dictionary, whicle root hyphenation - only from words containing this root.
+
+Note that pattern generation step failed to build this "long" pattern because we limit the pattern length (for better generalization).
+
+To assist in making such "long" prefix patterns, `pypatgen` can generate error report in the form of suggested full-word
+patterns (use option `-p` of the `pypatgen`'s `test` command).
+
+Result of this work is fule `cu-hyp2.tex`
+
 ## Expanding patterns and exceptions
 
-Input here is `cu-hyph.tex` and the output is `cu-hyph-expanded.tex`.
+Input here is `cu-hyp2.tex` and the output is `cu-hyph-expanded.tex`.
 
 The hyphenation dictionary contains only following characters that have different NFD form:
 
