@@ -2,9 +2,9 @@
 % Special (hand-crafted) patterns
 ᲂ2у  % Do not split digraph `LOWERCASE UK` with a hyphen: `U+1C82` `U+0443`
 % combiners: never split before any combining symbol
-2̀
-2́
-2̑
+%2̀
+%2
+%2̑
 2҆
 2҅
 2̆
@@ -17,7 +17,7 @@
 2̋
 2᷀
 2᷁
-2̂
+2̂ % ?
 2҄
 2̓
 2̔
@@ -26,39 +26,39 @@
 2᷷
 2᷸
 2᷹
-2҃
+%2҃
 2꙯
-2҇
+%2
 2̅
 2̿
 2ⷶ
 2ⷠ
-2ⷡ
-2ⷢ
-2ⷣ
+%2ⷡ
+%2ⷢ
+%2ⷣ
 2ⷷ
 2ꙴ
-2ⷤ
-2ⷥ
+%2ⷤ
+%2ⷥ
 2ꙵ
 2ꙶ
 2ⷸ
-2ⷦ
-2ⷧ
-2ⷨ
-2ⷩ
+%2ⷦ
+%2ⷧ
+%2ⷨ
+%2ⷩ
 2ⷪ
-2ⷫ
-2ⷬ
-2ⷭ
+%2ⷫ
+%2ⷬ
+%2ⷭ
 2ⷮ
 2ⷹ
 2ꙷ
 2ꚞ
-2ⷯ
+%2ⷯ
 2ꙻ
 2ⷰ
-2ⷱ
+%2ⷱ
 2ⷲ
 2ⷳ
 2ꙸ
@@ -73,8 +73,8 @@
 2ⷿ
 2ⷴ
 2ⷵ
-2ⸯ % yerok
-2ъ % yer
+%2ⸯ % yerok
+%2ъ % yer
 2ᲆ % tall yer
 %
 2ꙿ2   % paerok
