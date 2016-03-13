@@ -14,7 +14,8 @@ pypatgen cu-hyp swap cu-hypX -c
 pypatgen cu-hyp compact -c
 #
 # folowing test is useless - on the test data!
-pypatgen cu-hyp test w -e err
+# but it creates error log in the form of patterns
+pypatgen cu-hyp test w -e err -p err_patterns.txt
 #
 pypatgen cu-hyp export cu-hyp.tex
 

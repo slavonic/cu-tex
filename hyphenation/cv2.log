@@ -1,49 +1,48 @@
-   17504   18921  380447 ../cu-tex/data/words.txt
-    8752    9417  189318 w2aa
-    8752    9504  191129 w2ab
-       3       4      79 w2ac
-   17507   18925  380526 total
+   17504   18921  380449 ../data/words.txt
+    8752    9417  189319 w2aa
+    8752    9504  191130 w2ab
+   17504   18921  380449 total
 Creating new project cv2-a from dictionary w2aa
 Project file cv2-a
-	created: 2016-03-11 10:13:51.866207
-	last modified: 2016-03-11 10:13:51.866493
+	created: 2016-03-13 16:12:06.093684
+	last modified: 2016-03-13 16:12:06.093924
 	margins: 1,1
 	dictionary size: 8752
-	total hyphens: (weighted) 20088
-	total missed : (weighted) 20088 100.00%
+	total hyphens: (weighted) 20089
+	total missed : (weighted) 20089 100.00%
 	total false  : (weighted) 0 0.00%
 	number of pattern levels: 0
 
 Creating new project cv2-aX from dictionary w2aa
 Project file cv2-aX
-	created: 2016-03-11 10:13:52.290061
-	last modified: 2016-03-11 10:13:52.290335
+	created: 2016-03-13 16:12:06.506620
+	last modified: 2016-03-13 16:12:06.506855
 	margins: 1,1
 	dictionary size: 8752
-	total hyphens: (weighted) 20088
-	total missed : (weighted) 20088 100.00%
+	total hyphens: (weighted) 20089
+	total missed : (weighted) 20089 100.00%
 	total false  : (weighted) 0 0.00%
 	number of pattern levels: 0
 
 Creating new project cv2-b from dictionary w2ab
 Project file cv2-b
-	created: 2016-03-11 10:13:52.706061
-	last modified: 2016-03-11 10:13:52.706318
+	created: 2016-03-13 16:12:06.934012
+	last modified: 2016-03-13 16:12:06.934274
 	margins: 1,1
 	dictionary size: 8752
-	total hyphens: (weighted) 20316
-	total missed : (weighted) 20316 100.00%
+	total hyphens: (weighted) 20317
+	total missed : (weighted) 20317 100.00%
 	total false  : (weighted) 0 0.00%
 	number of pattern levels: 0
 
 Creating new project cv2-bX from dictionary w2ab
 Project file cv2-bX
-	created: 2016-03-11 10:13:53.131859
-	last modified: 2016-03-11 10:13:53.132133
+	created: 2016-03-13 16:12:07.368378
+	last modified: 2016-03-13 16:12:07.368868
 	margins: 1,1
 	dictionary size: 8752
-	total hyphens: (weighted) 20316
-	total missed : (weighted) 20316 100.00%
+	total hyphens: (weighted) 20317
+	total missed : (weighted) 20317 100.00%
 	total false  : (weighted) 0 0.00%
 	number of pattern levels: 0
 
@@ -52,21 +51,21 @@ Training project cv2-a using range 2-4 and selector 1:20:1
 Training HYPHENATION pattern layer (level=1)
 	pattern lengths: 2-4
 	selector: 1:20:1
-Selected 4622 patterns of length 3
+Selected 4625 patterns of length 3
 Selected 543 patterns of length 2
-Selected 12735 patterns of length 4
-Missed (weighted): 57 0.28%
-False (weighted): 347 1.73%
+Selected 12744 patterns of length 4
+Missed (weighted): 38 0.19%
+False (weighted): 354 1.76%
 ...Committed!
 
 Training project cv2-a using range 2-3 and selector 1:10:1
 Training INHIBINTING pattern layer (level=2)
 	pattern lengths: 2-3
 	selector: 1:10:1
-Selected 352 patterns of length 3
-Selected 116 patterns of length 2
-Missed (weighted): 58 0.29%
-False (weighted): 32 0.16%
+Selected 363 patterns of length 3
+Selected 117 patterns of length 2
+Missed (weighted): 39 0.19%
+False (weighted): 29 0.14%
 ...Committed!
 
 Batch-training of project cv2-aX using specs from specsX.py
@@ -74,22 +73,22 @@ Training project cv2-aX using range 2-4 and selector 1:1:1
 Training HYPHENATION pattern layer (level=1)
 	pattern lengths: 2-4
 	selector: 1:1:1
-Selected 5282 patterns of length 3
+Selected 5283 patterns of length 3
 Selected 856 patterns of length 2
-Selected 13264 patterns of length 4
+Selected 13269 patterns of length 4
 Missed (weighted): 1 0.00%
-False (weighted): 11956 59.52%
+False (weighted): 12509 62.27%
 ...Committed!
 
 Training project cv2-aX using range 1-3 and selector 1:20:1
 Training INHIBINTING pattern layer (level=2)
 	pattern lengths: 1-3
 	selector: 1:20:1
-Selected 647 patterns of length 2
+Selected 661 patterns of length 2
 Selected 22 patterns of length 1
-Selected 3632 patterns of length 3
-Missed (weighted): 61 0.30%
-False (weighted): 136 0.68%
+Selected 3725 patterns of length 3
+Missed (weighted): 60 0.30%
+False (weighted): 129 0.64%
 ...Committed!
 
 Batch-training of project cv2-b using specs from specs.py
@@ -97,21 +96,21 @@ Training project cv2-b using range 2-4 and selector 1:20:1
 Training HYPHENATION pattern layer (level=1)
 	pattern lengths: 2-4
 	selector: 1:20:1
-Selected 4367 patterns of length 3
+Selected 4374 patterns of length 3
 Selected 537 patterns of length 2
-Selected 11860 patterns of length 4
-Missed (weighted): 43 0.21%
-False (weighted): 315 1.55%
+Selected 11872 patterns of length 4
+Missed (weighted): 24 0.12%
+False (weighted): 319 1.57%
 ...Committed!
 
 Training project cv2-b using range 2-3 and selector 1:10:1
 Training INHIBINTING pattern layer (level=2)
 	pattern lengths: 2-3
 	selector: 1:10:1
-Selected 307 patterns of length 3
-Selected 105 patterns of length 2
-Missed (weighted): 43 0.21%
-False (weighted): 54 0.27%
+Selected 319 patterns of length 3
+Selected 108 patterns of length 2
+Missed (weighted): 24 0.12%
+False (weighted): 49 0.24%
 ...Committed!
 
 Batch-training of project cv2-bX using specs from specsX.py
@@ -121,59 +120,61 @@ Training HYPHENATION pattern layer (level=1)
 	selector: 1:1:1
 Selected 4993 patterns of length 3
 Selected 834 patterns of length 2
-Selected 12369 patterns of length 4
-Missed (weighted): 4 0.02%
-False (weighted): 10593 52.14%
+Selected 12370 patterns of length 4
+Missed (weighted): 2 0.01%
+False (weighted): 10687 52.60%
 ...Committed!
 
 Training project cv2-bX using range 1-3 and selector 1:20:1
 Training INHIBINTING pattern layer (level=2)
 	pattern lengths: 1-3
 	selector: 1:20:1
-Selected 625 patterns of length 2
-Selected 23 patterns of length 1
-Selected 3215 patterns of length 3
-Missed (weighted): 57 0.28%
-False (weighted): 209 1.03%
+Selected 628 patterns of length 2
+Selected 24 patterns of length 1
+Selected 3233 patterns of length 3
+Missed (weighted): 53 0.26%
+False (weighted): 198 0.97%
 ...Committed!
 
 Swapping inhibiting layers between cv2-a and cv2-aX
 Performance of cv2-a
-Missed (weighted): 106 (0.528%)
-False (weighted): 30 (0.149%)
+Missed (weighted): 86 (0.428%)
+False (weighted): 28 (0.139%)
 Performance of cv2-aX
 Missed (weighted): 3 (0.015%)
-False (weighted): 5613 (27.942%)
+False (weighted): 5742 (28.583%)
 ...Committed
 
 Swapping inhibiting layers between cv2-b and cv2-bX
 Performance of cv2-b
-Missed (weighted): 87 (0.428%)
-False (weighted): 55 (0.271%)
+Missed (weighted): 67 (0.330%)
+False (weighted): 51 (0.251%)
 Performance of cv2-bX
-Missed (weighted): 9 (0.044%)
-False (weighted): 5146 (25.330%)
+Missed (weighted): 7 (0.034%)
+False (weighted): 4823 (23.739%)
 ...Committed
 
 Compacting hyphenation patterns for cv2-a
 Result:
-	Level 1:  24657 =>   5772
-	Level 2:   5360 =>   1659
+	Level 1:  24672 =>   5774
+	Level 2:   5559 =>   1696
 ...Committed
 
 Compacting hyphenation patterns for cv2-b
 Result:
-	Level 1:  22735 =>   5180
-	Level 2:   4795 =>   1587
+	Level 1:  22762 =>   5176
+	Level 2:   4823 =>   1598
 ...Committed
 
 Testing cv2-b on dictionary w2aa
 Performance of cv2-b on w2aa
-Missed (weighted): 2229 (11.096%)
-False (weighted): 763 (3.798%)
+Missed (weighted): 2199 (10.946%)
+False (weighted): 777 (3.868%)
+Saved errors to err2-a
 
 Testing cv2-a on dictionary w2ab
 Performance of cv2-a on w2ab
-Missed (weighted): 1746 (8.594%)
-False (weighted): 553 (2.722%)
+Missed (weighted): 1704 (8.387%)
+False (weighted): 522 (2.569%)
+Saved errors to err2-b
 
