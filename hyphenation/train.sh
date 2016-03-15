@@ -17,5 +17,6 @@ pypatgen cu-hyp compact -c
 # but it creates error log in the form of patterns
 pypatgen cu-hyp test w -e err -p err_patterns.txt
 #
-pypatgen cu-hyp export cu-hyp.tex
+pypatgen cu-hyp export cu-hyp.tex -p cu-hyp-patterns.txt -e cu-hyp-exceptions.txt
+rm -f cu-hyp.tex
 
