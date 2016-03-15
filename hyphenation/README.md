@@ -9,30 +9,36 @@ We create TeX hyphenation patterns in the following stages
    essentially allows one to move some errors out of exception list into a patterns, hoping that new pattern will
    cover all word forms (not just forms seen within the training dictionary).
 
-3. Expand patterns and exception list by replacing each character with its Normal Form D. Note that for robustness
-   we create all combinations of D and C forms for every character that has these different forms. This is different
-   from just converting each pattern and exception to Normal form D.
-
-4. Add special patterns that ensure that no hyphenation happens before a combining character. Since Church Slavonic
+3. Add special patterns that ensure that no hyphenation happens before a combining character. Since Church Slavonic
    uses rich set of diacritical marks, we do not rely on step 1 finding all this places, and just add these rules 
    explicitly
 
+4. Expand patterns and exception list by replacing each character with its Normal Form D. Note that for robustness
+   we create all combinations of D and C forms for every character that has these different forms. This is different
+   from just converting each pattern and exception to Normal form D.
+
 ## Generating patterns
 
-Input here is a hyphenation dictionary `words.txt`. Output is a file `cu-hyph.tex` containing hyphenation patterns and
-hyphenation exceptions.
+```bash
+./train.sh > train.log
+```
+
+Input here is a hyphenation dictionary `words.txt`. Output is a file `cu-hyp-patterns.txt` and `cu-hyp-excpetions.txt` 
+containing hyphenation patterns and hyphenation exceptions.
 
 Training parameters were chosen manually after several trial-and-error sessions with the objective to achieve best
 possible generalization performance.
 
-We used [pypatgen](tool for pattern generation). 
+For pattern generation we used [pypatgen](https://pypi.python.org/pypi/pypatgen) tool, version 0.2.9. 
 
-Training process is detailed in the [following document](TRAINING.md).
+Training process is detailed in a [separate document](TRAINING.md).
 
-Auxilliary output file is `err_patterns.txt` that lists all hyphenation exceptions in the form
+Auxiliary output file is `err_patterns.txt` that lists all hyphenation exceptions in the form
 of a full-word pattern. It is used in the next step to make hyphenation rules more general and more compact.
 
+
 ## Add "long" patterns from exceptions
+
 In the exception list one can often see many variants of a same-root word. It makes sense to make a "long" prefix
 pattern to cover this offending root and all its word forms. For example,
 ```
@@ -56,65 +62,8 @@ Note that pattern generation step failed to build this "long" pattern because we
 To assist in making such "long" prefix patterns, `pypatgen` can generate error report in the form of suggested full-word
 patterns (use option `-p` of the `pypatgen`'s `test` command).
 
-Result of this work is fule `cu-hyp2.tex`
+Result of this (manual) work is file `cu-hyp-extra2.txt` with "long" patterns.
 
-## Expanding patterns and exceptions
-
-Input here is `cu-hyp2.tex` and the output is `cu-hyph-expanded.tex`.
-
-The hyphenation dictionary contains only following characters that have different NFD form:
-
-```python
-TABLE = [
-    ('\u0400', ['\u0415\u0300']),  # E grave
-    ('\u0401', ['\u0415\u0308']),  # IO
-    ('\u0403', ['\u0413\u0301']),  # GJE
-    ('\u0407', ['\u0406\u0308']),  # YI
-    ('\u040c', ['\u041a\u0301']),  # KJE
-    ('\u040d', ['\u0418\u0300']),  # I grave
-    ('\u040e', ['\u0423\u0306']),  # SHORT U
-    ('\u0419', ['\u0418\u0306']),  # SHORT I
-    ('\u0439', ['\u0438\u0306']),  # short i
-    ('\u0450', ['\u0435\u0300']),  # e grave
-    ('\u0451', ['\u0435\u0308']),  # io
-    ('\u0453', ['\u0433\u0301']),  # ghe
-    ('\u0457', ['\u0456\u0308']),  # yi
-    ('\u045c', ['\u043a\u0301']),  # kje
-    ('\u045d', ['\u0438\u0300']),  # i grave
-    ('\u045e', ['\u0443\u0306']),  # short u
-    ('\u0476', ['\u0474\u030f']),  # IZHITSA with double grave
-    ('\u0477', ['\u0475\u030f']),  # izhitsa with double grave
-    ('\u0479', ['\u1c82\u0443']),  # uk
-]
-```
-and the following recursive function was used to expand each pattern and each exceptional word:
-
-```python
-_EXPLODE_MAP = dict(TABLE)
-_EXPLODE_REX = re.compile('|'.join(re.escape(x) for x in _EXPLODE_MAP.keys()))
-
-def explode_nfd(string):
-    '''
-    Takes string and generates all possible equivalent representations by
-    substituting each expandable character with all possible NFD expansions.
-    '''
-    
-    string = nfc(string)
-    mtc = _EXPLODE_REX.search(string)
-    if mtc is None:
-        yield string
-        return
-    
-    prefix     = string[:mtc.start()]
-    explodable = mtc.group()
-    rest       = string[mtc.end():]
-
-    for suffix in explode_nfd(rest):
-        yield prefix + explodable + suffix
-        
-        for expansion in _EXPLODE_MAP[explodable]:
-            yield prefix + expansion + suffix
-```
 
 ### Adding special rules for combining symbols and digraphs
 
@@ -206,5 +155,72 @@ def explode_nfd(string):
    * combining conjoining macron: `U+FE26`
 
 In the hand-crafted rules above mark "(auto)" denotes patterns that were found automatically during step 1.
- 
+
+Result ot this work is file `cu-hyph-extra.txt`.
+
+We then run script to build hyphenation TeX file:
+
+```bash
+./build.sh > build.log
+```
+Result is `cu-hyp.tex`.
+
+## Expanding patterns and exceptions
+
+Input here is `cu-hyp.tex` and the output is `cu-hyph-expanded.tex`.
+
+The hyphenation dictionary contains only following characters that have different NFD form:
+
+```python
+TABLE = [
+    ('\u0400', ['\u0415\u0300']),  # E grave
+    ('\u0401', ['\u0415\u0308']),  # IO
+    ('\u0403', ['\u0413\u0301']),  # GJE
+    ('\u0407', ['\u0406\u0308']),  # YI
+    ('\u040c', ['\u041a\u0301']),  # KJE
+    ('\u040d', ['\u0418\u0300']),  # I grave
+    ('\u040e', ['\u0423\u0306']),  # SHORT U
+    ('\u0419', ['\u0418\u0306']),  # SHORT I
+    ('\u0439', ['\u0438\u0306']),  # short i
+    ('\u0450', ['\u0435\u0300']),  # e grave
+    ('\u0451', ['\u0435\u0308']),  # io
+    ('\u0453', ['\u0433\u0301']),  # ghe
+    ('\u0457', ['\u0456\u0308']),  # yi
+    ('\u045c', ['\u043a\u0301']),  # kje
+    ('\u045d', ['\u0438\u0300']),  # i grave
+    ('\u045e', ['\u0443\u0306']),  # short u
+    ('\u0476', ['\u0474\u030f']),  # IZHITSA with double grave
+    ('\u0477', ['\u0475\u030f']),  # izhitsa with double grave
+    ('\u0479', ['\u1c82\u0443']),  # uk
+]
+```
+and the following recursive function was used to expand each pattern and each exceptional word:
+
+```python
+_EXPLODE_MAP = dict(TABLE)
+_EXPLODE_REX = re.compile('|'.join(re.escape(x) for x in _EXPLODE_MAP.keys()))
+
+def explode_nfd(string):
+    '''
+    Takes string and generates all possible equivalent representations by
+    substituting each expandable character with all possible NFD expansions.
+    '''
+    
+    string = nfc(string)
+    mtc = _EXPLODE_REX.search(string)
+    if mtc is None:
+        yield string
+        return
+    
+    prefix     = string[:mtc.start()]
+    explodable = mtc.group()
+    rest       = string[mtc.end():]
+
+    for suffix in explode_nfd(rest):
+        yield prefix + explodable + suffix
+        
+        for expansion in _EXPLODE_MAP[explodable]:
+            yield prefix + expansion + suffix
+```
+
 [1]: https://cloud.githubusercontent.com/assets/569458/13713500/42d607e2-e797-11e5-9632-10e8b5f6ada2.png
