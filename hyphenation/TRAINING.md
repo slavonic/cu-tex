@@ -125,9 +125,9 @@ dictionary is 40406 - it is used to compute percentages below).
 
 |  script  | total number of missed | total number of false | percent missed | percent false |
 |----------|------------------------|-----------------------|----------------|---------------|
-|  `cv2`   |  3903                  |  1345                 |  9.7           | 3.2           |
-|  `cv3`   |  3136                  |  1242                 |  7.8           | 3.1           |
-|  `cv4`   |  3247                  |  1219                 |  8.0           | 3.0           |
+|  `cv2`   |  3831                  |  1255                 |  9.5           | 3.1           |
+|  `cv3`   |  3081                  |  1213                 |  7.6           | 3.0           |
+|  `cv4`   |  3178                  |  1187                 |  7.9           | 2.9           |
 
 Number of words in the dictionary is 17507. This gives on the average 2.3 hyphens per word. Therefore, 75% of new words
 will be hyphenated correctly. Other 25% of new words will have some deficiency - either a missing hyphen or an incorrectly
