@@ -7,7 +7,7 @@ rm -f temp
 echo "\\patterns{" > cu-hyp.tex
 cat cu-hyp-patterns.txt >> cu-hyp.tex
 cat cu-hyph-extra.txt >> cu-hyp.tex
-cat cu-hyph-extra2.txt >> cu-hyp.tex
+cat cu-hyph-extra3.txt >> cu-hyp.tex
 echo "}" >> cu-hyp.tex
 
 # load paterns into temp project to generate new list of exceptions
