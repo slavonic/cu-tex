@@ -1,0 +1,363 @@
+   17504   18920  380447 ../data/words.txt
+    4376    4768   96246 w4aa
+    4376    4648   93071 w4ab
+    4376    4631   99945 w4ac
+    4376    4873   91185 w4ad
+   17504   18920  380447 total
+   13128   14047  289262 w4a-abc
+   13128   14289  280502 w4a-abd
+   13128   14272  287376 w4a-acd
+   13128   14152  284201 w4a-bcd
+   52512   56760 1141341 total
+Creating new project cv4-bcd from dictionary w4a-bcd
+Project file cv4-bcd
+	created: 2016-03-15 10:42:55.004126
+	last modified: 2016-03-15 10:42:55.004409
+	margins: 1,1
+	dictionary size: 13128
+	total hyphens: (weighted) 30447
+	total missed : (weighted) 30447 100.00%
+	total false  : (weighted) 0 0.00%
+	number of pattern levels: 0
+
+Creating new project cv4-bcdX from dictionary w4a-bcd
+Project file cv4-bcdX
+	created: 2016-03-15 10:42:55.599840
+	last modified: 2016-03-15 10:42:55.600073
+	margins: 1,1
+	dictionary size: 13128
+	total hyphens: (weighted) 30447
+	total missed : (weighted) 30447 100.00%
+	total false  : (weighted) 0 0.00%
+	number of pattern levels: 0
+
+Creating new project cv4-acd from dictionary w4a-acd
+Project file cv4-acd
+	created: 2016-03-15 10:42:56.178460
+	last modified: 2016-03-15 10:42:56.178695
+	margins: 1,1
+	dictionary size: 13128
+	total hyphens: (weighted) 30276
+	total missed : (weighted) 30276 100.00%
+	total false  : (weighted) 0 0.00%
+	number of pattern levels: 0
+
+Creating new project cv4-acdX from dictionary w4a-acd
+Project file cv4-acdX
+	created: 2016-03-15 10:42:56.755064
+	last modified: 2016-03-15 10:42:56.755379
+	margins: 1,1
+	dictionary size: 13128
+	total hyphens: (weighted) 30276
+	total missed : (weighted) 30276 100.00%
+	total false  : (weighted) 0 0.00%
+	number of pattern levels: 0
+
+Creating new project cv4-abd from dictionary w4a-abd
+Project file cv4-abd
+	created: 2016-03-15 10:42:57.335414
+	last modified: 2016-03-15 10:42:57.335660
+	margins: 1,1
+	dictionary size: 13128
+	total hyphens: (weighted) 29294
+	total missed : (weighted) 29294 100.00%
+	total false  : (weighted) 0 0.00%
+	number of pattern levels: 0
+
+Creating new project cv4-abdX from dictionary w4a-abd
+Project file cv4-abdX
+	created: 2016-03-15 10:42:57.900597
+	last modified: 2016-03-15 10:42:57.900867
+	margins: 1,1
+	dictionary size: 13128
+	total hyphens: (weighted) 29294
+	total missed : (weighted) 29294 100.00%
+	total false  : (weighted) 0 0.00%
+	number of pattern levels: 0
+
+Creating new project cv4-abc from dictionary w4a-abc
+Project file cv4-abc
+	created: 2016-03-15 10:42:58.465228
+	last modified: 2016-03-15 10:42:58.465473
+	margins: 1,1
+	dictionary size: 13128
+	total hyphens: (weighted) 31201
+	total missed : (weighted) 31201 100.00%
+	total false  : (weighted) 0 0.00%
+	number of pattern levels: 0
+
+Creating new project cv4-abcX from dictionary w4a-abc
+Project file cv4-abcX
+	created: 2016-03-15 10:42:59.032954
+	last modified: 2016-03-15 10:42:59.033189
+	margins: 1,1
+	dictionary size: 13128
+	total hyphens: (weighted) 31201
+	total missed : (weighted) 31201 100.00%
+	total false  : (weighted) 0 0.00%
+	number of pattern levels: 0
+
+Batch-training of project cv4-bcd using specs from specs.py
+Training project cv4-bcd using range 2-4 and selector 1:20:1
+Training HYPHENATION pattern layer (level=1)
+	pattern lengths: 2-4
+	selector: 1:20:1
+Selected 5525 patterns of length 3
+Selected 597 patterns of length 2
+Selected 16316 patterns of length 4
+Missed (weighted): 43 0.14%
+False (weighted): 538 1.77%
+...Committed!
+
+Training project cv4-bcd using range 2-3 and selector 1:10:1
+Training INHIBINTING pattern layer (level=2)
+	pattern lengths: 2-3
+	selector: 1:10:1
+Selected 468 patterns of length 3
+Selected 136 patterns of length 2
+Missed (weighted): 43 0.14%
+False (weighted): 63 0.21%
+...Committed!
+
+Batch-training of project cv4-bcdX using specs from specsX.py
+Training project cv4-bcdX using range 2-4 and selector 1:1:1
+Training HYPHENATION pattern layer (level=1)
+	pattern lengths: 2-4
+	selector: 1:1:1
+Selected 6362 patterns of length 3
+Selected 958 patterns of length 2
+Selected 17041 patterns of length 4
+Missed (weighted): 2 0.01%
+False (weighted): 18946 62.23%
+...Committed!
+
+Training project cv4-bcdX using range 1-3 and selector 1:20:1
+Training INHIBINTING pattern layer (level=2)
+	pattern lengths: 1-3
+	selector: 1:20:1
+Selected 742 patterns of length 2
+Selected 27 patterns of length 1
+Selected 4434 patterns of length 3
+Missed (weighted): 86 0.28%
+False (weighted): 404 1.33%
+...Committed!
+
+Batch-training of project cv4-acd using specs from specs.py
+Training project cv4-acd using range 2-4 and selector 1:20:1
+Training HYPHENATION pattern layer (level=1)
+	pattern lengths: 2-4
+	selector: 1:20:1
+Selected 5269 patterns of length 3
+Selected 605 patterns of length 2
+Selected 15489 patterns of length 4
+Missed (weighted): 44 0.15%
+False (weighted): 637 2.10%
+...Committed!
+
+Training project cv4-acd using range 2-3 and selector 1:10:1
+Training INHIBINTING pattern layer (level=2)
+	pattern lengths: 2-3
+	selector: 1:10:1
+Selected 492 patterns of length 3
+Selected 159 patterns of length 2
+Missed (weighted): 44 0.15%
+False (weighted): 101 0.33%
+...Committed!
+
+Batch-training of project cv4-acdX using specs from specsX.py
+Training project cv4-acdX using range 2-4 and selector 1:1:1
+Training HYPHENATION pattern layer (level=1)
+	pattern lengths: 2-4
+	selector: 1:1:1
+Selected 6042 patterns of length 3
+Selected 934 patterns of length 2
+Selected 16206 patterns of length 4
+Missed (weighted): 5 0.02%
+False (weighted): 18624 61.51%
+...Committed!
+
+Training project cv4-acdX using range 1-3 and selector 1:20:1
+Training INHIBINTING pattern layer (level=2)
+	pattern lengths: 1-3
+	selector: 1:20:1
+Selected 730 patterns of length 2
+Selected 26 patterns of length 1
+Selected 4202 patterns of length 3
+Missed (weighted): 85 0.28%
+False (weighted): 404 1.33%
+...Committed!
+
+Batch-training of project cv4-abd using specs from specs.py
+Training project cv4-abd using range 2-4 and selector 1:20:1
+Training HYPHENATION pattern layer (level=1)
+	pattern lengths: 2-4
+	selector: 1:20:1
+Selected 5521 patterns of length 3
+Selected 572 patterns of length 2
+Selected 16301 patterns of length 4
+Missed (weighted): 45 0.15%
+False (weighted): 537 1.83%
+...Committed!
+
+Training project cv4-abd using range 2-3 and selector 1:10:1
+Training INHIBINTING pattern layer (level=2)
+	pattern lengths: 2-3
+	selector: 1:10:1
+Selected 483 patterns of length 3
+Selected 154 patterns of length 2
+Missed (weighted): 45 0.15%
+False (weighted): 45 0.15%
+...Committed!
+
+Batch-training of project cv4-abdX using specs from specsX.py
+Training project cv4-abdX using range 2-4 and selector 1:1:1
+Training HYPHENATION pattern layer (level=1)
+	pattern lengths: 2-4
+	selector: 1:1:1
+Selected 6331 patterns of length 3
+Selected 925 patterns of length 2
+Selected 17082 patterns of length 4
+Missed (weighted): 1 0.00%
+False (weighted): 18729 63.93%
+...Committed!
+
+Training project cv4-abdX using range 1-3 and selector 1:20:1
+Training INHIBINTING pattern layer (level=2)
+	pattern lengths: 1-3
+	selector: 1:20:1
+Selected 750 patterns of length 2
+Selected 26 patterns of length 1
+Selected 4501 patterns of length 3
+Missed (weighted): 84 0.29%
+False (weighted): 259 0.88%
+...Committed!
+
+Batch-training of project cv4-abc using specs from specs.py
+Training project cv4-abc using range 2-4 and selector 1:20:1
+Training HYPHENATION pattern layer (level=1)
+	pattern lengths: 2-4
+	selector: 1:20:1
+Selected 5475 patterns of length 3
+Selected 605 patterns of length 2
+Selected 16207 patterns of length 4
+Missed (weighted): 47 0.15%
+False (weighted): 616 1.97%
+...Committed!
+
+Training project cv4-abc using range 2-3 and selector 1:10:1
+Training INHIBINTING pattern layer (level=2)
+	pattern lengths: 2-3
+	selector: 1:10:1
+Selected 538 patterns of length 3
+Selected 157 patterns of length 2
+Missed (weighted): 48 0.15%
+False (weighted): 62 0.20%
+...Committed!
+
+Batch-training of project cv4-abcX using specs from specsX.py
+Training project cv4-abcX using range 2-4 and selector 1:1:1
+Training HYPHENATION pattern layer (level=1)
+	pattern lengths: 2-4
+	selector: 1:1:1
+Selected 6269 patterns of length 3
+Selected 955 patterns of length 2
+Selected 16908 patterns of length 4
+Missed (weighted): 2 0.01%
+False (weighted): 19304 61.87%
+...Committed!
+
+Training project cv4-abcX using range 1-3 and selector 1:20:1
+Training INHIBINTING pattern layer (level=2)
+	pattern lengths: 1-3
+	selector: 1:20:1
+Selected 762 patterns of length 2
+Selected 26 patterns of length 1
+Selected 4514 patterns of length 3
+Missed (weighted): 94 0.30%
+False (weighted): 409 1.31%
+...Committed!
+
+Swapping inhibiting layers between cv4-bcd and cv4-bcdX
+Performance of cv4-bcd
+Missed (weighted): 117 (0.384%)
+False (weighted): 60 (0.197%)
+Performance of cv4-bcdX
+Missed (weighted): 4 (0.013%)
+False (weighted): 8983 (29.504%)
+...Committed
+
+Swapping inhibiting layers between cv4-acd and cv4-acdX
+Performance of cv4-acd
+Missed (weighted): 112 (0.370%)
+False (weighted): 99 (0.327%)
+Performance of cv4-acdX
+Missed (weighted): 9 (0.030%)
+False (weighted): 7566 (24.990%)
+...Committed
+
+Swapping inhibiting layers between cv4-abd and cv4-abdX
+Performance of cv4-abd
+Missed (weighted): 115 (0.393%)
+False (weighted): 44 (0.150%)
+Performance of cv4-abdX
+Missed (weighted): 2 (0.007%)
+False (weighted): 8222 (28.067%)
+...Committed
+
+Swapping inhibiting layers between cv4-abc and cv4-abcX
+Performance of cv4-abc
+Missed (weighted): 126 (0.404%)
+False (weighted): 60 (0.192%)
+Performance of cv4-abcX
+Missed (weighted): 6 (0.019%)
+False (weighted): 8416 (26.973%)
+...Committed
+
+Compacting hyphenation patterns for cv4-bcd
+Result:
+	Level 1:  30810 =>   7140
+	Level 2:   6640 =>   2111
+...Committed
+
+Compacting hyphenation patterns for cv4-acd
+Result:
+	Level 1:  29025 =>   6519
+	Level 2:   6321 =>   1967
+...Committed
+
+Compacting hyphenation patterns for cv4-abd
+Result:
+	Level 1:  30586 =>   7156
+	Level 2:   6673 =>   2016
+...Committed
+
+Compacting hyphenation patterns for cv4-abc
+Result:
+	Level 1:  30740 =>   7022
+	Level 2:   6792 =>   2142
+...Committed
+
+Testing cv4-bcd on dictionary w4aa
+Performance of cv4-bcd on w4aa
+Missed (weighted): 562 (5.643%)
+False (weighted): 361 (3.625%)
+Saved errors to err4-a
+
+Testing cv4-acd on dictionary w4ab
+Performance of cv4-acd on w4ab
+Missed (weighted): 1120 (11.056%)
+False (weighted): 328 (3.238%)
+Saved errors to err4-b
+
+Testing cv4-abd on dictionary w4ac
+Performance of cv4-abd on w4ac
+Missed (weighted): 899 (8.090%)
+False (weighted): 315 (2.835%)
+Saved errors to err4-c
+
+Testing cv4-abc on dictionary w4ad
+Performance of cv4-abc on w4ad
+Missed (weighted): 597 (6.486%)
+False (weighted): 183 (1.988%)
+Saved errors to err4-d
+
