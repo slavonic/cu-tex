@@ -1,23 +1,23 @@
-   17504   18920  380447 ../data/words.txt
+   17511   18929  380586 ../data/words.txt
 Creating new project cu-hyp from dictionary w
 Project file cu-hyp
-	created: 2016-03-15 10:17:55.248902
-	last modified: 2016-03-15 10:17:55.249157
+	created: 2016-03-17 16:34:52.481681
+	last modified: 2016-03-17 16:34:52.481932
 	margins: 1,1
-	dictionary size: 17504
-	total hyphens: (weighted) 40406
-	total missed : (weighted) 40406 100.00%
+	dictionary size: 17511
+	total hyphens: (weighted) 40419
+	total missed : (weighted) 40419 100.00%
 	total false  : (weighted) 0 0.00%
 	number of pattern levels: 0
 
 Creating new project cu-hypX from dictionary w
 Project file cu-hypX
-	created: 2016-03-15 10:17:55.908498
-	last modified: 2016-03-15 10:17:55.908733
+	created: 2016-03-17 16:34:53.149726
+	last modified: 2016-03-17 16:34:53.149988
 	margins: 1,1
-	dictionary size: 17504
-	total hyphens: (weighted) 40406
-	total missed : (weighted) 40406 100.00%
+	dictionary size: 17511
+	total hyphens: (weighted) 40419
+	total missed : (weighted) 40419 100.00%
 	total false  : (weighted) 0 0.00%
 	number of pattern levels: 0
 
@@ -26,21 +26,21 @@ Training project cu-hyp using range 2-4 and selector 1:20:1
 Training HYPHENATION pattern layer (level=1)
 	pattern lengths: 2-4
 	selector: 1:20:1
-Selected 6182 patterns of length 3
+Selected 6187 patterns of length 3
 Selected 621 patterns of length 2
-Selected 19271 patterns of length 4
-Missed (weighted): 78 0.19%
-False (weighted): 786 1.95%
+Selected 19273 patterns of length 4
+Missed (weighted): 80 0.20%
+False (weighted): 793 1.96%
 ...Committed!
 
 Training project cu-hyp using range 2-3 and selector 1:10:1
 Training INHIBINTING pattern layer (level=2)
 	pattern lengths: 2-3
 	selector: 1:10:1
-Selected 602 patterns of length 3
-Selected 179 patterns of length 2
-Missed (weighted): 78 0.19%
-False (weighted): 102 0.25%
+Selected 611 patterns of length 3
+Selected 181 patterns of length 2
+Missed (weighted): 81 0.20%
+False (weighted): 92 0.23%
 ...Committed!
 
 Batch-training of project cu-hypX using specs from specsX.py
@@ -48,50 +48,50 @@ Training project cu-hypX using range 2-4 and selector 1:1:1
 Training HYPHENATION pattern layer (level=1)
 	pattern lengths: 2-4
 	selector: 1:1:1
-Selected 7128 patterns of length 3
-Selected 1011 patterns of length 2
-Selected 20207 patterns of length 4
+Selected 7130 patterns of length 3
+Selected 1013 patterns of length 2
+Selected 20208 patterns of length 4
 Missed (weighted): 3 0.01%
-False (weighted): 25618 63.40%
+False (weighted): 25636 63.43%
 ...Committed!
 
 Training project cu-hypX using range 1-3 and selector 1:20:1
 Training INHIBINTING pattern layer (level=2)
 	pattern lengths: 1-3
 	selector: 1:20:1
-Selected 812 patterns of length 2
+Selected 815 patterns of length 2
 Selected 28 patterns of length 1
-Selected 5105 patterns of length 3
-Missed (weighted): 122 0.30%
-False (weighted): 599 1.48%
+Selected 5115 patterns of length 3
+Missed (weighted): 124 0.31%
+False (weighted): 587 1.45%
 ...Committed!
 
 Swapping inhibiting layers between cu-hyp and cu-hypX
 Performance of cu-hyp
-Missed (weighted): 178 (0.441%)
-False (weighted): 97 (0.240%)
+Missed (weighted): 177 (0.438%)
+False (weighted): 90 (0.223%)
 Performance of cu-hypX
-Missed (weighted): 5 (0.012%)
-False (weighted): 11128 (27.540%)
+Missed (weighted): 11 (0.027%)
+False (weighted): 10912 (26.997%)
 ...Committed
 
 Compacting hyphenation patterns for cu-hyp
 Result:
-	Level 1:  35710 =>   8321
-	Level 2:   7641 =>   2367
+	Level 1:  35719 =>   8350
+	Level 2:   7658 =>   2373
 ...Committed
 
 Testing cu-hyp on dictionary w
 Performance of cu-hyp on w
-Missed (weighted): 178 (0.441%)
-False (weighted): 97 (0.240%)
+Missed (weighted): 177 (0.438%)
+False (weighted): 90 (0.223%)
 Saved errors to err
 Saved errors to err_patterns.txt
 
 Exporting patterns from cu-hyp and saving them in TeX format to cu-hyp.tex
 Created TeX patterns file cu-hyp.tex
-Number of patterns: 8800
-Number of exceptions: 216
+Number of patterns: 8833
+Number of exceptions: 214
 
 Written raw patterns to cu-hyp-patterns.txt
 
