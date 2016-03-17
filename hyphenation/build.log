@@ -1,7 +1,7 @@
 Creating new project temp from dictionary ../data/words.txt
 Project file temp
-	created: 2016-03-16 21:13:06.516509
-	last modified: 2016-03-16 21:13:06.516760
+	created: 2016-03-16 21:21:06.270873
+	last modified: 2016-03-16 21:21:06.271129
 	margins: 1,1
 	dictionary size: 17504
 	total hyphens: (weighted) 40406
@@ -18,7 +18,7 @@ Testing temp on dictionary ../data/words.txt
 Performance of temp on ../data/words.txt
 Missed (weighted): 69 (0.171%)
 False (weighted): 48 (0.119%)
-Saved errors to err_patterns2.txt
+Saved errors to err_patterns.txt
 
 Exporting patterns from temp and saving them in TeX format to cu-hyp.tex
 Created TeX patterns file cu-hyp.tex
