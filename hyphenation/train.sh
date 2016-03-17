@@ -1,10 +1,10 @@
-wc ../data/words.txt
-cat ../data/words.txt > w
+wc words-hyph.txt
+cp words-hyph.txt w
 
 rm -f cu-hyp cu-hypX cu-hyp.tex
 #
-pypatgen cu-hyp  new w --margins 1,1
-pypatgen cu-hypX new w --margins 1,1
+pypatgen cu-hyp  new w --margins 1,2
+pypatgen cu-hypX new w --margins 1,2
 #
 pypatgen cu-hyp  batchtrain specs.py
 pypatgen cu-hypX batchtrain specsX.py

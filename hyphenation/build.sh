@@ -11,8 +11,8 @@ cat cu-hyph-extra3.txt >> cu-hyp.tex
 echo "}" >> cu-hyp.tex
 
 # load paterns into temp project to generate new list of exceptions
-pypatgen temp new ../data/words.txt -m 1,1
+pypatgen temp new words-hyph.txt -m 1,2
 pypatgen temp import cu-hyp.tex -c
-pypatgen temp test ../data/words.txt -p err_patterns.txt
+pypatgen temp test words-hyph.txt -p err_patterns.txt
 rm -f cu-hyp.tex
 pypatgen temp export cu-hyp.tex

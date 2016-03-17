@@ -1,5 +1,6 @@
-wc ../data/words.txt
-split -l 8752 ../data/words.txt w2
+wc words-hyph.txt
+rm -f wc2a?
+split -l 8756 words-hyph.txt w2
 wc w2a?
 
 rm -f cv2-? cv2-??
@@ -22,3 +23,6 @@ pypatgen cv2-b compact -c
 #
 pypatgen cv2-b test w2aa -e err2-a
 pypatgen cv2-a test w2ab -e err2-b
+
+rm -f wc2a?
+rm -f cv2-? cv2-??
