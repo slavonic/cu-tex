@@ -8,7 +8,7 @@ Quick overview of steps:
 2. batch-train these two projects. `cu-hyp` is trained using batch specs from `specs.py`, while `cu-hypX` is trained using different specs `specsX.py`
 3. replace inhibition (odd) patterns in `cu-hyp` with those from `cu-hypX`
 4. compact patterns (just removes redundant patterns)
-5. export TeX file `cu-hyp.tex`
+5. export patterns as `raw_patterns.txt` and export error list (in form of patterens) as `err_raw_patterns.txt`.
 
 Rationale for using this procedure is below.
 

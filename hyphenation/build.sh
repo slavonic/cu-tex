@@ -1,18 +1,25 @@
-rm -f temp
+./make_hyph.py ../data/words.txt words-hyph.txt
+
+./make_pats.py combining combiner_patterns.txt
+./make_pats.py singles single_patterns.txt
 
 # concatenate generated patterns with
 # * special rules
 # * hand-crafted long stems exceptions
 # (note that we ignore exceptions)
-echo "\\patterns{" > cu-hyp.tex
-cat cu-hyp-patterns.txt >> cu-hyp.tex
-cat cu-hyph-extra.txt >> cu-hyp.tex
-cat cu-hyph-extra3.txt >> cu-hyp.tex
-echo "}" >> cu-hyp.tex
+echo "\\patterns{"         > temp.tex
+cat raw_patterns.txt      >> temp.tex
+cat combiner_patterns.txt >> temp.tex
+cat root_patterns.txt     >> temp.tex
+cat single_patterns.txt   >> temp.tex
+echo "}"                  >> temp.tex
 
 # load paterns into temp project to generate new list of exceptions
 pypatgen temp new words-hyph.txt -m 1,2
-pypatgen temp import cu-hyp.tex -c
+pypatgen temp import temp.tex -c
+pypatgen temp compact
 pypatgen temp test words-hyph.txt -p err_patterns.txt
 rm -f cu-hyp.tex
 pypatgen temp export cu-hyp.tex
+
+rm -f temp.tex temp words-hyph.txt 
