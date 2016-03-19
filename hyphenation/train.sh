@@ -5,8 +5,8 @@ wc words-hyph.txt
 
 rm -f cu-hyp cu-hypX cu-hyp.tex
 #
-pypatgen cu-hyp  new words-hyph.txt --margins 1,2
-pypatgen cu-hypX new words-hyph.txt --margins 1,2
+pypatgen cu-hyp  new words-hyph.txt --margins 1,1
+pypatgen cu-hypX new words-hyph.txt --margins 1,1
 #
 pypatgen cu-hyp  batchtrain specs.py
 pypatgen cu-hypX batchtrain specsX.py
