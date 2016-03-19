@@ -8,7 +8,7 @@ Quick overview of steps:
 2. batch-train these two projects. `cu-hyp` is trained using batch specs from `specs.py`, while `cu-hypX` is trained using different specs `specsX.py`
 3. replace inhibition (odd) patterns in `cu-hyp` with those from `cu-hypX`
 4. compact patterns (just removes redundant patterns)
-5. export TeX file `cu-hyp.tex`
+5. export patterns as `raw_patterns.txt` and export error list (in form of patterens) as `err_raw_patterns.txt`.
 
 Rationale for using this procedure is below.
 
@@ -121,15 +121,15 @@ Scripts that were used for cross-validation are:
 * `cv4.sh` - does four-fold cross-validation
 
 See corresponding `cv-?.log` files for the results. Summary is below (note that total weighted number of hyphens in the 
-dictionary is 40406 - it is used to compute percentages below).
+dictionary is 34442 - it is used to compute percentages below).
 
 |  script  | total number of missed | total number of false | percent missed | percent false |
 |----------|------------------------|-----------------------|----------------|---------------|
-|  `cv2`   |  3831                  |  1255                 |  9.5           | 3.1           |
-|  `cv3`   |  3081                  |  1213                 |  7.6           | 3.0           |
-|  `cv4`   |  3178                  |  1187                 |  7.9           | 2.9           |
+|  `cv2`   |  3959                  |  1102                 |  11.5          | 3.2           |
+|  `cv3`   |  3015                  |  1005                 |  8.8           | 2.9           |
+|  `cv4`   |  3246                  |  1138                 |  9.4           | 3.3           |
 
-Number of words in the dictionary is 17507. This gives on the average 2.3 hyphens per word. Therefore, 75% of new words
+Number of words in the dictionary is 17511. This gives on the average 2 hyphens per word. Therefore, 75% of new words
 will be hyphenated correctly. Other 25% of new words will have some deficiency - either a missing hyphen or an incorrectly
 suggested hyphen.
 
