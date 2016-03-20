@@ -13,79 +13,33 @@ CU_UK = '\u0479'
 CU_UK_NFD = '\u1c82\u0443'
 CU_UK_NFD2 = '\u043e\u0443'
 
-CU_COMBINERS = [
+CU_ACCENTS_1 = [  # Aleksandr put only those for the start of the word patterns
     '\u0300',
     '\u0301',
     '\u0311',
+    '\u0308'
+]
+
+CU_ACCENTS_2 = [
+    unichr(x) for x in range(ord('\u2de0'), ord('\u2dff')+1)
+] + [
+    unichr(x) for x in range(ord('\ua674'), ord('\ua67d')+1)
+]
+
+CU_POKRYTIE = 'u0487'
+
+CU_COMBINERS = CU_ACCENTS_1 + [
     '\u0486',
-    '\u0485',
     '\u0306',
     '\u033e',
     '\ua67d',
     '\ua67c',
     '\u0307',
-    '\u0308',
     '\u030f',
-    '\u030b',
-    '\u1dc0',
-    '\u1dc1',
-    '\u0302',
-    '\u0484',
-    '\u0313',
-    '\u0314',
-    '\u0358',
-    '\u1df6',
-    '\u1df7',
-    '\u1df8',
-    '\u1df9',
     '\u0483',
-    '\ua66f',
     '\u0487',
-    '\u0305',
-    '\u033f',
-    '\u2df6',
-    '\u2de0',
-    '\u2de1',
-    '\u2de2',
-    '\u2de3',
-    '\u2df7',
-    '\ua674',
-    '\u2de4',
-    '\u2de5',
-    '\ua675',
-    '\ua676',
-    '\u2df8',
-    '\u2de6',
-    '\u2de7',
-    '\u2de8',
-    '\u2de9',
-    '\u2dea',
-    '\u2deb',
-    '\u2dec',
-    '\u2ded',
-    '\u2dee',
-    '\u2df9',
-    '\ua677',
-    '\ua69e',
-    '\u2def',
-    '\ua67b',
-    '\u2df0',
-    '\u2df1',
-    '\u2df2',
-    '\u2df3',
-    '\ua678',
-    '\ua67a',
-    '\ua679',
-    '\u2dfa',
-    '\u2dfb',
-    '\u2dfc',
-    '\ua69f',
-    '\u2dfd',
-    '\u2dfe',
-    '\u2dff',
-    '\u2df4',
-    '\u2df5',
-]
+] + CU_ACCENTS_2
+
 CU_YEROK     = '\u2e2f'
 CU_YER       = '\u044a'
 CU_TALL_YER  = '\u1c86'
@@ -125,21 +79,6 @@ CU_VOWELS = [
 
 CU_BREATHING = '\u0486'
 CU_BREATHING_HARD = '\u0485'
-
-CU_ACCENTS_1 = [  # Aleksandr put only those for the start of the word patterns
-    '\u0300',
-    '\u0301',
-    '\u0311',
-    '\u0308'
-]
-
-CU_ACCENTS_2 = [
-    unichr(x) for x in range(ord('\u2de0'), ord('\u2dff')+1)
-] + [
-    unichr(x) for x in range(ord('\ua674'), ord('\ua67d')+1)
-]
-
-CU_POKRYTIE = 'u0487'
 
 def main_combining(args):
 
