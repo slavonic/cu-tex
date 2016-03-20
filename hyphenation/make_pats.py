@@ -10,6 +10,7 @@ CU_OT = '\u047f'
 CU_UK = '\u0479'
 
 CU_UK_NFD = '\u1c82\u0443'
+CU_UK_NFD2 = '\u043e\u0443'
 
 CU_COMBINERS = [
     '\u0300',
@@ -142,6 +143,8 @@ def main_combining(args):
         f.write('% Combiners and related special patterns\n')
         f.write(inh.join(CU_UK_NFD)
                 + '  % Do not split digraph `LOWERCASE UK` with a hyphen: `U+1C82` `U+0443`\n')
+        f.write(inh.join(CU_UK_NFD2)
+                + '  % Do not split this gorm of digraph `LOWERCASE UK` with a hyphen: `U+043e` `U+0443`\n')
         f.write('% combiners: never split before any combining symbol\n')
         for x in CU_COMBINERS:
             f.write(inh + x + '\n')
