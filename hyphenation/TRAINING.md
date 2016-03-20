@@ -8,7 +8,7 @@ Quick overview of steps:
 2. batch-train these two projects. `cu-hyp` is trained using batch specs from `specs.py`, while `cu-hypX` is trained using different specs `specsX.py`
 3. replace inhibition (odd) patterns in `cu-hyp` with those from `cu-hypX`
 4. compact patterns (just removes redundant patterns)
-5. export patterns as `raw_patterns.txt` and export error list (in form of patterens) as `err_raw_patterns.txt`.
+5. export patterns as `raw_patterns.txt` and export error list (in form of patterns) as `err_raw_patterns.txt`.
 
 Rationale for using this procedure is below.
 
@@ -75,7 +75,11 @@ selector.
 
 Important to note that the `threshold` parameter depends on the dataset size. As the dictionary grows, `threshold` must be scaled proportionally
 in order for the selector to keep its selectivity at the same level. This is important for cross-validation, where the training dataset is smaller
-than the full dataset. Therefore, when applying learned parameters to a new dataset this has to be kept in mind.
+than the full dataset. Therefore, when applying learned parameters to a new dataset this has to be kept in mind. Note also that large
+values of `threashold` are most susceptible to this scaling effect.
+
+Interestingly, in our case this scaling effect can be completely ignored, because we use only selectors where `threshold` value is small 
+- and we use threshold value of 1 for all corss-validation dataset.
 
 ## Experience of parameter selection for best generalization
 
@@ -104,7 +108,7 @@ if we make selector more selective, we then accept only "good" patterns that pro
 dataset it is impossible to build a good set of inhibition patterns. And, conversely, if we want to build a good inhibition level
 we need to give it an input with many false hits, which means that we need to make hyphenation level more lax.
 
-The idea of mixing-and-matching inhibition lvels tries to overcome this limitation. To do this, we train two independent pattern sets - base and auxiliary.
+The idea of mixing-and-matching inhibition levels tries to overcome this limitation. To do this, we train two independent pattern sets - base and auxiliary.
 Base pattern set we train with highly-selective criteria in order to get good hyphenation patterns. We do not care much for the inhibition level in the base. 
 
 The  auxiliary pattern set is trained

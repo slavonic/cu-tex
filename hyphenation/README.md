@@ -62,7 +62,7 @@ Note that the pattern generation step failed to build this "long" pattern becaus
 To assist in making such "long" prefix patterns, `pypatgen` can generate an error report in the form of suggested full-word
 patterns (use option `-p` of the `pypatgen`'s `test` command).
 
-Result of this (manual) work is file `cu-hyp-extra2.txt` with "long" patterns.
+Result of this (manual) work is file `root_patterns.txt` with "long" patterns.
 
 
 ### Adding special rules for combining symbols and digraphs
@@ -123,6 +123,7 @@ See [UTN 41](http://www.unicode.org/notes/tn41/) for details.
    * yerok `U+2E2F`
    * yer (ъ) `U+044A`
    * tall yer `U+1C86`
+   * soft sign `U+044C`
 
 4. Do not hyphenate before or after these symbols:
    * paerok `U+A67F`
@@ -133,7 +134,8 @@ See [UTN 41](http://www.unicode.org/notes/tn41/) for details.
 
 In the hand-crafted rules above, mark "(auto)" denotes patterns that were found automatically during step 1.
 
-Result ot this work is file `cu-hyph-extra.txt`.
+Result of this work is file `combiner_patterns.txt`. Note that for the convenience this file is actually generated programmatically, with
+the help of utility `make_pat.py`.
 
 We then run the script to build the hyphenation TeX file:
 
