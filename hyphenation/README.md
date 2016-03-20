@@ -6,16 +6,16 @@ We create TeX hyphenation patterns in the following stages
    Since dictionary uses [Normal Form C](http://unicode.org/reports/tr15/), all patterns will also be in this form.
 
 2. Analyze errors that patterns make on the hyphenation dictionary and add (long) patterns that cover offending stems. This
-   essentially allows one to move some errors out of exception list into a patterns, hoping that new pattern will
+   essentially allows one to move some errors out of the exception list into patterns, hoping that the new pattern will
    cover all word forms (not just forms seen within the training dictionary).
 
 3. Add special patterns that ensure that no hyphenation happens before a combining character. Since Church Slavonic
-   uses rich set of diacritical marks, we do not rely on step 1 finding all this places, and just add these rules 
+   uses a rich set of diacritical marks, we do not rely on step 1 to find all of these places, and just add these rules 
    explicitly
 
 4. Expand patterns and exception list by replacing each character with its Normal Form D. Note that for robustness
    we create all combinations of D and C forms for every character that has these different forms. This is different
-   from just converting each pattern and exception to Normal form D.
+   from just converting each pattern and exception to Normal Form D.
 
 ## Generating patterns
 
@@ -52,14 +52,14 @@ It is much more efficient to replace all these exceptions with a single pattern:
 ```
 .болѣ́7зн
 ```
-The upside is that other forms of the same root will have correct hyphenation in the root part.
+The upside is that other forms of the same root will now have correct hyphenation in the root part, even though they were not provided in the dictionary.
 
-Generally speaking, hyphenation of suffixes is more reliable than hyphenation of roots. Reason is that suffix hyphenation
-is learned from all words in the dictionary, whicle root hyphenation - only from words containing this root.
+Generally speaking, hyphenation of suffixes is more reliable than hyphenation of roots. The reason is that suffix hyphenation
+is learned from all words in the dictionary, while root hyphenation - only from words containing this root.
 
-Note that pattern generation step failed to build this "long" pattern because we limit the pattern length (for better generalization).
+Note that the pattern generation step failed to build this "long" pattern because we limit the pattern length (for better generalization).
 
-To assist in making such "long" prefix patterns, `pypatgen` can generate error report in the form of suggested full-word
+To assist in making such "long" prefix patterns, `pypatgen` can generate an error report in the form of suggested full-word
 patterns (use option `-p` of the `pypatgen`'s `test` command).
 
 Result of this (manual) work is file `cu-hyp-extra2.txt` with "long" patterns.
@@ -68,13 +68,13 @@ Result of this (manual) work is file `cu-hyp-extra2.txt` with "long" patterns.
 ### Adding special rules for combining symbols and digraphs
 
 1. Do not split digraph `LOWERCASE UK` with a hyphen: `U+1C82` `U+0443`
+    Also do not split the variant form `U+043E` `U+0443`.
 
-2. Do not allow hyphen before the following symbols (combiners[1]):
+2. Do not allow a hyphen before the following symbols (combiners[1]):
    * combining grave: `U+0300` (auto)
    * combining acute: `U+0301` (auto)
    * combining inverted breve: `U+0311` (auto)
    * combining Cyrillic psili pneumata: `U+0486`
-   * combining Cyrillic dasia pneumata: `U+0485`
    * combining breve: `U+0306`
    * combining vertical tilde: `U+033E`
    * combining paerok: `U+A67D`
@@ -82,83 +82,60 @@ Result of this (manual) work is file `cu-hyp-extra2.txt` with "long" patterns.
    * combining dot above: `U+0307`
    * combining diaeresis: `U+0308`
    * combining double grave: `U+030F`
-   * combining double acute: `U+030B`
-   * combining dotted grave: `U+1DC0`
-   * combining dotted acute: `U+1DC1`
-   * combining circumflex: `U+0302`
-   * combining palatalization: `U+0484`
-   * combining comma above: `U+0313`
-   * combining reversed comma above: `U+0314`
-   * combining reversed dot right: `U+0358`
-   * combining kavyka above right: `U+1DF6`
-   * combining kavyka above left: `U+1DF7`
-   * combining dot above left: `U+1DF8`
-   * combining wide inverted bridge below: `U+1DF9`
    * combining Cyrillic titlo: `U+0483` (auto)
-   * combining vzmet: `U+A66F`
    * combining pokrytie: `U+0487` (auto)
-   * combining overline: `U+0305`
-   * combining double overline: `U+033F`
    * combining Cyrillic letter A: `U+2DF6`
-   * : `U+2DE0`
-   * : `U+2DE1` (auto)
-   * : `U+2DE2` (auto)
-   * : `U+2DE3` (auto)
-   * : `U+2DF7` 
-   * : `U+A674`
-   * : `U+2DE4` (auto)
-   * : `U+2DE5` (auto)
-   * : `U+A675`
-   * : `U+A676`
-   * : `U+2DF8`
-   * : `U+2DE6` (auto)
-   * : `U+2DE7` (auto)
-   * : `U+2DE8` (auto)
-   * : `U+2DE9` (auto)
-   * : `U+2DEA`
-   * : `U+2DEB` (auto)
-   * : `U+2DEC` (auto)
-   * : `U+2DED` (auto)
-   * : `U+2DEE`
-   * : `U+2DF9`
-   * : `U+A677`
-   * : `U+A69E`
-   * : `U+2DEF` (auto)
-   * : `U+A67B`
-   * : `U+2DF0`
-   * : `U+2DF1` (auto)
-   * : `U+2DF2`
-   * : `U+2DF3`
-   * : `U+A678` (auto)
-   * : `U+A67A`
-   * : `U+A679`
-   * : `U+2DFA`
-   * : `U+2DFB`
-   * : `U+2DFC`
-   * : `U+A69F`
-   * : `U+2DFD`
-   * : `U+2DFE`
-   * : `U+2DFF`
-   * : `U+2DF4`
-   * : `U+2DF5`
-   
+   * combining Cyrillic letter Be: `U+2DE0`
+   * combining Cyrillic letter Ve: `U+2DE1` (auto)
+   * combining Cyrillic letter Ge: `U+2DE2` (auto)
+   * combining Cyrillic letter De: `U+2DE3` (auto)
+   * combining Cyrillic letter Ie: `U+2DF7` 
+   * combining Cyrillic letter Zhe: `U+2DE4` (auto)
+   * combining Cyrillic letter Ze: `U+2DE5` (auto)
+   * combining Cyrillic letter I: `U+A675`
+   * combining Cyrillic letter Ka: `U+2DE6` (auto)
+   * combining Cyrillic letter El: `U+2DE7` (auto)
+   * combining Cyrillic letter Em: `U+2DE8` (auto)
+   * combining Cyrillic letter En: `U+2DE9` (auto)
+   * combining Cyrillic letter O: `U+2DEA`
+   * combining Cyrillic letter Pe: `U+2DEB` (auto)
+   * combining Cyrillic letter Er: `U+2DEC` (auto)
+   * combining Cyrillic letter Es: `U+2DED` (auto)
+   * combining Cyrillic letter Te: `U+2DEE`
+   * combining Cyrillic letter Monograph Uk: `U+2DF9`
+   * combining Cyrillic letter Ef: `U+A69E`
+   * combining Cyrillic letter Kha: `U+2DEF` (auto)
+   * combining Cyrillic letter Tse: `U+2DF0`
+   * combining Cyrillic letter Che: `U+2DF1` (auto)
+   * combining Cyrillic letter Sha: `U+2DF2`
+   * combining Cyrillic letter Shcha: `U+2DF3`
+   * combining Cyrillic letter Yat: `U+2DFA`
+   * combining Cyrillic letter Yu: `U+2DFB`
+   * combining Cyrillic letter Iotified A: `U+2DFC`
+   * combining Cyrillic letter Little Yus: `U+2DFD`
+   * combining Cyrillic letter Fita: `U+2DF4`
+   * combining Cyrillic letter Es-Te: `U+2DF5` (Note: Unicode discourages use of this character)
+
+Note that other combining letters do not occur in Poluustav or Synodal Slavonic. 
+See [UTN 41](http://www.unicode.org/notes/tn41/) for details.
+
 3. Do not hyphenate before:
    * yerok `U+2E2F`
    * yer (ъ) `U+044A`
    * tall yer `U+1C86`
 
-4. Do not hyphenate before or after those symbols:
+4. Do not hyphenate before or after these symbols:
    * paerok `U+A67F`
    * kavyka `U+A67E`
    * combining titlo left half: `U+FE2E`
    * combining titlo right half: `U+FE2F`
    * combining conjoining macron: `U+FE26`
 
-In the hand-crafted rules above mark "(auto)" denotes patterns that were found automatically during step 1.
+In the hand-crafted rules above, mark "(auto)" denotes patterns that were found automatically during step 1.
 
 Result ot this work is file `cu-hyph-extra.txt`.
 
-We then run script to build hyphenation TeX file:
+We then run the script to build the hyphenation TeX file:
 
 ```bash
 ./build.sh > build.log
@@ -169,7 +146,7 @@ Result is `cu-hyp.tex`.
 
 Input here is `cu-hyp.tex` and the output is `cu-hyph-expanded.tex`.
 
-The hyphenation dictionary contains only following characters that have different NFD form:
+The hyphenation dictionary contains only the following characters that have different NFD form:
 
 ```python
 TABLE = [
