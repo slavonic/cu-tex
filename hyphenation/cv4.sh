@@ -1,5 +1,5 @@
-wc words-hyph.txt
-split -l 4378 words-hyph.txt w4
+wc ../data/words.txt
+split -l 4378 ../data/words.txt w4
 wc w4a?
 cat w4ab w4ac w4ad > w4a-bcd
 cat w4aa w4ac w4ad > w4a-acd
