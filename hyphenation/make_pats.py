@@ -26,7 +26,7 @@ CU_ACCENTS_2 = [
     unichr(x) for x in range(ord('\ua674'), ord('\ua67d')+1)
 ]
 
-CU_POKRYTIE = 'u0487'
+CU_POKRYTIE = '\u0487'
 
 CU_COMBINERS = CU_ACCENTS_1 + [
     '\u0486',
@@ -116,20 +116,21 @@ def main_singles(args):
             if x in (CU_UK, CU_OT):
                 continue
             f.write('.' + x + inh + '\n')
+            f.write('.' + x + CU_BREATHING + inh + '\n')
             for y in CU_ACCENTS_1:
                 f.write('.' + x + y + inh + '\n')
                 f.write('.' + x + CU_BREATHING + y + inh +'\n')
             for y in CU_ACCENTS_2:
-                f.write('.' + x + y + inh + '.\n')
-                f.write('.' + x + y + CU_POKRYTIE + inh + '.\n')
+                f.write('.' + x + y + inh + '\n')
+                f.write('.' + x + y + CU_POKRYTIE + inh + '\n')
         f.write('%\n')
 
         f.write('% Forbid hyphenation before a single letter (with all possible and impossible combiners!)\n')
         for x in CU_VOWELS:
             f.write(inh + x + '.\n')
             for y in CU_ACCENTS_1:
-                f.write('.' + x + y + inh + '\n')
-                f.write('.' + x + CU_BREATHING + y + inh +'\n')
+                f.write(inh + x + y + inh + '.\n')
+                f.write(inh + x + CU_BREATHING + y + inh +'.\n')
             for y in CU_ACCENTS_2:
                 f.write(inh + x + y + '.\n')
                 f.write(inh + x + y + CU_POKRYTIE + '.\n')
