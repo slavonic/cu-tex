@@ -7,8 +7,9 @@ from __future__ import print_function
 import codecs
 import argparse
 
-CU_OT = '\u047f'
-CU_UK = '\u0479'
+CU_OT    = '\u047f'
+CU_OMEGA = '\u0461'
+CU_UK    = '\u0479'
 
 CU_UK_NFD = '\u1c82\u0443'
 CU_UK_NFD2 = '\u043e\u0443'
@@ -113,7 +114,7 @@ def main_singles(args):
     with codecs.open(args.output, 'w', 'utf-8') as f:
         f.write('% Forbid hyphenation after a single letter\n')
         for x in CU_VOWELS:
-            if x in (CU_UK, CU_OT):
+            if x in (CU_UK, CU_OT, CU_OMEGA):
                 continue
             f.write('.' + x + inh + '\n')
             f.write('.' + x + CU_BREATHING + inh + '\n')

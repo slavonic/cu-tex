@@ -7,8 +7,9 @@ import argparse
 import unicodedata
 import codecs
 
-CU_OT = '\u047f'
-CU_UK = '\u0479'
+CU_OT    = '\u047f'
+CU_OMEGA = '\u0461'
+CU_UK    = '\u0479'
 
 def num_letters(s):
     '''counts letters in a string (ignores combining symbols)'''
@@ -19,7 +20,7 @@ def hyph_from_syls(s):
     parts = s.split('-')
     
     if len(parts) > 1:
-        if num_letters(parts[0]) < 2 and parts[0][0] not in (CU_OT, CU_UK):
+        if num_letters(parts[0]) < 2 and parts[0][0] not in (CU_OT, CU_UK, CU_OMEGA):
             # remove hyphen by merging with next syllable
             parts[1] = parts[0] + parts[1]
             parts.pop(0)

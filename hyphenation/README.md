@@ -1,30 +1,57 @@
 # Creating hyphenation patterns for Church Slavonic
 
+In Church Slavonic words are hyphenated on the syllable boundary, with the additional rule that no hyphenation is allowed
+before a single-letter syllable. And no hyphenation is allowed after a single-letter syllable **with some exceptions** (See below).
+Note that by a single-letter syllable we mean such a syllable that has a single letter symbol, optionally followed by one
+or more combiner symbols (accents).
+
 We create TeX hyphenation patterns in the following stages
 
-1. Use the hyphenation dictionary to automatically generate patterns. 
-   Since dictionary uses [Normal Form C](http://unicode.org/reports/tr15/), all patterns will also be in this form.
+1. Create syllable patterns. We do this by training on a syllable dictionary [words.txt](../data/words.txt) and adding
+   some hand-crafted patterns to cover common roots where learned patterns fail. Specifically:
 
-2. Analyze errors that patterns make on the hyphenation dictionary and add (long) patterns that cover offending stems. This
-   essentially allows one to move some errors out of the exception list into patterns, hoping that the new pattern will
-   cover all word forms (not just forms seen within the training dictionary).
+    - Use the hyphenation dictionary to automatically generate patterns. 
+      Since dictionary uses [Unicode Normal Form C](http://unicode.org/reports/tr15/), all patterns will also be in this form.
 
-3. Add special patterns that ensure that no hyphenation happens before a combining character. Since Church Slavonic
-   uses a rich set of diacritical marks, we do not rely on step 1 to find all of these places, and just add these rules 
-   explicitly
+    - Analyze errors that patterns make on the hyphenation dictionary and add (long) patterns that cover offending stems. This
+      essentially allows one to move some errors out of the exception list into patterns, hoping that the new pattern will
+      cover all word forms (not just forms seen within the training dictionary).
 
-4. Expand patterns and exception list by replacing each character with its Normal Form D. Note that for robustness
+    - Add special patterns that ensure that no hyphenation happens before a combining character. Since Church Slavonic
+      uses a rich set of diacritical marks, we do not rely on step 1 to find all of these places, and just add these rules 
+      explicitly
+
+2. Add patterns to suppress hyphenation after first letter and before last letter. Note that we can not rely here on
+   TeX mechanism of `lefthyphenmin` and `righthyphenmin` because (i) accented characters has to be ignored when counting
+   "letters", and (ii) there are exceptional cases when hyphenation after a single letter is allowed. To achieve our goal we
+   generate a list of all vowels and then list of all vowels with all possible (and sometimes impossible) combining accents.
+   From this list we create inhibiting patterns for word prefixes and suffixes.
+   
+   Since Church Slavonic allows hyphenation after some vowels, we remove corresponding inhibiting prefix rules:
+   
+    - Hyphenation is allowed after leading syllable ѿ (OT), ѹ (UK), and ѡ (OMEGA)
+   
+   At this stage we also generate TeX list of hyphenation exceptions.
+   
+3. Expand patterns and exception list by replacing each character with its Normal Form D. Note that for robustness
    we create all combinations of D and C forms for every character that has these different forms. This is different
-   from just converting each pattern and exception to Normal Form D.
+   from just converting each pattern and exception to Normal Form D. To the built-in Unicode combining rules we add 
+   the following two extra rules:
+   
+    - U+0479 <-> U1C82 U0443 (Sharp-O decomposition of UK) - this will be included in the upcoming revision of Unicode, but
+      current engines do not know this yet
+    - U+047D <-> U+A64D U+0486 U+0311 (omega with veliky apostrof) - this symbol is incorrectly marked as non-combined 
+      in Unicode
 
-## Generating patterns
+
+## Generating syllable patterns
 
 ```bash
 ./train.sh > train.log
 ```
 
-Input here is a hyphenation dictionary `words.txt`. Output is a file `cu-hyp-patterns.txt` and `cu-hyp-excpetions.txt` 
-containing hyphenation patterns and hyphenation exceptions.
+Input here is a hyphenation dictionary `words.txt`. Output is a file `raw_patterns.txt` and `err_raw_patterns.txt` 
+containing raw syllable patterns and raw syllable exceptions.
 
 Training parameters were chosen manually after several trial-and-error sessions with the objective to achieve best
 possible generalization performance.
@@ -33,8 +60,8 @@ For pattern generation we used [pypatgen](https://pypi.python.org/pypi/pypatgen)
 
 Training process is detailed in a [separate document](TRAINING.md).
 
-Auxiliary output file is `err_patterns.txt` that lists all hyphenation exceptions in the form
-of a full-word pattern. It is used in the next step to make hyphenation rules more general and more compact.
+File `err_raw_patterns.txt` that lists all syllable exceptions in the form
+of a full-word pattern. It is used in the next step to make rules more general and more compact.
 
 
 ## Add "long" patterns from exceptions
@@ -70,7 +97,7 @@ Result of this (manual) work is file `root_patterns.txt` with "long" patterns.
 1. Do not split digraph `LOWERCASE UK` with a hyphen: `U+1C82` `U+0443`
     Also do not split the variant form `U+043E` `U+0443`.
 
-2. Do not allow a hyphen before the following symbols (combiners[1]):
+2. Do not allow a hyphen before the following symbols (combiners<sup>[1]</sup>):
    * combining grave: `U+0300` (auto)
    * combining acute: `U+0301` (auto)
    * combining inverted breve: `U+0311` (auto)
@@ -135,14 +162,23 @@ See [UTN 41](http://www.unicode.org/notes/tn41/) for details.
 In the hand-crafted rules above, mark "(auto)" denotes patterns that were found automatically during step 1.
 
 Result of this work is file `combiner_patterns.txt`. Note that for the convenience this file is actually generated programmatically, with
-the help of utility `make_pat.py`.
+the help of utility `make_pats.py`.
 
-We then run the script to build the hyphenation TeX file:
+## Building hyphenation patterns from syllable patterns
+
+To make hyphenation patterns we need to inhibit hyphenation after first single-letter syllable and before last single-letter syllable.
+
+To do this we programmatically generate file `single_patterns.txt`, using utility `make_pats.py`. These inhibiting patterns
+suppress unwanted hyphens, and make a special exception for those few cases when hyphenation after a single letter at the beginning
+of a word is allowed.
+
+We run the `build.sh` script to build syllable and hyphenation patterns and to generate the hyphenation TeX file:
 
 ```bash
 ./build.sh > build.log
 ```
-Result is `cu-hyp.tex`.
+Result is `cu-hyp.tex` and `err_patterns.txt`. The latter lists hyphenation exceptions and is just a different representation of
+words within `\hyphenation` clause in the `cu-hyp.tex`.
 
 ## Expanding patterns and exceptions
 
@@ -171,6 +207,7 @@ TABLE = [
     ('\u0476', ['\u0474\u030f']),  # IZHITSA with double grave
     ('\u0477', ['\u0475\u030f']),  # izhitsa with double grave
     ('\u0479', ['\u1c82\u0443']),  # uk
+    ('\u047d', ['\ua64d\u0486\u0311']), # broad omega with veliky apostrof
 ]
 ```
 and the following recursive function was used to expand each pattern and each exceptional word:
