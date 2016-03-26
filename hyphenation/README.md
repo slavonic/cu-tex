@@ -1,9 +1,10 @@
 # Creating hyphenation patterns for Church Slavonic
 
-In Church Slavonic words are hyphenated on the syllable boundary, with the additional rule that no hyphenation is allowed
-before a single-letter syllable. And no hyphenation is allowed after a single-letter syllable **with some exceptions** (See below).
-Note that by a single-letter syllable we mean such a syllable that has a single letter symbol, optionally followed by one
-or more combiner symbols (accents).
+In Church Slavonic words are hyphenated on the syllable boundary. Syllable boundaries are determined
+on the basis of complex morphological rules given in the syllable dictionary. No hyphenation is allowed
+before a single-letter syllable at the end of a word and no hyphenation is allowed after a single-letter syllable at the beginning of a word **with some exceptions** (See below).
+Note that by a single-letter syllable we mean such a syllable that has a single letter (always a vowel), optionally followed by one
+or more combining marks (accents); by spelling convention, any vowel at the beginning of a word will always have a breathing mark.
 
 We create TeX hyphenation patterns in the following stages
 
@@ -21,26 +22,27 @@ We create TeX hyphenation patterns in the following stages
       uses a rich set of diacritical marks, we do not rely on step 1 to find all of these places, and just add these rules 
       explicitly
 
-2. Add patterns to suppress hyphenation after first letter and before last letter. Note that we can not rely here on
-   TeX mechanism of `lefthyphenmin` and `righthyphenmin` because (i) accented characters has to be ignored when counting
-   "letters", and (ii) there are exceptional cases when hyphenation after a single letter is allowed. To achieve our goal we
-   generate a list of all vowels and then list of all vowels with all possible (and sometimes impossible) combining accents.
+2. Add patterns to suppress hyphenation after the first letter and before the last letter. Note that we cannot rely here on
+   TeX mechanism of `lefthyphenmin` and `righthyphenmin` because (i) TeX also counts accents and breathing marks as characters when counting
+   "letters", and (ii) there are exceptional cases when hyphenation after a single letter at the beginning of a word is allowed. To achieve our goal we
+   generate a list of all vowels and then list all vowels with all possible (and sometimes impossible) combining accents.
    From this list we create inhibiting patterns for word prefixes and suffixes.
    
-   Since Church Slavonic allows hyphenation after some vowels, we remove corresponding inhibiting prefix rules:
+   Since Church Slavonic allows hyphenation after some vowels at the beginning of a word, we remove
+corresponding inhibiting prefix rules:
    
-    - Hyphenation is allowed after leading syllable ѿ (OT), ѹ (UK), and ѡ (OMEGA)
+    - Hyphenation is allowed after a leading syllable ѿ (OT), ѹ (UK), and ѡ (OMEGA)
    
-   At this stage we also generate TeX list of hyphenation exceptions.
+   At this stage we also generate the TeX list of hyphenation exceptions.
    
 3. Expand patterns and exception list by replacing each character with its Normal Form D. Note that for robustness
    we create all combinations of D and C forms for every character that has these different forms. This is different
-   from just converting each pattern and exception to Normal Form D. To the built-in Unicode combining rules we add 
+   than just converting each pattern and exception to Normal Form D. To the built-in Unicode combining rules we add 
    the following two extra rules:
    
     - U+0479 <-> U1C82 U0443 (Sharp-O decomposition of UK) - this will be included in the upcoming revision of Unicode, but
       current engines do not know this yet
-    - U+047D <-> U+A64D U+0486 U+0311 (omega with veliky apostrof) - this symbol is incorrectly marked as non-combined 
+    - U+047D <-> U+A64D U+0486 U+0311 (omega with veliky apostrof) - this symbol is incorrectly marked as not decomposable
       in Unicode
 
 
@@ -79,7 +81,7 @@ It is much more efficient to replace all these exceptions with a single pattern:
 ```
 .болѣ́7зн
 ```
-The upside is that other forms of the same root will now have correct hyphenation in the root part, even though they were not provided in the dictionary.
+The upside is that other forms with the same root will now have correct hyphenation in the root part, even though they were not provided in the dictionary.
 
 Generally speaking, hyphenation of suffixes is more reliable than hyphenation of roots. The reason is that suffix hyphenation
 is learned from all words in the dictionary, while root hyphenation - only from words containing this root.
@@ -161,14 +163,14 @@ See [UTN 41](http://www.unicode.org/notes/tn41/) for details.
 
 In the hand-crafted rules above, mark "(auto)" denotes patterns that were found automatically during step 1.
 
-Result of this work is file `combiner_patterns.txt`. Note that for the convenience this file is actually generated programmatically, with
-the help of utility `make_pats.py`.
+Result of this work is file `combiner_patterns.txt`. Note that for convenience this file is actually generated programmatically, with
+the help of the utility `make_pats.py`.
 
 ## Building hyphenation patterns from syllable patterns
 
-To make hyphenation patterns we need to inhibit hyphenation after first single-letter syllable and before last single-letter syllable.
+To make hyphenation patterns we need to inhibit hyphenation after a leading single-letter syllable and before a trailing single-letter syllable.
 
-To do this we programmatically generate file `single_patterns.txt`, using utility `make_pats.py`. These inhibiting patterns
+To do this we programmatically generate the file `single_patterns.txt`, using the utility `make_pats.py`. These inhibiting patterns
 suppress unwanted hyphens, and make a special exception for those few cases when hyphenation after a single letter at the beginning
 of a word is allowed.
 
@@ -178,13 +180,13 @@ We run the `build.sh` script to build syllable and hyphenation patterns and to g
 ./build.sh > build.log
 ```
 Result is `cu-hyp.tex` and `err_patterns.txt`. The latter lists hyphenation exceptions and is just a different representation of
-words within `\hyphenation` clause in the `cu-hyp.tex`.
+words within the `\hyphenation` clause in the `cu-hyp.tex`.
 
 ## Expanding patterns and exceptions
 
 Input here is `cu-hyp.tex` and the output is `cu-hyph-expanded.tex`.
 
-The hyphenation dictionary contains only the following characters that have different NFD form:
+The hyphenation dictionary contains only the following characters that have different NFD forms:
 
 ```python
 TABLE = [
