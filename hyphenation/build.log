@@ -1,73 +1,73 @@
-Creating new project temp from dictionary ../data/words.txt
+Creating new project temp from dictionary words-syl.txt
 Project file temp
-	created: 2016-03-22 18:55:44.955586
-	last modified: 2016-03-22 18:55:44.956756
+	created: 2016-03-27 17:25:59.813154
+	last modified: 2016-03-27 17:25:59.813407
 	margins: 1,1
-	dictionary size: 17511
-	total hyphens: (weighted) 40419
-	total missed : (weighted) 40419 100.00%
+	dictionary size: 17525
+	total hyphens: (weighted) 40458
+	total missed : (weighted) 40458 100.00%
 	total false  : (weighted) 0 0.00%
 	number of pattern levels: 0
 
 Loading patterns from temp.tex into project temp
-Missed (weighted): 38 (0.094%)
-False (weighted): 17 (0.042%)
+Missed (weighted): 12 (0.030%)
+False (weighted): 2 (0.005%)
 ...Committed
 
 Compacting hyphenation patterns for temp
 Result:
-	Level 1:   8372 =>   8371
-	Level 2:   2372 =>   2372
+	Level 1:   8333 =>   8333
+	Level 2:   2358 =>   2358
 	Level 3:      0 =>      0
 	Level 4:      0 =>      0
 	Level 5:      0 =>      0
 	Level 6:      0 =>      0
-	Level 7:     90 =>     90
-	Level 8:     49 =>     49
+	Level 7:    147 =>    147
+	Level 8:     77 =>     77
 ...Committed
 
-Testing temp on dictionary ../data/words.txt
-Performance of temp on ../data/words.txt
-Missed (weighted): 38 (0.094%)
-False (weighted): 17 (0.042%)
+Testing temp on dictionary words-syl.txt
+Performance of temp on words-syl.txt
+Missed (weighted): 12 (0.030%)
+False (weighted): 2 (0.005%)
 Saved errors to err_patterns.txt
 
 Creating new project temp from dictionary words-hyph.txt
 Project file temp
-	created: 2016-03-22 18:56:06.663635
-	last modified: 2016-03-22 18:56:06.663969
+	created: 2016-03-27 17:26:45.427683
+	last modified: 2016-03-27 17:26:45.427943
 	margins: 1,2
-	dictionary size: 17511
-	total hyphens: (weighted) 35550
-	total missed : (weighted) 35550 100.00%
+	dictionary size: 17525
+	total hyphens: (weighted) 35583
+	total missed : (weighted) 35583 100.00%
 	total false  : (weighted) 0 0.00%
 	number of pattern levels: 0
 
 Loading patterns from temp.tex into project temp
-Missed (weighted): 36 (0.101%)
-False (weighted): 17 (0.048%)
+Missed (weighted): 12 (0.034%)
+False (weighted): 2 (0.006%)
 ...Committed
 
 Compacting hyphenation patterns for temp
 Result:
-	Level 1:   8370 =>   8368
-	Level 2:   2344 =>   2344
+	Level 1:   8331 =>   8330
+	Level 2:   2330 =>   2330
 	Level 3:      0 =>      0
 	Level 4:      0 =>      0
 	Level 5:      0 =>      0
 	Level 6:      0 =>      0
-	Level 7:     90 =>     90
-	Level 8:   4321 =>   4321
+	Level 7:    147 =>    147
+	Level 8:   4349 =>   4347
 ...Committed
 
 Testing temp on dictionary words-hyph.txt
 Performance of temp on words-hyph.txt
-Missed (weighted): 36 (0.101%)
-False (weighted): 17 (0.048%)
+Missed (weighted): 12 (0.034%)
+False (weighted): 2 (0.006%)
 Saved errors to err_hyph_patterns.txt
 
 Exporting patterns from temp and saving them in TeX format to cu-hyp.tex
 Created TeX patterns file cu-hyp.tex
-Number of patterns: 13009
-Number of exceptions: 43
+Number of patterns: 13037
+Number of exceptions: 14
 
