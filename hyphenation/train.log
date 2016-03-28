@@ -1,96 +1,96 @@
-   17511   18929  380586 words-hyph.txt
-Creating new project cu-hyp from dictionary words-hyph.txt
-Project file cu-hyp
-	created: 2016-03-20 17:24:05.371404
-	last modified: 2016-03-20 17:24:05.371630
+   17525   18944  380932 words-syl.txt
+Creating new project cu-syl from dictionary words-syl.txt
+Project file cu-syl
+	created: 2016-03-27 17:23:06.065911
+	last modified: 2016-03-27 17:23:06.066204
 	margins: 1,1
-	dictionary size: 17511
-	total hyphens: (weighted) 40419
-	total missed : (weighted) 40419 100.00%
+	dictionary size: 17525
+	total hyphens: (weighted) 40458
+	total missed : (weighted) 40458 100.00%
 	total false  : (weighted) 0 0.00%
 	number of pattern levels: 0
 
-Creating new project cu-hypX from dictionary words-hyph.txt
-Project file cu-hypX
-	created: 2016-03-20 17:24:06.053897
-	last modified: 2016-03-20 17:24:06.054119
+Creating new project cu-sylX from dictionary words-syl.txt
+Project file cu-sylX
+	created: 2016-03-27 17:23:11.331202
+	last modified: 2016-03-27 17:23:11.331450
 	margins: 1,1
-	dictionary size: 17511
-	total hyphens: (weighted) 40419
-	total missed : (weighted) 40419 100.00%
+	dictionary size: 17525
+	total hyphens: (weighted) 40458
+	total missed : (weighted) 40458 100.00%
 	total false  : (weighted) 0 0.00%
 	number of pattern levels: 0
 
-Batch-training of project cu-hyp using specs from specs.py
-Training project cu-hyp using range 2-4 and selector 1:20:1
+Batch-training of project cu-syl using specs from specs.py
+Training project cu-syl using range 2-4 and selector 1:20:1
 Training HYPHENATION pattern layer (level=1)
 	pattern lengths: 2-4
 	selector: 1:20:1
-Selected 6185 patterns of length 3
+Selected 6184 patterns of length 3
 Selected 620 patterns of length 2
-Selected 19268 patterns of length 4
-Missed (weighted): 96 0.24%
-False (weighted): 788 1.95%
+Selected 19277 patterns of length 4
+Missed (weighted): 99 0.24%
+False (weighted): 794 1.96%
 ...Committed!
 
-Training project cu-hyp using range 2-3 and selector 1:10:1
+Training project cu-syl using range 2-3 and selector 1:10:1
 Training INHIBINTING pattern layer (level=2)
 	pattern lengths: 2-3
 	selector: 1:10:1
-Selected 611 patterns of length 3
-Selected 181 patterns of length 2
-Missed (weighted): 97 0.24%
-False (weighted): 87 0.22%
+Selected 616 patterns of length 3
+Selected 182 patterns of length 2
+Missed (weighted): 100 0.25%
+False (weighted): 91 0.22%
 ...Committed!
 
-Batch-training of project cu-hypX using specs from specsX.py
-Training project cu-hypX using range 2-4 and selector 1:1:1
+Batch-training of project cu-sylX using specs from specsX.py
+Training project cu-sylX using range 2-4 and selector 1:1:1
 Training HYPHENATION pattern layer (level=1)
 	pattern lengths: 2-4
 	selector: 1:1:1
-Selected 7132 patterns of length 3
-Selected 1013 patterns of length 2
-Selected 20208 patterns of length 4
-Missed (weighted): 4 0.01%
-False (weighted): 25647 63.45%
+Selected 7130 patterns of length 3
+Selected 1011 patterns of length 2
+Selected 20221 patterns of length 4
+Missed (weighted): 3 0.01%
+False (weighted): 25674 63.46%
 ...Committed!
 
-Training project cu-hypX using range 1-3 and selector 1:20:1
+Training project cu-sylX using range 1-3 and selector 1:20:1
 Training INHIBINTING pattern layer (level=2)
 	pattern lengths: 1-3
 	selector: 1:20:1
-Selected 815 patterns of length 2
+Selected 817 patterns of length 2
 Selected 28 patterns of length 1
-Selected 5117 patterns of length 3
-Missed (weighted): 128 0.32%
-False (weighted): 592 1.46%
+Selected 5123 patterns of length 3
+Missed (weighted): 134 0.33%
+False (weighted): 581 1.44%
 ...Committed!
 
-Swapping inhibiting layers between cu-hyp and cu-hypX
-Performance of cu-hyp
-Missed (weighted): 196 (0.485%)
-False (weighted): 85 (0.210%)
-Performance of cu-hypX
-Missed (weighted): 8 (0.020%)
-False (weighted): 11091 (27.440%)
+Swapping inhibiting layers between cu-syl and cu-sylX
+Performance of cu-syl
+Missed (weighted): 200 (0.494%)
+False (weighted): 88 (0.218%)
+Performance of cu-sylX
+Missed (weighted): 7 (0.017%)
+False (weighted): 11095 (27.424%)
 ...Committed
 
-Compacting hyphenation patterns for cu-hyp
+Compacting hyphenation patterns for cu-syl
 Result:
-	Level 1:  35708 =>   8371
-	Level 2:   7659 =>   2372
+	Level 1:  35716 =>   8333
+	Level 2:   7674 =>   2358
 ...Committed
 
-Testing cu-hyp on dictionary words-hyph.txt
-Performance of cu-hyp on words-hyph.txt
-Missed (weighted): 196 (0.485%)
-False (weighted): 85 (0.210%)
+Testing cu-syl on dictionary words-syl.txt
+Performance of cu-syl on words-syl.txt
+Missed (weighted): 200 (0.494%)
+False (weighted): 88 (0.218%)
 Saved errors to err_raw_patterns.txt
 
-Exporting patterns from cu-hyp and saving them in TeX format to cu-hyp.tex
-Created TeX patterns file cu-hyp.tex
-Number of patterns: 8850
-Number of exceptions: 231
+Exporting patterns from cu-syl and saving them in TeX format to cu-syl.tex
+Created TeX patterns file cu-syl.tex
+Number of patterns: 8827
+Number of exceptions: 234
 
 Written raw patterns to raw_patterns.txt
 
