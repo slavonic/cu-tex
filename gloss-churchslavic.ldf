@@ -3,8 +3,8 @@
   script=Cyrillic,
   scripttag=cyrl,
   langtag=CHU,
-  hyphennames={russian},% TODO: FIX THIS
-  hyphenmins={2,2},
+  hyphennames={churchslavonic}, %% XXX: should be church slavic?
+  hyphenmins={1,2},
   frenchspacing=true,
   fontsetup=true
 }
@@ -127,28 +127,28 @@
       \space \number\year\space г.}}
     
 \def\captionschurchslavic@traditional{%
-   \def\prefacename{Предисло́вїе}%
-   \def\refname{Примѣча̑нїѧ}%
-   \def\abstractname{А҆ннота́цїѧ}%
-   \def\bibname{Вивлїогра́фїѧ}%
+   \def\prefacename{Предисло́вїе}%
+   \def\refname{Примѣча̑нїѧ}%
+   \def\abstractname{А҆ннота́цїѧ}%
+   \def\bibname{Вивлїогра́фїѧ}%
    \def\chaptername{Глава̀}%
-   \def\appendixname{Приложе́нїе}%
+   \def\appendixname{Приложе́нїе}%
    \ifcsundef{thechapter}%
-     {\def\contentsname{Содержа́нїе}}%
-     {\def\contentsname{Ѡ҆главле́нїе}}%
-   \def\listfigurename{Надписа́нїе и҆з̾ѡбраже́нїй}%
-   \def\listtablename{Надписа́нїе табли́цъ}%
+     {\def\contentsname{Содержа́нїе}}%
+     {\def\contentsname{Ѡ҆главле́нїе}}%
+   \def\listfigurename{Надписа́нїе и҆з̾ѡбраже́нїй}%
+   \def\listtablename{Надписа́нїе табли́цъ}%
    \def\indexname{Предмѣ́тный ᲂу҆каза́тель}%
    \def\authorname{И҆менно́й ᲂу҆каза́тель}%
-   \def\figurename{И҆з̾ѡбраже́нїе}%
+   \def\figurename{И҆з̾ѡбраже́нїе}%
    \def\tablename{Табли́ца}%
    \def\partname{Ча́сть}%
    \def\enclname{вкл.}%
    \def\ccname{исх.}%
    \def\headtoname{вх.}%
    \def\pagename{с.}%
-   \def\seename{зрѝ}%
-   \def\alsoname{зрѝ~та́кожде}%
+   \def\seename{зрѝ}%
+   \def\alsoname{зрѝ~та́кожде}%
    \def\proofname{Доказа́тельство}%
 }  
 \def\datechurchslavic@traditional{%
@@ -198,47 +198,13 @@
 \def\azbuk#1{\expandafter\churchslavic@alph\csname c@#1\endcsname}
 \def\churchslavic@alph#1{\ifcase#1\or
    а\or б\or в\or г\or д\or е\or ж\or ѕ\or 
-   з\or и\or ї\or к\or л\or м\or н\or о\or
+   з\or и\or ї\or к\or л\or м\or н\or о\or
    п\or р\or с\or т\or ꙋ\or ф\or х\or ѿ\or
    ц\or ч\or ш\or щ\or ъ\or ы\or ь\or ѣ\or
    ю\or ѫ\or ѧ\or ѯ\or ѱ\or ѳ\or ѵ\else\xpg@ill@value{#1}{churchslavic@alph}\fi}
 
-\def\cu@num@i#1{%
-  \ifcase#1\or а\or в\or г\or д\or є\or ѕ\or з\or и\or ѳ\fi}
-\def\cu@num@ii#1{%
-  \ifcase#1\or і\or к\or л\or м\or н\or ѯ\or о\or п\or ч\fi}
-\def\cu@num@iii#1{%
-  \ifcase#1\or р\or с\or т\or у\or ф\or х\or ѱ\or ѿ\or ц\fi}
-
-\def\cunumber#1{%
-  \ifnum#1<\@ne\space\cu@ill@value{#1}%
-   \else
-    \ifnum#1<10\expandafter\cu@num@i\number#1%
-     \else
-      \ifnum#1<20\expandafter\cu@num@ii\number#1%
-     \fi
-   \fi
-  \fi
-}
-
-\def\churchslavic@numbers{%
-   \let\latin@alph\@alph%
-   \let\latin@Alph\@Alph%
-  \ifcyrillic@numerals
-      \def\churchslavic@alph##1{\protect\cunumber{##1}}%
-      \def\churchslavic@Alph##1{\protect\cunumber{##1}}%FIXME
-      \let\@alph\churchslavic@alph%
-      \let\@Alph\churchslavic@Alph%
-   \fi
-}
-
-\def\nochurchslavic@numbers{%
-   \let\@alph\latin@alph%
-   \let\@Alph\latin@Alph%
-   \let\cu@alph\@undefined%
-   \let\cu@Alph\@undefined%
-}
-
+%% Deleting stuff for Cyrillic numerals
+%% TODO: link with cu-num package
 \def\noextras@churchslavic{%
   \def\@seccntformat##1{\csname the##1\endcsname\quad}% = LaTeX kernel
   \ifcyrillic@numerals\nochurchslavic@numbers\fi
