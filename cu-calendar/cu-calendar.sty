@@ -63,7 +63,7 @@
 \def\cu@@@@calendar#1#2#3{%  day h  e
   \expandafter\cu@@@@@calendar
   \expandafter{\the\numexpr 1 + 
-    \intcalcMod{\intcalcAdd{\intcalcDiv{#2}{153}}{2}}{5}\relax}{#1}{#2}{#3}%
+    \intcalcMod{\intcalcAdd{\intcalcDiv{#2}{153}}{2}}{12}\relax}{#1}{#2}{#3}%
 }%
 \def\cu@@@@@calendar#1#2#3#4{% month day h  e
   \the\numexpr 
