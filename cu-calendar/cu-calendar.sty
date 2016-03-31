@@ -10,7 +10,7 @@
 }{}
 
 \RequirePackage{intcalc}
-\RequirePackage{ifthen}
+\RequirePackage{etoolbox}
 
 %
 % Tools
@@ -117,3 +117,14 @@
     деке́мврїа\fi%
   \space л.\space\number#1%
 }%
+%
+% Indiction "year"
+%
+\def\cuIndiction#1{%
+  \expandafter\@cuIndiction
+  \expandafter{\intcalcMod{#1}{15}}%
+}%
+\def\@cuIndiction#1{%
+  \intcalcAdd{#1}{15 - 15 * \intcalcDiv{#1+14}{15}}%
+}%
+%
