@@ -1,0 +1,58 @@
+\documentclass[12pt]{article}
+
+\usepackage{cu-util}
+
+\begin{document}
+\makeatletter
+
+\def\cu@eatall #1\relax{}
+
+\cu@ifnextdigraph{\fail}{\cu@eatall} a\relax
+\cu@ifnextdigraph{\fail}{\cu@eatall}a\relax
+\cu@ifnextdigraph{\fail}{\cu@eatall}о\relax
+\cu@ifnextdigraph{\fail}{\cu@eatall}\bf Zulu\relax
+\cu@ifnextdigraph{\cu@eatall}{\fail}оу\relax
+
+%
+\cu@ifnextletter{\cu@eatall}{\fail}A\relax
+\cu@ifnextletter{\cu@eatall}{\fail}Отец\relax
+\cu@ifnextletter{\fail}{\cu@eatall} \relax
+\cu@ifnextletter{\fail}{\cu@eatall}\bf\relax
+\cu@ifnextletter{\fail}{\cu@eatall}'\relax
+
+% for simplicity, lets declare digits to be "accents"
+\cu@declare@accent{o1}%
+\cu@declare@accent{o2}%
+\cu@declare@accent{o3}%
+
+%\cu@ifnextaccent{\cu@eatall}{\fail}1\relax
+%\cu@ifnextaccent{\fail}{\cu@eatall}A\relax
+%\cu@ifnextaccent{\fail}{\cu@eatall} Zulu\relax
+%\cu@ifnextaccent{\fail}{\cu@eatall}\bf Zulu\relax
+
+% test cu@ifnextbgroup - that checks if next token is a bgroup or not
+\cu@ifnextbgroup{\fail}{\cu@eatall}\bf\relax
+\cu@ifnextbgroup{\fail}{\cu@eatall} {1}\relax
+\cu@ifnextbgroup{\cu@eatall}{\fail}{1}\relax
+
+% test that letter tokenizer correctly merges all digraphs and accents
+% and is not confused by spaces or controls
+\cu@test@tokenizeletter{A123BCD}{A123-BCD}
+\cu@test@tokenizeletter{A123BCD}{A123-BCD}
+\cu@test@tokenizeletter{A12{}3456}{A12-3456}
+\cu@test@tokenizeletter{A12 3456}{A12- 3456}
+\cu@test@tokenizeletter{A12\relax 3456}{A12-\relax 3456}
+\cu@test@tokenizeletter{A123 456}{A123- 456}
+\cu@test@tokenizeletter{AB123456}{A-B123456}
+
+%
+% now some real tests 
+%
+\cu@test@tokenizeletter{А҆́велевѣ}{А҆́-велевѣ}
+\cu@test@tokenizeletter{Оу́вы}{Оу́-вы}
+\cu@test@tokenizeletter{оу́вы}{оу́-вы}
+\cu@test@tokenizeletter{{о}у́вы}{о-у́вы}
+
+
+\makeatother
+\end{document}
