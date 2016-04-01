@@ -1,9 +1,9 @@
-\ProvidesFile{gloss-churchslavic.ldf}[polyglossia: module for church slavic]
-\PolyglossiaSetup{churchslavic}{
+\ProvidesFile{gloss-churchslavonic.ldf}[polyglossia: module for Church Slavonic]
+\PolyglossiaSetup{churchslavonic}{
   script=Cyrillic,
   scripttag=cyrl,
   langtag=CHU,
-  hyphennames={churchslavonic}, %% XXX: should be church slavic?
+  hyphennames={churchslavonic},
   hyphenmins={1,2},
   frenchspacing=true,
   fontsetup=true
@@ -11,29 +11,29 @@
 
 % if spelling is set to modern, Russian date and caption
 % as well as ASCII digits are used.
-\define@key{churchslavic}{spelling}[modern]{%
+\define@key{churchslavonic}{spelling}[modern]{%
   \ifstrequal{#1}{traditional}%
-    {\def\captionschurchslavic{\captionschurchslavic@traditional}%
-     \def\datechurchslavic{\datechurchslavic@traditional}}%
-    {\def\captionschurchslavic{\captionschurchslavic@modern}%
-     \def\datechurchslavic{\datechurchslavic@modern}}%
+    {\def\captionschurchslavonic{\captionschurchslavonic@traditional}%
+     \def\datechurchslavonic{\datechurchslavonic@traditional}}%
+    {\def\captionschurchslavonic{\captionschurchslavonic@modern}%
+     \def\datechurchslavonic{\datechurchslavonic@modern}}%
 }
 
 \newif\ifcyrillic@numerals
-\define@key{churchslavic}{numerals}[latin]{%
+\define@key{churchslavonic}{numerals}[latin]{%
    \ifstrequal{#1}{cyrillic}%
       {\cyrillic@numeralstrue}
       {\cyrillic@numeralsfalse}%
 }
 
-\define@boolkey{churchslavic}[churchslavic@]{babelshorthands}[false]{}
+\define@boolkey{churchslavonic}[churchslavonic@]{babelshorthands}[false]{}
 
-\setkeys{churchslavic}{spelling,numerals}
+\setkeys{churchslavonic}{spelling,numerals}
 
 \ifsystem@babelshorthands
-  \setkeys{churchslavic}{babelshorthands=true}
+  \setkeys{churchslavonic}{babelshorthands=true}
 \else
- \setkeys{churchslavic}{babelshorthands=false}
+ \setkeys{churchslavonic}{babelshorthands=false}
 \fi
 
 \ifcsundef{initiate@active@char}{%
@@ -41,26 +41,26 @@
   \initiate@active@char{"}%
 }{}
 
-\def\churchslavic@shorthands{%
+\def\churchslavonic@shorthands{%
   \bbl@activate{"}%
-  \def\language@group{churchslavic}%
+  \def\language@group{churchslavonic}%
 %  \declare@shorthand{russian}{"`}{„}%
 %  \declare@shorthand{russian}{"'}{“}%
 %  \declare@shorthand{russian}{"<}{«}%
 %  \declare@shorthand{russian}{">}{»}%
-  \declare@shorthand{churchslavic}{""}{\hskip\z@skip}%
-  \declare@shorthand{churchslavic}{"~}{\textormath{\leavevmode\hbox{-}}{-}}%
-  \declare@shorthand{churchslavic}{"=}{\nobreak-\hskip\z@skip}%
-  \declare@shorthand{churchslavic}{"|}{\textormath{\nobreak\discretionary{-}{}{\kern.03em}\allowhyphens}{}}%
-  \declare@shorthand{churchslavic}{"-}{%
-    \def\churchslavic@sh@tmp{%
-      \if\churchslavic@sh@next-\expandafter\churchslavic@sh@emdash
-      \else\expandafter\churchslavic@sh@hyphen\fi
+  \declare@shorthand{churchslavonic}{""}{\hskip\z@skip}%
+  \declare@shorthand{churchslavonic}{"~}{\textormath{\leavevmode\hbox{-}}{-}}%
+  \declare@shorthand{churchslavonic}{"=}{\nobreak-\hskip\z@skip}%
+  \declare@shorthand{churchslavonic}{"|}{\textormath{\nobreak\discretionary{-}{}{\kern.03em}\allowhyphens}{}}%
+  \declare@shorthand{churchslavonic}{"-}{%
+    \def\churchslavonic@sh@tmp{%
+      \if\churchslavonic@sh@next-\expandafter\churchslavonic@sh@emdash
+      \else\expandafter\churchslavonic@sh@hyphen\fi
     }%
-    \futurelet\churchslavic@sh@next\churchslavic@sh@tmp}%
-  \def\churchslavic@sh@hyphen{%
+    \futurelet\churchslavonic@sh@next\churchslavonic@sh@tmp}%
+  \def\churchslavonic@sh@hyphen{%
     \nobreak\-\bbl@allowhyphens}%
-  \def\churchslavic@sh@emdash##1##2{\cdash-##1##2}%
+  \def\churchslavonic@sh@emdash##1##2{\cdash-##1##2}%
   \def\cdash##1##2##3{\def\tempx@{##3}%
   \def\tempa@{-}\def\tempb@{~}\def\tempc@{*}%
    \ifx\tempx@\tempa@\@Acdash\else
@@ -76,15 +76,15 @@
   \ifx\cyrdash\undefined
     \def\cyrdash{\hbox to.8em{--\hss--}}
   \fi
-  \declare@shorthand{churchslavic}{",}{\nobreak\hskip.2em\ignorespaces}%
+  \declare@shorthand{churchslavonic}{",}{\nobreak\hskip.2em\ignorespaces}%
 }
 
-\def\nochurchslavic@shorthands{%
+\def\nochurchslavonic@shorthands{%
   \@ifundefined{initiate@active@char}{}{\bbl@deactivate{"}}%
 }
 
 
-\def\captionschurchslavic@modern{%
+\def\captionschurchslavonic@modern{%
    \def\prefacename{Предисловие}%
    \def\refname{Список литературы}%
    \def\abstractname{Аннотация}%
@@ -109,7 +109,7 @@
    \def\alsoname{см.~также}%
    \def\proofname{Доказательство}%
 }
-\def\datechurchslavic@modern{%
+\def\datechurchslavonic@modern{%
       \def\today{\number\day%
       \space\ifcase\month\or%
       января\or
@@ -126,7 +126,7 @@
       декабря\fi%
       \space \number\year\space г.}}
     
-\def\captionschurchslavic@traditional{%
+\def\captionschurchslavonic@traditional{%
    \def\prefacename{Предисло́вїе}%
    \def\refname{Примѣча̑нїѧ}%
    \def\abstractname{А҆ннота́цїѧ}%
@@ -151,7 +151,7 @@
    \def\alsoname{зрѝ~та́кожде}%
    \def\proofname{Доказа́тельство}%
 }  
-\def\datechurchslavic@traditional{%
+\def\datechurchslavonic@traditional{%
       \def\today{\number\day%
       \space\ifcase\month\or%
       і҆аннꙋа́рїа\or
@@ -169,7 +169,7 @@
       \space л.\space\number\year\space}}
 
 % The following is based on some ideas from ruscor.sty
-\def\churchslavic@capsformat{%
+\def\churchslavonic@capsformat{%
    \def\@seccntformat##1{\csname pre##1\endcsname%
       \csname the##1\endcsname%
       \csname post##1\endcsname}%
@@ -187,38 +187,38 @@
    \def\preparagraph{}%
    \def\presubparagraph{}}
 
-\def\Azbuk#1{\expandafter\churchslavic@Alph\csname c@#1\endcsname}
-\def\churchslavic@Alph#1{\ifcase#1\or
+\def\Azbuk#1{\expandafter\churchslavonic@Alph\csname c@#1\endcsname}
+\def\churchslavonic@Alph#1{\ifcase#1\or
    А\or Б\or В\or Г\or Д\or Є\or Ж\or Ѕ\or
    З\or И\or І\or К\or Л\or М\or Н\or О\or
    П\or Р\or С\or Т\or Ꙋ\or Ф\or Х\or Ѿ\or
    Ц\or Ч\or Ш\or Щ\or Ъ\or Ы\or Ь\or Ѣ\or
-   Ю\or Ѫ\or Ѧ\or Ѯ\or Ѱ\or Ѳ\or Ѵ\else\xpg@ill@value{#1}{churchslavic@Alph}\fi}
+   Ю\or Ѫ\or Ѧ\or Ѯ\or Ѱ\or Ѳ\or Ѵ\else\xpg@ill@value{#1}{churchslavonic@Alph}\fi}
 
-\def\azbuk#1{\expandafter\churchslavic@alph\csname c@#1\endcsname}
-\def\churchslavic@alph#1{\ifcase#1\or
+\def\azbuk#1{\expandafter\churchslavonic@alph\csname c@#1\endcsname}
+\def\churchslavonic@alph#1{\ifcase#1\or
    а\or б\or в\or г\or д\or е\or ж\or ѕ\or 
    з\or и\or ї\or к\or л\or м\or н\or о\or
    п\or р\or с\or т\or ꙋ\or ф\or х\or ѿ\or
    ц\or ч\or ш\or щ\or ъ\or ы\or ь\or ѣ\or
-   ю\or ѫ\or ѧ\or ѯ\or ѱ\or ѳ\or ѵ\else\xpg@ill@value{#1}{churchslavic@alph}\fi}
+   ю\or ѫ\or ѧ\or ѯ\or ѱ\or ѳ\or ѵ\else\xpg@ill@value{#1}{churchslavonic@alph}\fi}
 
 %% Deleting stuff for Cyrillic numerals
 %% TODO: link with cu-num package
-\def\noextras@churchslavic{%
+\def\noextras@churchslavonic{%
   \def\@seccntformat##1{\csname the##1\endcsname\quad}% = LaTeX kernel
-  \ifcyrillic@numerals\nochurchslavic@numbers\fi
- \nochurchslavic@shorthands%
+  \ifcyrillic@numerals\nochurchslavonic@numbers\fi
+ \nochurchslavonic@shorthands%
 }
 
-\def\blockextras@churchslavic{%
-  \churchslavic@capsformat%
-   \ifcyrillic@numerals\churchslavic@numbers\fi
-  \ifchurchslavic@babelshorthands\churchslavic@shorthands\fi
+\def\blockextras@churchslavonic{%
+  \churchslavonic@capsformat%
+   \ifcyrillic@numerals\churchslavonic@numbers\fi
+  \ifchurchslavonic@babelshorthands\churchslavonic@shorthands\fi
 }
 
-\def\inlineextras@churchslavic{%
-  \ifchurchslavic@babelshorthands\churchslavic@shorthands\fi%
+\def\inlineextras@churchslavonic{%
+  \ifchurchslavonic@babelshorthands\churchslavonic@shorthands\fi%
 }
 
 %%% These lines taken from russianb.ldf, part of babel package.

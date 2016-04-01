@@ -6,6 +6,7 @@ addons:
     packages:
     - texlive-binaries
     - texlive-xetex
+    - texlive-latex-extra
 
 install:
 
