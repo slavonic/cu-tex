@@ -1,6 +1,6 @@
 wc ../data/words.txt
 rm -f wc2a?
-split -l 8756 ../data/words.txt w2
+split -l 8762 ../data/words.txt w2
 wc w2a?
 
 rm -f cv2-? cv2-??

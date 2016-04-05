@@ -1,75 +1,76 @@
-   17511   18929  380586 ../data/words.txt
-    5837    6336  127980 w3aa
-    5837    6171  128123 w3ab
-    5837    6422  124483 w3ac
-   17511   18929  380586 total
-   11674   12507  256103 w3a-ab
-   11674   12758  252463 w3a-ac
-   11674   12593  252606 w3a-bc
-   35022   37858  761172 total
+   17525   18944  380932 ../data/words.txt
+    5841    6341  128099 w3aa
+    5841    6174  128204 w3ab
+    5841    6426  124578 w3ac
+       2       3      51 w3ad
+   17525   18944  380932 total
+   11682   12515  256303 w3a-ab
+   11682   12767  252677 w3a-ac
+   11682   12600  252782 w3a-bc
+   35046   37882  761762 total
 Creating new project cv3-bc from dictionary w3a-bc
 Project file cv3-bc
-	created: 2016-03-20 21:05:07.446406
-	last modified: 2016-03-20 21:05:07.446644
+	created: 2016-04-05 15:51:07.099743
+	last modified: 2016-04-05 15:51:07.100106
 	margins: 1,1
-	dictionary size: 11674
-	total hyphens: (weighted) 26993
-	total missed : (weighted) 26993 100.00%
+	dictionary size: 11682
+	total hyphens: (weighted) 27011
+	total missed : (weighted) 27011 100.00%
 	total false  : (weighted) 0 0.00%
 	number of pattern levels: 0
 
 Creating new project cv3-bcX from dictionary w3a-bc
 Project file cv3-bcX
-	created: 2016-03-20 21:05:07.958481
-	last modified: 2016-03-20 21:05:07.958746
+	created: 2016-04-05 15:51:10.886550
+	last modified: 2016-04-05 15:51:10.886861
 	margins: 1,1
-	dictionary size: 11674
-	total hyphens: (weighted) 26993
-	total missed : (weighted) 26993 100.00%
+	dictionary size: 11682
+	total hyphens: (weighted) 27011
+	total missed : (weighted) 27011 100.00%
 	total false  : (weighted) 0 0.00%
 	number of pattern levels: 0
 
 Creating new project cv3-ac from dictionary w3a-ac
 Project file cv3-ac
-	created: 2016-03-20 21:05:08.460422
-	last modified: 2016-03-20 21:05:08.460658
+	created: 2016-04-05 15:51:14.562351
+	last modified: 2016-04-05 15:51:14.562581
 	margins: 1,1
-	dictionary size: 11674
-	total hyphens: (weighted) 26220
-	total missed : (weighted) 26220 100.00%
+	dictionary size: 11682
+	total hyphens: (weighted) 26244
+	total missed : (weighted) 26244 100.00%
 	total false  : (weighted) 0 0.00%
 	number of pattern levels: 0
 
 Creating new project cv3-acX from dictionary w3a-ac
 Project file cv3-acX
-	created: 2016-03-20 21:05:08.951317
-	last modified: 2016-03-20 21:05:08.951530
+	created: 2016-04-05 15:51:18.082873
+	last modified: 2016-04-05 15:51:18.083189
 	margins: 1,1
-	dictionary size: 11674
-	total hyphens: (weighted) 26220
-	total missed : (weighted) 26220 100.00%
+	dictionary size: 11682
+	total hyphens: (weighted) 26244
+	total missed : (weighted) 26244 100.00%
 	total false  : (weighted) 0 0.00%
 	number of pattern levels: 0
 
 Creating new project cv3-ab from dictionary w3a-ab
 Project file cv3-ab
-	created: 2016-03-20 21:05:09.451488
-	last modified: 2016-03-20 21:05:09.451738
+	created: 2016-04-05 15:51:21.616651
+	last modified: 2016-04-05 15:51:21.616977
 	margins: 1,1
-	dictionary size: 11674
-	total hyphens: (weighted) 27625
-	total missed : (weighted) 27625 100.00%
+	dictionary size: 11682
+	total hyphens: (weighted) 27651
+	total missed : (weighted) 27651 100.00%
 	total false  : (weighted) 0 0.00%
 	number of pattern levels: 0
 
 Creating new project cv3-abX from dictionary w3a-ab
 Project file cv3-abX
-	created: 2016-03-20 21:05:09.944680
-	last modified: 2016-03-20 21:05:09.944883
+	created: 2016-04-05 15:51:25.151168
+	last modified: 2016-04-05 15:51:25.151501
 	margins: 1,1
-	dictionary size: 11674
-	total hyphens: (weighted) 27625
-	total missed : (weighted) 27625 100.00%
+	dictionary size: 11682
+	total hyphens: (weighted) 27651
+	total missed : (weighted) 27651 100.00%
 	total false  : (weighted) 0 0.00%
 	number of pattern levels: 0
 
@@ -78,21 +79,21 @@ Training project cv3-bc using range 2-4 and selector 1:20:1
 Training HYPHENATION pattern layer (level=1)
 	pattern lengths: 2-4
 	selector: 1:20:1
-Selected 5151 patterns of length 3
-Selected 579 patterns of length 2
-Selected 14990 patterns of length 4
-Missed (weighted): 44 0.16%
-False (weighted): 460 1.70%
+Selected 5150 patterns of length 3
+Selected 577 patterns of length 2
+Selected 14986 patterns of length 4
+Missed (weighted): 45 0.17%
+False (weighted): 450 1.67%
 ...Committed!
 
 Training project cv3-bc using range 2-3 and selector 1:10:1
 Training INHIBINTING pattern layer (level=2)
 	pattern lengths: 2-3
 	selector: 1:10:1
-Selected 431 patterns of length 3
-Selected 131 patterns of length 2
-Missed (weighted): 44 0.16%
-False (weighted): 50 0.19%
+Selected 428 patterns of length 3
+Selected 130 patterns of length 2
+Missed (weighted): 45 0.17%
+False (weighted): 47 0.17%
 ...Committed!
 
 Batch-training of project cv3-bcX using specs from specsX.py
@@ -100,11 +101,11 @@ Training project cv3-bcX using range 2-4 and selector 1:1:1
 Training HYPHENATION pattern layer (level=1)
 	pattern lengths: 2-4
 	selector: 1:1:1
-Selected 5920 patterns of length 3
-Selected 916 patterns of length 2
+Selected 5915 patterns of length 3
+Selected 914 patterns of length 2
 Selected 15645 patterns of length 4
-Missed (weighted): 3 0.01%
-False (weighted): 14946 55.37%
+Missed (weighted): 2 0.01%
+False (weighted): 14956 55.37%
 ...Committed!
 
 Training project cv3-bcX using range 1-3 and selector 1:20:1
@@ -113,9 +114,9 @@ Training INHIBINTING pattern layer (level=2)
 	selector: 1:20:1
 Selected 696 patterns of length 2
 Selected 24 patterns of length 1
-Selected 3932 patterns of length 3
-Missed (weighted): 79 0.29%
-False (weighted): 268 0.99%
+Selected 3926 patterns of length 3
+Missed (weighted): 77 0.29%
+False (weighted): 257 0.95%
 ...Committed!
 
 Batch-training of project cv3-ac using specs from specs.py
@@ -123,21 +124,21 @@ Training project cv3-ac using range 2-4 and selector 1:20:1
 Training HYPHENATION pattern layer (level=1)
 	pattern lengths: 2-4
 	selector: 1:20:1
-Selected 5063 patterns of length 3
-Selected 563 patterns of length 2
-Selected 14543 patterns of length 4
-Missed (weighted): 25 0.10%
-False (weighted): 514 1.96%
+Selected 5061 patterns of length 3
+Selected 562 patterns of length 2
+Selected 14541 patterns of length 4
+Missed (weighted): 30 0.11%
+False (weighted): 516 1.97%
 ...Committed!
 
 Training project cv3-ac using range 2-3 and selector 1:10:1
 Training INHIBINTING pattern layer (level=2)
 	pattern lengths: 2-3
 	selector: 1:10:1
-Selected 420 patterns of length 3
-Selected 139 patterns of length 2
-Missed (weighted): 25 0.10%
-False (weighted): 52 0.20%
+Selected 419 patterns of length 3
+Selected 140 patterns of length 2
+Missed (weighted): 30 0.11%
+False (weighted): 57 0.22%
 ...Committed!
 
 Batch-training of project cv3-acX using specs from specsX.py
@@ -145,22 +146,22 @@ Training project cv3-acX using range 2-4 and selector 1:1:1
 Training HYPHENATION pattern layer (level=1)
 	pattern lengths: 2-4
 	selector: 1:1:1
-Selected 5795 patterns of length 3
-Selected 896 patterns of length 2
-Selected 15226 patterns of length 4
-Missed (weighted): 4 0.02%
-False (weighted): 16712 63.74%
+Selected 5792 patterns of length 3
+Selected 893 patterns of length 2
+Selected 15224 patterns of length 4
+Missed (weighted): 3 0.01%
+False (weighted): 16715 63.69%
 ...Committed!
 
 Training project cv3-acX using range 1-3 and selector 1:20:1
 Training INHIBINTING pattern layer (level=2)
 	pattern lengths: 1-3
 	selector: 1:20:1
-Selected 732 patterns of length 2
+Selected 734 patterns of length 2
 Selected 27 patterns of length 1
-Selected 4062 patterns of length 3
-Missed (weighted): 87 0.33%
-False (weighted): 259 0.99%
+Selected 4063 patterns of length 3
+Missed (weighted): 94 0.36%
+False (weighted): 251 0.96%
 ...Committed!
 
 Batch-training of project cv3-ab using specs from specs.py
@@ -168,21 +169,21 @@ Training project cv3-ab using range 2-4 and selector 1:20:1
 Training HYPHENATION pattern layer (level=1)
 	pattern lengths: 2-4
 	selector: 1:20:1
-Selected 5273 patterns of length 3
-Selected 598 patterns of length 2
-Selected 15263 patterns of length 4
+Selected 5274 patterns of length 3
+Selected 597 patterns of length 2
+Selected 15273 patterns of length 4
 Missed (weighted): 41 0.15%
-False (weighted): 541 1.96%
+False (weighted): 522 1.89%
 ...Committed!
 
 Training project cv3-ab using range 2-3 and selector 1:10:1
 Training INHIBINTING pattern layer (level=2)
 	pattern lengths: 2-3
 	selector: 1:10:1
-Selected 485 patterns of length 3
-Selected 144 patterns of length 2
-Missed (weighted): 42 0.15%
-False (weighted): 38 0.14%
+Selected 480 patterns of length 3
+Selected 143 patterns of length 2
+Missed (weighted): 41 0.15%
+False (weighted): 36 0.13%
 ...Committed!
 
 Batch-training of project cv3-abX using specs from specsX.py
@@ -190,11 +191,11 @@ Training project cv3-abX using range 2-4 and selector 1:1:1
 Training HYPHENATION pattern layer (level=1)
 	pattern lengths: 2-4
 	selector: 1:1:1
-Selected 6031 patterns of length 3
-Selected 944 patterns of length 2
-Selected 15895 patterns of length 4
+Selected 6033 patterns of length 3
+Selected 945 patterns of length 2
+Selected 15907 patterns of length 4
 Missed (weighted): 2 0.01%
-False (weighted): 16750 60.63%
+False (weighted): 16829 60.86%
 ...Committed!
 
 Training project cv3-abX using range 1-3 and selector 1:20:1
@@ -203,71 +204,71 @@ Training INHIBINTING pattern layer (level=2)
 	selector: 1:20:1
 Selected 732 patterns of length 2
 Selected 23 patterns of length 1
-Selected 4271 patterns of length 3
-Missed (weighted): 69 0.25%
+Selected 4277 patterns of length 3
+Missed (weighted): 70 0.25%
 False (weighted): 296 1.07%
 ...Committed!
 
 Swapping inhibiting layers between cv3-bc and cv3-bcX
 Performance of cv3-bc
-Missed (weighted): 104 (0.385%)
-False (weighted): 49 (0.182%)
+Missed (weighted): 100 (0.370%)
+False (weighted): 46 (0.170%)
 Performance of cv3-bcX
-Missed (weighted): 7 (0.026%)
-False (weighted): 6425 (23.802%)
+Missed (weighted): 6 (0.022%)
+False (weighted): 6510 (24.101%)
 ...Committed
 
 Swapping inhibiting layers between cv3-ac and cv3-acX
 Performance of cv3-ac
-Missed (weighted): 100 (0.381%)
-False (weighted): 50 (0.191%)
+Missed (weighted): 107 (0.408%)
+False (weighted): 55 (0.210%)
 Performance of cv3-acX
-Missed (weighted): 7 (0.027%)
-False (weighted): 7380 (28.146%)
+Missed (weighted): 6 (0.023%)
+False (weighted): 7480 (28.502%)
 ...Committed
 
 Swapping inhibiting layers between cv3-ab and cv3-abX
 Performance of cv3-ab
-Missed (weighted): 104 (0.376%)
-False (weighted): 38 (0.138%)
+Missed (weighted): 105 (0.380%)
+False (weighted): 36 (0.130%)
 Performance of cv3-abX
-Missed (weighted): 6 (0.022%)
-False (weighted): 7663 (27.739%)
+Missed (weighted): 5 (0.018%)
+False (weighted): 7699 (27.843%)
 ...Committed
 
 Compacting hyphenation patterns for cv3-bc
 Result:
-	Level 1:  28413 =>   6607
-	Level 2:   5824 =>   1867
+	Level 1:  28403 =>   6616
+	Level 2:   5814 =>   1857
 ...Committed
 
 Compacting hyphenation patterns for cv3-ac
 Result:
-	Level 1:  27335 =>   6308
-	Level 2:   6156 =>   1901
+	Level 1:  27328 =>   6277
+	Level 2:   6166 =>   1886
 ...Committed
 
 Compacting hyphenation patterns for cv3-ab
 Result:
-	Level 1:  29161 =>   6697
-	Level 2:   6379 =>   1988
+	Level 1:  29173 =>   6741
+	Level 2:   6389 =>   1992
 ...Committed
 
 Testing cv3-bc on dictionary w3aa
 Performance of cv3-bc on w3aa
-Missed (weighted): 899 (6.696%)
-False (weighted): 496 (3.694%)
+Missed (weighted): 907 (6.748%)
+False (weighted): 497 (3.697%)
 Saved errors to err3-a
 
 Testing cv3-ac on dictionary w3ab
 Performance of cv3-ac on w3ab
-Missed (weighted): 1343 (9.458%)
-False (weighted): 477 (3.359%)
+Missed (weighted): 1350 (9.501%)
+False (weighted): 476 (3.350%)
 Saved errors to err3-b
 
 Testing cv3-ab on dictionary w3ac
 Performance of cv3-ab on w3ac
-Missed (weighted): 886 (6.925%)
-False (weighted): 254 (1.985%)
+Missed (weighted): 875 (6.835%)
+False (weighted): 244 (1.906%)
 Saved errors to err3-c
 
