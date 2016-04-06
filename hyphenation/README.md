@@ -13,6 +13,8 @@ make
 ```
 Result should be a file `hyph-cu.tex`.
 
+When one of the input changes, use `make` to rebuild the result.
+
 Explanations of (some) files in this directory (note that some of the mentioned files are created by `make` command):
 * `Makefile` - does all the dirty work
 * `hyph-cu.tex` - the ultimate result
