@@ -1,5 +1,45 @@
 # Creating hyphenation patterns for Church Slavonic
 
+## Requirements
+
+- Python installed (Python 3 is recommended as it is noticeably faster)
+- `pypatgen` version 2.9 or better
+
+## Quick Start
+To build TeX file with hyphenation patterns and hyphenations exceptions, just do this:
+```
+make clean
+make
+```
+Result should be a file `hyph-cu.tex`.
+
+When one of the input changes, use `make` to rebuild the result.
+
+Explanations of (some) files in this directory (note that some of the mentioned files are created by `make` command):
+* `Makefile` - does all the dirty work
+* `hyph-cu.tex` - the ultimate result
+* `cv2.sh`, `cv3.sh`, and `cv4.sh` - scripts used to do 2-fold, 3-fold, and 4-fold cross-validation of trained syllable
+   patterns
+* `combiner_patterns.txt` - contains TeX patterns inhibiting hyphenation before a combining symbol (like accent).
+   These patterns are generated with `make_pats.py` script. If you want to change it, change script, not `*.txt`.
+* `root_patterns.txt` - hand-crafted patterns for some common roots that raw patterns do not cover. 
+* `single_patterns.txt` - patterns that inhibit hyphenation before last character and after the first character (note that
+  because of the accents setting `lefthyphenmin=1` and `righthyphenmin=2` is not sufficient.
+* `specs.py`, `specsX.py` - specifications for training syllable patterns.
+* `syl_patt.txt` - syllable patterns, learned from syllable dictionary.
+* `syl_patt.err` - errors that syllable patterns make on the syllable dictionary.
+* `words-hyph.txt` - hyphenation dictionary
+* `words-hyph-expanded.txt` - expanded hyphenation dictionary
+* `make_hyph.py` - script to generate hyphenation dictionary from syllable dictionary. Hyphenation dictionary differs
+  from syllable dictionary because hyphenation is not allowed before a last vowel (even if it forms a syllable), and
+  generally (with some exceptions) not allowed after a single vowel.
+* `make_pats.py` - script to generate `combiner_patterns.txt` and `single_patterns.txt`.
+* `expand.py` - does recursive NFC<->NFD expansion of characters
+* `cu_hyph.tex` - TeX hyphenation patterns (in NFC form, unexpanded)
+* `cu_hyph_expanded.tex` - expanded patterns, have some parasites
+
+
+## Long Story
 In Church Slavonic words are hyphenated on the syllable boundary. Syllable boundaries are determined
 on the basis of complex morphological rules given in the syllable dictionary. No hyphenation is allowed
 before a single-letter syllable at the end of a word and no hyphenation is allowed after a single-letter syllable at the beginning of a word **with some exceptions** (See below).
@@ -20,7 +60,12 @@ We create TeX hyphenation patterns in the following stages
 
     - Add special patterns that ensure that no hyphenation happens before a combining character. Since Church Slavonic
       uses a rich set of diacritical marks, we do not rely on step 1 to find all of these places, and just add these rules 
-      explicitly
+      explicitly<sup>[1][1]</sup>
+      
+   This step is performed by
+   ```
+   make cu-hyph.tex
+   ```
 
 2. Add patterns to suppress hyphenation after the first letter and before the last letter. Note that we cannot rely here on
    TeX mechanism of `lefthyphenmin` and `righthyphenmin` because (i) TeX also counts accents and breathing marks as characters when counting
@@ -35,6 +80,10 @@ corresponding inhibiting prefix rules:
    
    At this stage we also generate the TeX list of hyphenation exceptions.
    
+   ```
+   make cu-hyph.tex
+   ```
+   
 3. Expand patterns and exception list by replacing each character with its Normal Form D. Note that for robustness
    we create all combinations of D and C forms for every character that has these different forms. This is different
    than just converting each pattern and exception to Normal Form D. To the built-in Unicode combining rules we add 
@@ -45,6 +94,18 @@ corresponding inhibiting prefix rules:
     - U+047D <-> U+A64D U+0486 U+0311 (omega with veliky apostrof) - this symbol is incorrectly marked as not decomposable
       in Unicode
 
+    ```
+    make cy-hyph-expanded.tex
+    ```
+
+4. Remove some patterns that do not do any good, but after pattern expansion actually do some harm (we call them "parasitic patterns").
+   Example is pattern: `1б2ве`. Consider word `любвѐ` that should be hyphenated as `люб-вѐ`. When last character is expanded to its NFD
+   (decomposed) form, pattern activates and kills valid hyphenation. Removal of this pattern does not affect hyphenation
+   of any other dictionary word. We have total of 6 such parasites, listed in `parasitic_patterns.txt`.
+   
+   ```
+   make hyph-cu.tex
+   ```
 
 ## Generating syllable patterns
 
