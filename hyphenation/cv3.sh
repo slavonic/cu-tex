@@ -1,5 +1,5 @@
 wc ../data/words.txt
-split -l 5837 ../data/words.txt w3
+split -l 5841 ../data/words.txt w3
 wc w3a?
 cat w3aa w3ab > w3a-ab
 cat w3aa w3ac > w3a-ac

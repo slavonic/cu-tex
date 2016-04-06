@@ -1,5 +1,5 @@
 wc ../data/words.txt
-split -l 4378 ../data/words.txt w4
+split -l 4381 ../data/words.txt w4
 wc w4a?
 cat w4ab w4ac w4ad > w4a-bcd
 cat w4aa w4ac w4ad > w4a-acd

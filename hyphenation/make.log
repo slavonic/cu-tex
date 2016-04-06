@@ -1,0 +1,284 @@
+echo 'Training RAW syllable patterns'
+Training RAW syllable patterns
+wc ../data/words.txt  # just to show how many words are there
+   17525   18944  380932 ../data/words.txt
+#
+pypatgen cu-syl  new ../data/words.txt --margins 1,1
+Creating new project cu-syl from dictionary ../data/words.txt
+Project file cu-syl
+	created: 2016-04-05 15:31:55.652566
+	last modified: 2016-04-05 15:31:55.652901
+	margins: 1,1
+	dictionary size: 17525
+	total hyphens: (weighted) 40458
+	total missed : (weighted) 40458 100.00%
+	total false  : (weighted) 0 0.00%
+	number of pattern levels: 0
+
+pypatgen cu-sylX new ../data/words.txt --margins 1,1
+Creating new project cu-sylX from dictionary ../data/words.txt
+Project file cu-sylX
+	created: 2016-04-05 15:32:00.943770
+	last modified: 2016-04-05 15:32:00.944097
+	margins: 1,1
+	dictionary size: 17525
+	total hyphens: (weighted) 40458
+	total missed : (weighted) 40458 100.00%
+	total false  : (weighted) 0 0.00%
+	number of pattern levels: 0
+
+#
+pypatgen cu-syl  batchtrain specs.py
+Batch-training of project cu-syl using specs from specs.py
+Training project cu-syl using range 2-4 and selector 1:20:1
+Training HYPHENATION pattern layer (level=1)
+	pattern lengths: 2-4
+	selector: 1:20:1
+Selected 6184 patterns of length 3
+Selected 620 patterns of length 2
+Selected 19277 patterns of length 4
+Missed (weighted): 99 0.24%
+False (weighted): 794 1.96%
+...Committed!
+
+Training project cu-syl using range 2-3 and selector 1:10:1
+Training INHIBINTING pattern layer (level=2)
+	pattern lengths: 2-3
+	selector: 1:10:1
+Selected 616 patterns of length 3
+Selected 182 patterns of length 2
+Missed (weighted): 100 0.25%
+False (weighted): 91 0.22%
+...Committed!
+
+pypatgen cu-sylX batchtrain specsX.py
+Batch-training of project cu-sylX using specs from specsX.py
+Training project cu-sylX using range 2-4 and selector 1:1:1
+Training HYPHENATION pattern layer (level=1)
+	pattern lengths: 2-4
+	selector: 1:1:1
+Selected 7130 patterns of length 3
+Selected 1011 patterns of length 2
+Selected 20221 patterns of length 4
+Missed (weighted): 3 0.01%
+False (weighted): 25674 63.46%
+...Committed!
+
+Training project cu-sylX using range 1-3 and selector 1:20:1
+Training INHIBINTING pattern layer (level=2)
+	pattern lengths: 1-3
+	selector: 1:20:1
+Selected 817 patterns of length 2
+Selected 28 patterns of length 1
+Selected 5123 patterns of length 3
+Missed (weighted): 134 0.33%
+False (weighted): 581 1.44%
+...Committed!
+
+#
+pypatgen cu-syl swap cu-sylX -c
+Swapping inhibiting layers between cu-syl and cu-sylX
+Performance of cu-syl
+Missed (weighted): 200 (0.494%)
+False (weighted): 88 (0.218%)
+Performance of cu-sylX
+Missed (weighted): 7 (0.017%)
+False (weighted): 11095 (27.424%)
+...Committed
+
+#
+pypatgen cu-syl compact -c
+Compacting hyphenation patterns for cu-syl
+Result:
+	Level 1:  35716 =>   8333
+	Level 2:   7674 =>   2358
+...Committed
+
+#
+# following test is useless - on the test data!
+# but it creates error log in the form of patterns
+pypatgen cu-syl test ../data/words.txt -p syl_patt.err
+Testing cu-syl on dictionary ../data/words.txt
+Performance of cu-syl on ../data/words.txt
+Missed (weighted): 200 (0.494%)
+False (weighted): 88 (0.218%)
+Saved errors to syl_patt.err
+
+#
+pypatgen cu-syl export cu-syl.tex -p syl_patt.txt
+Exporting patterns from cu-syl and saving them in TeX format to cu-syl.tex
+Created TeX patterns file cu-syl.tex
+Number of patterns: 8827
+Number of exceptions: 234
+
+Written raw patterns to syl_patt.txt
+
+rm -f cu-syl cu-sylX cu-syl.tex
+./make_pats.py combining combiner_patterns.txt
+./make_pats.py singles single_patterns.txt
+./make_hyph.py ../data/words.txt words-hyph.txt
+rm -f temp cu-hyph.*
+echo "\\patterns{"         > temp.tex
+cat syl_patt.txt          >> temp.tex
+cat combiner_patterns.txt >> temp.tex
+cat root_patterns.txt     >> temp.tex
+cat single_patterns.txt   >> temp.tex
+echo "}"                  >> temp.tex
+# load paterns into temp project to dedup and get list of exceptions
+pypatgen temp new words-hyph.txt -m 1,2
+Creating new project temp from dictionary words-hyph.txt
+Project file temp
+	created: 2016-04-05 15:33:20.810512
+	last modified: 2016-04-05 15:33:20.810862
+	margins: 1,2
+	dictionary size: 17525
+	total hyphens: (weighted) 35583
+	total missed : (weighted) 35583 100.00%
+	total false  : (weighted) 0 0.00%
+	number of pattern levels: 0
+
+pypatgen temp import temp.tex -c
+Loading patterns from temp.tex into project temp
+Missed (weighted): 12 (0.034%)
+False (weighted): 2 (0.006%)
+...Committed
+
+pypatgen temp compact -c
+Compacting hyphenation patterns for temp
+Result:
+	Level 1:   8331 =>   8330
+	Level 2:   2330 =>   2330
+	Level 3:      0 =>      0
+	Level 4:      0 =>      0
+	Level 5:      0 =>      0
+	Level 6:      0 =>      0
+	Level 7:    147 =>    147
+	Level 8:   4349 =>   4347
+...Committed
+
+pypatgen temp test words-hyph.txt -p cu-hyph.err
+Testing temp on dictionary words-hyph.txt
+Performance of temp on words-hyph.txt
+Missed (weighted): 12 (0.034%)
+False (weighted): 2 (0.006%)
+Saved errors to cu-hyph.err
+
+pypatgen temp export cu-hyph.tex
+Exporting patterns from temp and saving them in TeX format to cu-hyph.tex
+Created TeX patterns file cu-hyph.tex
+Number of patterns: 13037
+Number of exceptions: 14
+
+echo 'Generating expanded hyphenation dictionary'
+Generating expanded hyphenation dictionary
+./expand.py words-hyph.txt words-hyph-expanded.txt
+echo 'Generating expanded version of patterns'
+Generating expanded version of patterns
+rm -f temp cu-hyph-expanded.*
+./expand.py cu-hyph.tex temp.tex
+pypatgen temp new words-hyph-expanded.txt -m 1,2
+Creating new project temp from dictionary words-hyph-expanded.txt
+Project file temp
+	created: 2016-04-05 15:34:20.466658
+	last modified: 2016-04-05 15:34:20.466919
+	margins: 1,2
+	dictionary size: 23847
+	total hyphens: (weighted) 49918
+	total missed : (weighted) 49918 100.00%
+	total false  : (weighted) 0 0.00%
+	number of pattern levels: 0
+
+pypatgen temp import temp.tex -c
+Loading patterns from temp.tex into project temp
+Missed (weighted): 39 (0.078%)
+False (weighted): 3 (0.006%)
+...Committed
+
+pypatgen temp compact -c
+Compacting hyphenation patterns for temp
+Result:
+	Level 1:   9349 =>   9185
+	Level 2:   2536 =>   2491
+	Level 3:      0 =>      0
+	Level 4:      0 =>      0
+	Level 5:      0 =>      0
+	Level 6:      0 =>      0
+	Level 7:    162 =>    162
+	Level 8:   4853 =>   4846
+...Committed
+
+pypatgen temp test words-hyph.txt
+Testing temp on dictionary words-hyph.txt
+Performance of temp on words-hyph.txt
+Missed (weighted): 12 (0.034%)
+False (weighted): 2 (0.006%)
+
+pypatgen temp test words-hyph-expanded.txt -p cu-hyph-expanded.err
+Testing temp on dictionary words-hyph-expanded.txt
+Performance of temp on words-hyph-expanded.txt
+Missed (weighted): 39 (0.078%)
+False (weighted): 3 (0.006%)
+Saved errors to cu-hyph-expanded.err
+
+pypatgen temp export cu-hyph-expanded.tex
+Exporting patterns from temp and saving them in TeX format to cu-hyph-expanded.tex
+Created TeX patterns file cu-hyph-expanded.tex
+Number of patterns: 14387
+Number of exceptions: 42
+
+echo 'Removing parasites and building final hyphenation patterns'
+Removing parasites and building final hyphenation patterns
+rm -f temp hyph-cu.*
+awk 'NR==FNR{a[$0];next} !($0 in a)' \
+		parasitic_patterns.txt cu-hyph-expanded.tex > temp.tex
+# test performance after removal of parasites
+pypatgen temp new words-hyph-expanded.txt -m 1,2
+Creating new project temp from dictionary words-hyph-expanded.txt
+Project file temp
+	created: 2016-04-05 15:35:51.607397
+	last modified: 2016-04-05 15:35:51.607667
+	margins: 1,2
+	dictionary size: 23847
+	total hyphens: (weighted) 49918
+	total missed : (weighted) 49918 100.00%
+	total false  : (weighted) 0 0.00%
+	number of pattern levels: 0
+
+pypatgen temp import temp.tex -c
+Loading patterns from temp.tex into project temp
+Missed (weighted): 18 (0.036%)
+False (weighted): 3 (0.006%)
+...Committed
+
+pypatgen temp compact -c
+Compacting hyphenation patterns for temp
+Result:
+	Level 1:   9181 =>   9181
+	Level 2:   2484 =>   2484
+	Level 3:      0 =>      0
+	Level 4:      0 =>      0
+	Level 5:      0 =>      0
+	Level 6:      0 =>      0
+	Level 7:    162 =>    162
+	Level 8:   4846 =>   4846
+...Committed
+
+pypatgen temp test words-hyph.txt
+Testing temp on dictionary words-hyph.txt
+Performance of temp on words-hyph.txt
+Missed (weighted): 12 (0.034%)
+False (weighted): 2 (0.006%)
+
+pypatgen temp test words-hyph-expanded.txt -p hyph-cu.err
+Testing temp on dictionary words-hyph-expanded.txt
+Performance of temp on words-hyph-expanded.txt
+Missed (weighted): 18 (0.036%)
+False (weighted): 3 (0.006%)
+Saved errors to hyph-cu.err
+
+pypatgen temp export hyph-cu.tex
+Exporting patterns from temp and saving them in TeX format to hyph-cu.tex
+Created TeX patterns file hyph-cu.tex
+Number of patterns: 14380
+Number of exceptions: 21
+
