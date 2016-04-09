@@ -4,11 +4,12 @@ all: hyph-cu.tex
 
 clean:
 	rm -f cu-syl cu-sylX cu-syl.tex
-	rm -f temp.tex temp words-hyph.txt
+	rm -f temp.tex temp
 	rm -f temp words-hyph.txt words-hyph-expanded.txt
-	rm -f cu-hyph.tex cu-hyph-expanded.tex
-	rm -f *.err
-	rm -f syl_patt.txt syl_patt_errors.txt
+	rm -f syl_patt.txt syl_patt.err
+	rm -f syl_cu.txt syl_cu.tex
+	rm -f cu-hyph.tex cu-hyph.err
+	rm -f cu-hyph-expanded.tex cu-hyph-expanded.err
 	rm -f combiner_patterns.txt
 	rm -f single_patterns.txt
 
@@ -33,7 +34,7 @@ syl_patt.txt syl_patt.err: $(WORDS_SYL)
 	pypatgen cu-syl export cu-syl.tex -p syl_patt.txt
 	rm -f cu-syl cu-sylX cu-syl.tex
 
-syl-cu.tex: syl_patt.txt root_patterns.txt $(WORDS_SYL)
+syl-cu.tex syl-cu.err: syl_patt.txt root_patterns.txt $(WORDS_SYL)
 	echo 'Making syllable patterns (by adding root and combiner patterns)'
 	echo "\\patterns{"         > temp.tex
 	cat syl_patt.txt          >> temp.tex
@@ -55,7 +56,7 @@ combiner_patterns.txt single_patterns.txt: make_pats.py
 	./make_pats.py combining combiner_patterns.txt
 	./make_pats.py singles single_patterns.txt
 
-cu-hyph.tex: syl_patt.txt \
+cu-hyph.tex cu-hyph.err: syl_patt.txt \
 		combiner_patterns.txt root_patterns.txt single_patterns.txt \
 		words-hyph.txt
 	rm -f temp cu-hyph.*
@@ -76,7 +77,7 @@ words-hyph-expanded.txt: expand.py words-hyph.txt
 	echo 'Generating expanded hyphenation dictionary'
 	./expand.py words-hyph.txt words-hyph-expanded.txt
 
-cu-hyph-expanded.tex: cu-hyph.tex \
+cu-hyph-expanded.tex cu-hyph-expanded.err: cu-hyph.tex \
 			words-hyph.txt words-hyph-expanded.txt
 	echo 'Generating expanded version of patterns'
 	rm -f temp cu-hyph-expanded.*
@@ -89,7 +90,7 @@ cu-hyph-expanded.tex: cu-hyph.tex \
 	pypatgen temp export cu-hyph-expanded.tex
 
 # remove parasites
-hyph-cu.tex: cu-hyph-expanded.tex parasitic_patterns.txt
+hyph-cu.tex hyph-cu.err: cu-hyph-expanded.tex parasitic_patterns.txt
 	echo 'Removing parasites and building final hyphenation patterns'
 	rm -f temp hyph-cu.*
 	awk 'NR==FNR{a[$$0];next} !($$0 in a)' \
