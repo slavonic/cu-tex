@@ -2,7 +2,7 @@ hyphen-churchslavonic
 =====================
 
 Hyphenation patterns for Church Slavonic language (also known as Church Slavic
-and Old Chirch Slavonic), ISO 639-1 code "cu".
+and Old Church Slavonic), ISO 639-1 code "cu".
 
 Patterns are intended for Unicode TeX engines only. All files herein use
 UTF-8 encoding.
@@ -50,7 +50,7 @@ Authors
 
 Hyphenation dictionary for Church Slavonic was created by Aleksandr Andreev. 
 
-Patterns created by Aleskandr Andreev and Mike Kroutikov.
+Patterns created by Aleksandr Andreev and Mike Kroutikov.
 
 See GitHub project repository for the description of pattern generation 
 procedure:
