@@ -31,7 +31,7 @@ Then rebuild xelatex and lualatex formats:
 Using patterns
 --------------
 
-These patterns should used with the following TeX hyphenation settings:
+These patterns should be used with the following TeX hyphenation settings:
 
 	\lefthyphenmin=1
 	\righthyphenmin=2
