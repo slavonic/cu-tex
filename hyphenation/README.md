@@ -15,9 +15,15 @@ Result should be a file `hyph-cu.tex`.
 
 When one of the input changes, use `make` to rebuild the result.
 
+To build CTAN package (ZIP file `hyphen-churchslavonic.zip` ready to be uploaded to [CTAN](http://www.ctan.org/upload/)), do:
+```
+make ctan
+```
+
 Explanations of (some) files in this directory (note that some of the mentioned files are created by `make` command):
 * `Makefile` - does all the dirty work
 * `hyph-cu.tex` - the ultimate result
+* `hyph-cu.err` - hyphenation exceptions in pattern format
 * `cv2.sh`, `cv3.sh`, and `cv4.sh` - scripts used to do 2-fold, 3-fold, and 4-fold cross-validation of trained syllable
    patterns
 * `combiner_patterns.txt` - contains TeX patterns inhibiting hyphenation before a combining symbol (like accent).

@@ -2,6 +2,15 @@ WORDS_SYL = ../data/words.txt
 
 all: hyph-cu.tex
 
+ctan: hyphen-churchslavonic.zip
+
+hyphen-churchslavonic.zip: hyph-cu.tex loadhyph-cu.tex /tmp/README ../LICENSE
+	rm -f $@
+	zip $@ -j $^
+
+/tmp/README: README.ctan
+	cp $< $@
+
 clean:
 	rm -f cu-syl cu-sylX cu-syl.tex
 	rm -f temp.tex temp
