@@ -9,3 +9,7 @@ Fonts included:
 
 1. PonomarUnicode
 2. Monomachus
+3. FedorovskUnicode
+4. MenaionUnicode
+5. PomorskyUnicode
+
