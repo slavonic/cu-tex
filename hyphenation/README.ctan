@@ -1,0 +1,74 @@
+hyphen-churchslavonic
+=====================
+
+Hyphenation patterns for Church Slavonic language (also known as Church Slavic
+and Old Church Slavonic), ISO 639-1 code "cu".
+
+Patterns are intended for Unicode TeX engines only. All files herein use
+UTF-8 encoding.
+
+
+Installation:
+-------------
+
+	tlmgr install hyphen-churchslavonic  # install necessary files
+	fmtutil --byfmt xelatex lualatex     # rebuild xelatex and lualatex formats
+
+
+Manual installation (not recommended):
+--------------------------------------
+
+Edit "language.dat" to add the following lines:
+
+	% from hyphen-churchslavonic:
+	churchslavonic loadhyph-cu.tex
+
+Then rebuild xelatex and lualatex formats:
+
+	fmtutil --byfmt xelatex lualatex     # rebuild xelatex and lualatex formats
+
+
+Using patterns
+--------------
+
+These patterns should be used with the following TeX hyphenation settings:
+
+	\lefthyphenmin=1
+	\righthyphenmin=2
+
+
+Support
+-------
+
+For bug reports and support questions, please use GitHub issue tracker:
+
+	https://github.com/slavonic/cu-tex/issues
+
+
+Authors
+-------
+
+Hyphenation dictionary for Church Slavonic was created by Aleksandr Andreev. 
+
+Patterns created by Aleksandr Andreev and Mike Kroutikov.
+
+See GitHub project repository for the description of pattern generation 
+procedure:
+
+	https://github.com/slavonic/cu-tex
+
+
+Maintainers
+-----------
+
+Mike Kroutikov <pgmmpk@gmail.com>.
+
+
+License
+-------
+
+MIT
+
+References
+----------
+[1] Unicode Technical Note #41: Church Slavonic Typography in Unicode (http://www.unicode.org/notes/tn41/)
