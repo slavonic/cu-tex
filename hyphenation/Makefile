@@ -21,6 +21,7 @@ clean:
 	rm -f cu-hyph-expanded.tex cu-hyph-expanded.err
 	rm -f combiner_patterns.txt
 	rm -f single_patterns.txt
+	rm -f hyphen-churchslavonic.zip
 
 syl_patt.txt syl_patt.err: $(WORDS_SYL)
 	echo 'Training RAW syllable patterns'
