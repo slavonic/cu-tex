@@ -6,8 +6,8 @@ wc ../data/words.txt  # just to show how many words are there
 pypatgen cu-syl  new ../data/words.txt --margins 1,1
 Creating new project cu-syl from dictionary ../data/words.txt
 Project file cu-syl
-	created: 2016-04-05 15:31:55.652566
-	last modified: 2016-04-05 15:31:55.652901
+	created: 2016-04-08 08:41:17.469069
+	last modified: 2016-04-08 08:41:17.469344
 	margins: 1,1
 	dictionary size: 17525
 	total hyphens: (weighted) 40458
@@ -18,8 +18,8 @@ Project file cu-syl
 pypatgen cu-sylX new ../data/words.txt --margins 1,1
 Creating new project cu-sylX from dictionary ../data/words.txt
 Project file cu-sylX
-	created: 2016-04-05 15:32:00.943770
-	last modified: 2016-04-05 15:32:00.944097
+	created: 2016-04-08 08:41:22.802516
+	last modified: 2016-04-08 08:41:22.802837
 	margins: 1,1
 	dictionary size: 17525
 	total hyphens: (weighted) 40458
@@ -128,8 +128,8 @@ echo "}"                  >> temp.tex
 pypatgen temp new words-hyph.txt -m 1,2
 Creating new project temp from dictionary words-hyph.txt
 Project file temp
-	created: 2016-04-05 15:33:20.810512
-	last modified: 2016-04-05 15:33:20.810862
+	created: 2016-04-08 08:42:40.007348
+	last modified: 2016-04-08 08:42:40.007647
 	margins: 1,2
 	dictionary size: 17525
 	total hyphens: (weighted) 35583
@@ -179,8 +179,8 @@ rm -f temp cu-hyph-expanded.*
 pypatgen temp new words-hyph-expanded.txt -m 1,2
 Creating new project temp from dictionary words-hyph-expanded.txt
 Project file temp
-	created: 2016-04-05 15:34:20.466658
-	last modified: 2016-04-05 15:34:20.466919
+	created: 2016-04-08 08:43:38.801246
+	last modified: 2016-04-08 08:43:38.801509
 	margins: 1,2
 	dictionary size: 23847
 	total hyphens: (weighted) 49918
@@ -235,8 +235,8 @@ awk 'NR==FNR{a[$0];next} !($0 in a)' \
 pypatgen temp new words-hyph-expanded.txt -m 1,2
 Creating new project temp from dictionary words-hyph-expanded.txt
 Project file temp
-	created: 2016-04-05 15:35:51.607397
-	last modified: 2016-04-05 15:35:51.607667
+	created: 2016-04-08 08:45:09.927899
+	last modified: 2016-04-08 08:45:09.928131
 	margins: 1,2
 	dictionary size: 23847
 	total hyphens: (weighted) 49918
@@ -246,7 +246,7 @@ Project file temp
 
 pypatgen temp import temp.tex -c
 Loading patterns from temp.tex into project temp
-Missed (weighted): 18 (0.036%)
+Missed (weighted): 16 (0.032%)
 False (weighted): 3 (0.006%)
 ...Committed
 
@@ -254,7 +254,7 @@ pypatgen temp compact -c
 Compacting hyphenation patterns for temp
 Result:
 	Level 1:   9181 =>   9181
-	Level 2:   2484 =>   2484
+	Level 2:   2483 =>   2483
 	Level 3:      0 =>      0
 	Level 4:      0 =>      0
 	Level 5:      0 =>      0
@@ -272,13 +272,13 @@ False (weighted): 2 (0.006%)
 pypatgen temp test words-hyph-expanded.txt -p hyph-cu.err
 Testing temp on dictionary words-hyph-expanded.txt
 Performance of temp on words-hyph-expanded.txt
-Missed (weighted): 18 (0.036%)
+Missed (weighted): 16 (0.032%)
 False (weighted): 3 (0.006%)
 Saved errors to hyph-cu.err
 
 pypatgen temp export hyph-cu.tex
 Exporting patterns from temp and saving them in TeX format to hyph-cu.tex
 Created TeX patterns file hyph-cu.tex
-Number of patterns: 14380
-Number of exceptions: 21
+Number of patterns: 14379
+Number of exceptions: 19
 
