@@ -102,7 +102,7 @@ cu-hyph-expanded.tex cu-hyph-expanded.err: cu-hyph.tex \
 # remove parasites
 hyph-cu.tex hyph-cu.err: cu-hyph-expanded.tex parasitic_patterns.txt
 	echo 'Removing parasites and building final hyphenation patterns'
-	rm -f temp hyph-cu.*
+	rm -f temp hyph-cu.tex hyph-cu.err hyph-cu.tmp
 	awk 'NR==FNR{a[$$0];next} !($$0 in a)' \
 		parasitic_patterns.txt cu-hyph-expanded.tex > temp.tex
 	# test performance after removal of parasites
@@ -111,4 +111,7 @@ hyph-cu.tex hyph-cu.err: cu-hyph-expanded.tex parasitic_patterns.txt
 	pypatgen temp compact -c
 	pypatgen temp test words-hyph.txt
 	pypatgen temp test words-hyph-expanded.txt -p hyph-cu.err
-	pypatgen temp export hyph-cu.tex
+	pypatgen temp export hyph-cu.tmp
+	cat hyph-cu.header hyph-cu.tmp > hyph-cu.tex
+	rm hyph-cu.tmp
+
