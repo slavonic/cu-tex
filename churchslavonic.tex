@@ -1,0 +1,115 @@
+\usepackage{churchslavonic}
+\usepackage{hyperref}
+
+\begin{document}
+
+\begin{EN}
+\title{\textsf{churchslavonic} package --- Church Slavonic Typography in \LaTeX}
+\author{Aleksandr Andreev and Mike Kroutikov}
+\end{EN}
+
+\begin{RU}
+\title{Пакет \textsf{churchslavonic} --- верстка церковнославянских текстов в системе \LaTeX}
+\author{Александр Андреев и Михаил Крутиков}
+\end{RU}
+
+\date{\today}
+\maketitle
+
+\begin{EN}
+\begin{abstract}
+Package \textsf{churchslavonic} provides fonts, hyphenation patterns and supporting macros to typeset
+Church Slavonic texts.
+\end{abstract}
+\end{EN}
+
+\begin{RU}
+\begin{abstract}
+Пакет \textsf{churchslavonic} позволяет верстать церковнославянские документы. В пакет включены шаблоны переносов,
+шрифты и набор необходимых макрокоманд.
+\end{abstract}
+\end{RU}
+
+\tableofcontents
+
+\begin{EN}
+\section{Introduction}
+Church Slavonic is primarily a liturgical language....
+
+Only Unicode input encoding is supported.
+
+Credits to the authors of HIPTEX, CLSTEX, Hirmologion fonts, etc., etc. 
+\end{EN}
+
+\begin{RU}
+\section{Введение}
+Церковнославянский язык --- это богослужебный язык Православной церкви.
+
+Данный пакет поддерживает только набор в стандарте Unicode. Тексты набранные в кодировках HIP и UCS
+можно конвертировать в Unicode (точнее --- в UTF8) с помощью отдельных утилит (не включенных в данный пакет).
+
+Выражаем благодарность создателям пакетов HIPTEX, CSLTEX, шрифтов семейства Ирмологион, и всем и вся.
+\end{RU}
+
+\begin{EN}
+\section{Numbers}
+
+Church Slavonic numbering system is heavily based on the Old Greek one and uses 
+letters as digits.
+For more information on the matter, see the appropriate section in \ref{UN41}.
+\end{EN}
+
+\begin{RU}
+\section{Числа}
+Способ записи чисел в церковнославянском языке основывается на древнегреческом и в
+качестве цифр использует буквы. За подробностями отсылаем интересующегося читателя к
+соответствующей главе \ref{UN41}.
+\end{RU}
+
+\begin{center}
+\begin{churchslavonic}
+\begin{tabular}{| r | l |}
+\hline
+\cuNum{1} & \textenglish{1} \\
+\cuNum{12} & \textenglish{12} \\
+\cuNum{123} & \textenglish{123} \\
+\cuNum{1234} & \textenglish{1234} \\
+\cuNum{10345} & \textenglish{10345} \\
+\cuNum{12345} & \textenglish{12345} \\
+\cuNum{123456} & \textenglish{123456} \\
+\cuNum{800456} & \textenglish{800456} \\
+\cuNum{1234567} & \textenglish{1234567} \\
+\cuNum{1500567} & \textenglish{1500567} \\
+\cuNum{12345678} & \textenglish{12345678} \\
+\cuNum{123456789} & \textenglish{123456789} \\
+\hline
+\end{tabular}
+\end{churchslavonic}
+\end{center}
+
+\begin{EN}
+\subsection{\texttt{\textbackslash cuNum} command}
+Use this command to typeset a Church Slavonic number.
+The command takes a single argument that should expand to a number (register name works too).
+
+For example, the left column of the third row in the table above was typset as
+\begin{verbatim}
+\cuNum{123}
+\end{verbatim}
+\end{EN}
+
+\begin{RU}
+\subsection{Команда \texttt{\textbackslash cuNum}}
+Команда печатает число в церковнослявянской нотации.
+Она принимает единственный аргумент. Аргументом может быть текст, командная последовательность, или имя 
+целочисленного регистра. Единственное условие --- аргумент должен раскрыться в число.
+
+Например, содержимое левой колонки третьего ряда в таблице было получено с помощью
+следующей команды:
+\begin{verbatim}
+\cuNum{123}
+\end{verbatim}
+\end{RU}
+
+
+\end{document}

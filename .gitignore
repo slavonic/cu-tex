@@ -156,3 +156,15 @@ pythontex-files-*/
 
 # Latexian
 TSWLatexianTemp*
+
+.project
+.pydevproject
+.DS_Store
+.settings
+churchslavonic*.out
+churchslavonic*.aux
+churchslavonic*.pdf
+churchslavonic*.log
+churchslavonic*.zip
+comment.cut
+

@@ -11,7 +11,4 @@ addons:
 install:
 
 script:
-    - cd cu-num
-    - xelatex --interaction=nonstopmode cu-num-test.tex
-    - cd ../cu-calendar
-    - xelatex --interaction=nonstopmode cu-calendar-test.tex
+    - make test
