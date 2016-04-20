@@ -1,0 +1,20 @@
+\documentclass[12pt]{article}
+\usepackage{cu-num}
+%
+% Test API
+%
+\makeatletter
+\def\cunumtest#1#2{%
+  \cu@fmt@{#1}%
+  \def\@y{#2}%
+  \ifx\@x\@y\else
+    \errmessage{TEST FAILED: #1: "\@x" expected "#2"}%
+  \fi
+}%
+
+\makeatother
+
+\begin{document}
+\input cu-num-test-data
+
+\end{document}
