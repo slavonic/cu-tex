@@ -122,6 +122,7 @@ For example, the left column of the third row in the table above was typset as
 \subsection{\cs{cuJulianDate}}
 \subsection{\cs{cuIndiction}}
 \subsection{\cs{cuMonthName}}
+\subsection{\cs{cuToday}}
 \end{EN}
 
 \begin{RU}
@@ -132,7 +133,20 @@ For example, the left column of the third row in the table above was typset as
 \subsection{\cs{cuJulianDate}}
 \subsection{\cs{cuIndiction}}
 \subsection{\cs{cuMonthName}}
+\subsection{\cs{cuToday}}
 \end{RU}
+
+\begin{center}
+\begin{churchslavonic}
+\begin{tabular}{| r | l |}
+\hline
+\cuDate{2016-4-21} & \verb+\cuDate{2016-4-21}+ \\
+\cuJulianDate{2016-4-21} & \verb+\cuJulianDate{2016-4-21}+ \\
+\cuDate{\cuToday} & \verb+\cuDate{\cuToday}+ \\
+\hline
+\end{tabular}
+\end{churchslavonic}
+\end{center}
 
 \begin{EN}
 \section{Utilities}
