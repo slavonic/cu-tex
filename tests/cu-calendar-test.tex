@@ -1,8 +1,25 @@
 \documentclass[12pt]{article}
-\usepackage{cu-calendar-test}
+\usepackage{cu-calendar}
 \begin{document}
 
 \makeatletter
+
+\def\cuDateFormatTest#1#2{%
+  \expandafter\cu@@formatDate\number #1\relax
+  \def\@y{#2}%
+  \ifx\cuDISPLAYDATE\@y\else
+    \errmessage{TEST FAILED: #1: "\cuDISPLAYDATE" expected "#2"}%
+  \fi
+}%
+
+\def\assertSame#1#2{%
+    \edef\@aa{#1}%
+    \edef\@bb{#2}%
+    \ifx\@aa\@bb\else
+        \errmessage{TEST FAILED: #1: "\@aa" expected "\@bb"}%
+    \fi
+}%
+
 \assertSame{\cu@jdnFromJulianDate{2016-3-30}}{2457491}
 \assertSame{\cu@jdnFromGregorianDate{2016-3-30}}{2457478}
 \assertSame{\cu@jdnFromJulianDate{1582-10-5}}{2299161}
