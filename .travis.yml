@@ -11,5 +11,4 @@ addons:
 install:
 
 script:
-    - cd cu-num
-    - xelatex --interaction=nonstopmode cu-num-test.tex
+    - make test
