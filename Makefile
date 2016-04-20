@@ -1,6 +1,9 @@
 SRCS = README.md \
 	LICENSE \
 	cu-num.sty \
+	cu-calendar.sty \
+	cu-util.sty \
+	cu-kinovar.sty \
 	churchslavonic.sty \
 	churchslavonic.tex \
 	churchslavonic-en.tex \
