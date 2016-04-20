@@ -4,6 +4,7 @@
 \ProvidesPackage{cu-calendar}[2016/03/30 v1.0 CU Calendars]
 
 \RequirePackage{intcalc}
+\RequirePackage{cu-num}
 
 %
 % Tools
@@ -85,17 +86,16 @@
   \expandafter\cu@formatDate\number\cu@julianFromGregorian{#1}\relax
 }%
 \def\cuJulianToday{%
-  \cuAsJulianDate{\year}{\month}{\day}%
+  \cu@julianFromGregorian{\year -\month -\day}%
 }%
-\def\cuGregorianDate#1{%
-  \cu@formatDate#1\relax
+\def\cuToday{%
+  \year -\month -\day
 }%
-\def\cuGregorianToday{%
-  \cu@formatDate\year-\month-\day\relax
+\def\cuDate#1{%
+  \expandafter\cu@formatDate\number #1\relax
 }%
-\def\cu@formatDate#1-#2-#3\relax{%
-  #3\space
-  \ifcase#2\or%
+\def\cuMonthName#1{%
+  \ifcase#1\or%
     і҆аннꙋа́рїа\or
     феврꙋа́рїа\or
     ма́рта\or
@@ -107,9 +107,30 @@
     септе́мврїа\or
     ѻ҆ктѡ́врїа\or
     ное́мврїа\or
-    деке́мврїа\fi%
-  \space л.\space\number#1%
+    деке́мврїа\fi
 }%
+\def\cuDefineDateFormat#1#2{%
+	\expandafter\def\csname cs@dataformat@#1\endcsname{#2}%
+}%
+\def\cuUseDateFormat#1{%
+	\expandafter\let\expandafter\cu@current@dateformat\csname cs@dataformat@#1\endcsname
+}%
+\def\cu@@formatDate#1-#2-#3\relax{%
+	\edef\cuYEAR{\number #1}%
+	\edef\cuMONTH{\number #2}%
+	\edef\cuDAY{\number #3}%
+	\edef\cuDISPLAYDATE{\cu@current@dateformat}%
+}%
+\protected\def\cu@formatDate#1-#2-#3\relax{%
+	\bgroup
+	\cu@@formatDate#1-#2-#3\relax
+	\cuDISPLAYDATE
+	\egroup
+}%
+\cuDefineDateFormat{default}{%
+	\cuNum{\cuDAY}~\cuMonthName{\cuMONTH}~л.~\cuNum{\cuYEAR}%
+}%
+\cuUseDateFormat{default}%
 %
 % Indiction "year"
 %
