@@ -112,13 +112,13 @@
 }%
 %
 \def\cuDayName#1{%
-  \ifcase#1 воскресение\or%
-    понедельник\or
-    вторник\or
-    среда\or
-    четверг\or
-    пятница\or
-    суббота\fi
+  \ifcase#1 недѣ́лѧ\or%
+    понедѣ́льникъ\or
+    вто́рникъ\or
+    среда̀\or
+    четверто́къ\or
+    пѧто́къ\or
+    сꙋббѡ́та\fi
 }%
 %
 \def\cuDefineDateFormat#1#2{%
@@ -135,7 +135,7 @@
 	\edef\cuMONTH{\number #2}%
 	\edef\cuDAY{\number #3}%
 	\edef\cuDOW{\intcalcMod{1+\cu@JDN}{7}}%
-	\edef\cuINDICTION{\intcalcAdd{#1}{15 - 15 * \intcalcDiv{#1+14}{15}}}%
+	\edef\cuINDICTION{\intcalcAdd{15}{\intcalcMod{#1 - 312}{-15}}}%
 	\edef\cuDISPLAYDATE{\cu@current@dateformat}%
 }%
 \def\cu@@formatJulianDate#1-#2-#3\relax{%
@@ -146,7 +146,7 @@
 	\edef\cuMONTH{\number #2}%
 	\edef\cuDAY{\number #3}%
 	\edef\cuDOW{\intcalcMod{1+\cu@JDN}{7}}%
-	\edef\cuINDICTION{\intcalcAdd{#1}{15 - 15 * \intcalcDiv{#1+14}{15}}}%
+	\edef\cuINDICTION{\intcalcAdd{15}{\intcalcMod{#1 - 312}{-15}}}%
 	\edef\cuDISPLAYDATE{\cu@current@dateformat}%
 }%
 \protected\def\cu@formatDate#1-#2-#3\relax{%
@@ -163,7 +163,7 @@
 	\egroup
 }%
 \cuDefineDateFormat{default}{%
-	\cuNum{\cuDAY}~\cuMonthName{\cuMONTH}~лѣта~\cuNum{\cuYEAR}%
+	\cuNum{\cuDAY}~\cuMonthName{\cuMONTH}~лѣ́та~\cuNum{\cuYEAR}%
 }%
 \cuUseDateFormat{default}%
 %
