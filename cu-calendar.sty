@@ -135,7 +135,6 @@
 	\edef\cuMONTH{\number #2}%
 	\edef\cuDAY{\number #3}%
 	\edef\cuDOW{\intcalcMod{1+\cu@JDN}{7}}%
-%	\edef\cuINDICTION{\intcalcAdd{#1}{15 - 15 * \intcalcDiv{#1+14}{15}}}%
 	\edef\cuINDICTION{\intcalcAdd{15}{\intcalcMod{#1 - 312}{-15}}}%
 	\edef\cuDISPLAYDATE{\cu@current@dateformat}%
 }%
@@ -147,7 +146,6 @@
 	\edef\cuMONTH{\number #2}%
 	\edef\cuDAY{\number #3}%
 	\edef\cuDOW{\intcalcMod{1+\cu@JDN}{7}}%
-%	\edef\cuINDICTION{\intcalcAdd{#1}{15 - 15 * \intcalcDiv{#1+14}{15}}}%
 	\edef\cuINDICTION{\intcalcAdd{15}{\intcalcMod{#1 - 312}{-15}}}%
 	\edef\cuDISPLAYDATE{\cu@current@dateformat}%
 }%
