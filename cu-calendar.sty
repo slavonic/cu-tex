@@ -116,14 +116,39 @@
 	\expandafter\let\expandafter\cu@current@dateformat\csname cs@dataformat@#1\endcsname
 }%
 \def\cu@@formatDate#1-#2-#3\relax{%
+	\edef\cu@JDN{\cu@jdnFromGregorianDate{#1-#2-#3}}%
+	\edef\cu@JDN@March@First{\cu@jdnFromJulianDate{#1-3-1}}%
 	\edef\cuYEAR{\number #1}%
+	\edef\cuYEARAM{\the\numexpr #1 + 5508\ifnum\cu@JDN<\cu@JDN@March@First\else + 1\fi}% 
 	\edef\cuMONTH{\number #2}%
 	\edef\cuDAY{\number #3}%
+	\edef\cuDOW{\intcalcMod{1+\cu@JDN}{7}}%
+	\edef\cuINDICTION{\the\numexpr \intcalcMod{#1-312}{15}}%
+	\edef\cuINDICTION{\the\numexpr \cuINDICTION\ifnum\cuINDICTION>0\else + 15\fi}%
+	\edef\cuDISPLAYDATE{\cu@current@dateformat}%
+}%
+\def\cu@@formatJulianDate#1-#2-#3\relax{%
+	\edef\cu@JDN{\cu@jdnFromJulianDate{#1-#2-#3}}%
+	\edef\cu@JDN@March@First{\cu@jdnFromJulianDate{#1-3-1}}%
+	\edef\cuYEAR{\number #1}%
+	\edef\cuYEARAM{\the\numexpr #1 + 5508\ifnum\cu@JDN<\cu@JDN@March@First\else + 1\fi}% 
+	\edef\cuMONTH{\number #2}%
+	\edef\cuDAY{\number #3}%
+	\edef\cuDOW{\intcalcMod{1+\cu@JDN}{7}}%
+	\edef\cuINDICTION{\the\numexpr \intcalcMod{#1-312}{15}}%
+	\edef\cuINDICTION{\the\numexpr \cuINDICTION\ifnum\cuINDICTION>0\else + 15\fi}%
 	\edef\cuDISPLAYDATE{\cu@current@dateformat}%
 }%
 \protected\def\cu@formatDate#1-#2-#3\relax{%
 	\bgroup
 	\cu@@formatDate#1-#2-#3\relax
+	\cuDISPLAYDATE
+	\egroup
+}%
+%
+\protected\def\cu@formatJulianDate#1-#2-#3\relax{%
+	\bgroup
+	\cu@@formatJulianDate#1-#2-#3\relax
 	\cuDISPLAYDATE
 	\egroup
 }%

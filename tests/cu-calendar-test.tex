@@ -11,6 +11,22 @@
     \errmessage{TEST FAILED: #1: "\cuDISPLAYDATE" expected "#2"}%
   \fi
 }%
+%
+\def\cuDateAssertTest#1#2{%
+  \expandafter\cu@@formatDate\number #1\relax
+  \def\@y{#2}%
+  \ifnum#2\else
+    \errmessage{TEST FAILED: #1: assertion "#2" FAILED}%
+  \fi
+}%
+%
+\def\cuDateAssertJulianTest#1#2{%
+  \expandafter\cu@@formatJulianDate\number #1\relax
+  \def\@y{#2}%
+  \ifnum#2\else
+    \errmessage{TEST FAILED: #1: assertion "#2" FAILED}%
+  \fi
+}%
 
 \def\assertSame#1#2{%
     \edef\@aa{#1}%
@@ -56,6 +72,32 @@
 \cuDateFormatTest{2016-3-30}{30 ма́рта л. 2016}
 \cuDateFormatTest{\cu@julianFromGregorian{2016-4-5}}{23 ма́рта л. 2016}
 \cuDateFormatTest{\cuJulianToday}{5 а҆прі́ллїа л. 2016}
+
+\cuDateAssertJulianTest{2016-2-29}{\cuYEAR=2016}
+\cuDateAssertJulianTest{2016-2-29}{\cuMONTH=2}
+\cuDateAssertJulianTest{2016-2-29}{\cuDAY=29}
+\cuDateAssertJulianTest{2016-2-29}{\cuDOW=0}
+\cuDateAssertJulianTest{2016-2-29}{\cuYEARAM=7524}
+\cuDateAssertJulianTest{2016-2-29}{\cuINDICTION=9}
+
+\cuDateAssertJulianTest{2016-3-1}{\cuYEARAM=7525}
+\cuDateAssertJulianTest{2016-5-1}{\cuDOW=6}
+
+\cuDateAssertJulianTest{2000-2-29}{\cuYEARAM=7508}
+\cuDateAssertJulianTest{2000-3-1}{\cuYEARAM=7509}
+
+\cuDateAssertTest{2016-5-1}{\cuYEAR=2016}
+\cuDateAssertTest{2016-5-1}{\cuMONTH=5}
+\cuDateAssertTest{2016-5-1}{\cuDAY=1}
+\cuDateAssertTest{2016-5-1}{\cuDOW=0}
+\cuDateAssertTest{2016-5-1}{\cuYEARAM=7525}
+\cuDateAssertTest{2016-5-1}{\cuINDICTION=9}
+
+\cuDateAssertTest{2000-3-13}{\cuYEARAM=7508}
+\cuDateAssertTest{2000-3-14}{\cuYEARAM=7509}
+
+\cuDateAssertTest{2007-5-1}{\cuINDICTION=15}
+\cuDateAssertTest{2008-5-1}{\cuINDICTION=1}
 
 \makeatother
 
