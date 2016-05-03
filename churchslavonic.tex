@@ -1,17 +1,28 @@
 \newfontfamily\russianfont[Script=Cyrillic,Ligatures=TeX]{Times New Roman}
-\newfontfamily\russianfonttt[Script=Cyrillic,Ligatures=TeX]{Courier New}
-\newfontfamily\russianfontsf[Script=Cyrillic,Ligatures=TeX]{Arial}
+\newfontfamily\russianfonttt[Ligatures=TeX]{lmmono10-regular.otf}
+\newfontfamily\russianfontsf[Ligatures=TeX]{lmsans10-regular.otf}
 \newfontfamily\churchslavonicfont[Script=Cyrillic,Ligatures=TeX,HyphenChar="005F]{PonomarUnicode.otf}
 \usepackage{churchslavonic}
 \usepackage{hyperref}
 \usepackage{xltxtra}
 \usepackage{doc}
+\usepackage{lettrine}
 
 \def\pkg#1{\textsf{#1}}
 \def\cs#1{\texttt{\textbackslash #1}}
-\providecommand{\XeTeX}{X\kern-.125em\lower.5ex\hbox{Ǝ}\kern-.1667em\TeX}
-\providecommand{\XeLaTeX}{X\kern-.125em\lower.5ex\hbox{Ǝ}\kern-.125em\LaTeX}
-\providecommand{\LuaTeX}{Lua\kern-.125em\TeX}
+%
+\cuDefineDateFormat{long}{%
+  \cuDayName{\cuDOW},
+  \cuNum{\cuDAY}_гѡ~%
+  \cuMonthName{\cuMONTH}~%
+  лѣ́та ѿ сотворе́нїѧ мі́ра~\cuNum{\cuYEARAM}%
+}
+%
+\makeatletter
+\def\cu@lettrine{\lettrine[lines=3,findent=0pt,nindent=0pt]}
+\def\cuLettrine{\cu@tokenizeletter\cu@lettrine}
+\renewcommand{\LettrineFontHook}{\cuKinovarColor}
+\makeatother
 
 \begin{document}
 
@@ -45,7 +56,7 @@ Church Slavonic texts.
 \tableofcontents
 
 \begin{EN}
-\section{Introduction}
+\section*{Introduction}
 Church Slavonic (also called Church Slavic, Old Church Slavonic
 or Old Slavonic; ISO 639-2 code \texttt{cu}) is a literary language used by
 the Slavic peoples; presently it is used as a liturgical language by the
@@ -55,7 +66,7 @@ The package \texttt{churchslavonic} provides fonts, hyphenation
 patterns and supporting macros to typeset
 Church Slavonic texts in \TeX{}.
 
-The package is designed to support Unicode text encoded encoded in UTF-8.
+The package is designed to support Unicode text encoded in UTF-8.
 Texts encoded in legacy codepages (such as HIP and UCS) may be
 converted to Unicode using a separate bundle of utilities.
 See the \href{http://sci.ponomar.net/}
@@ -65,7 +76,7 @@ engine such as \XeTeX{} or \LuaTeX{}.
 \end{EN}
 
 \begin{RU}
-\section{Введение}
+\section*{Введение}
 Церковнославянский язык (ISO 639-2 код \texttt{cu}) --
 древний литературный язык славянских народов,
 который теперь используется в основном как богослужебный язык
@@ -91,14 +102,14 @@ engine such as \XeTeX{} or \LuaTeX{}.
 
 Church Slavonic numbering system is heavily based on the Old Greek one and uses 
 letters as digits.
-For more information on the matter, see the appropriate section in \ref{UN41}.
+For more information on the matter, see the appropriate section in \cite{UN41}.
 \end{EN}
 
 \begin{RU}
 \section{Числа}
 Способ записи чисел в церковнославянском языке основывается на древнегреческом и в
 качестве цифр использует буквы. За подробностями отсылаем интересующегося читателя к
-соответствующей главе \ref{UN41}.
+соответствующей главе \cite{UN41}.
 \end{RU}
 
 \begin{center}
@@ -123,58 +134,101 @@ For more information on the matter, see the appropriate section in \ref{UN41}.
 \end{center}
 
 \begin{EN}
-\subsection{\cs{cuNum} command}
+\subsection{\cs{cuNum}}
 Use this command to typeset a Church Slavonic number.
 The command takes a single argument that should expand to a number (register name works too).
 
-For example, the left column of the third row in the table above was typset as
-\begin{verbatim}
-\cuNum{123}
-\end{verbatim}
+For example, the left column of the third row in the table above was typset as: \verb+\cuNum{123}+.
 \end{EN}
 
 \begin{RU}
-\subsection{Команда \cs{cuNum}}
+\subsection{\cs{cuNum}}
 Команда печатает число в церковнослявянской нотации.
 Она принимает единственный аргумент. Аргументом может быть текст, командная последовательность, или имя 
 целочисленного регистра. Единственное условие --- аргумент должен раскрыться в число.
 
 Например, содержимое левой колонки третьего ряда в таблице было получено с помощью
-следующей команды:
-\begin{verbatim}
-\cuNum{123}
-\end{verbatim}
+следующей команды: \verb+\cuNum{123}+.
 \end{RU}
 
 \begin{EN}
 \section{Dates}
-\subsection{\cs{cuDate}}
-Command formats the date (according to the current format). Argument is a triplet of numbers \texttt{YYYY-MM-DD} specifying
-the date. Output will be something like this: \textchurchslavonic{\cuDate{2016-04-22}}.
 \end{EN}
 
 \begin{RU}
+\section{Даты}
+\end{RU}
+
+\begin{center}
+\begin{churchslavonic}
+\begin{tabular}[]{ | l | l | }
+\hline
+\verb+\cuDate{2016-4-21}+ & \cuDate{2016-4-21} \\
+\verb+\cuJulianDate{2016-4-21}+ & \cuJulianDate{2016-4-21} \\
+\verb+\cuDate{\cuToday}+ & \cuDate{\cuToday} \\
+\hline
+\end{tabular}
+\end{churchslavonic}
+\end{center}
+
+\begin{EN}
+\subsection{\cs{cuDate}}
+Command formats the date (according to the current format). Argument is a triplet of numbers \texttt{YYYY-MM-DD} specifying
+the date. Output will be something like this: \textchurchslavonic{\cuDate{2016-04-22}}.
+
+Note that \texttt{YYYY-MM-DD} values are not being normalized or interpreted in any way. Thus, it is totally fine to
+call \verb+\cuDate{2016-4-32}+ even though April 32 is not a valid date. It will be formatted and printed as April 32. This
+makes it possible to use this macro in a phrase like ``date \verb+\cuDate{2016-4-32}+ is not a valid date in any calendar''.
+
+However, if your date format uses \cs{cuDOW} (day of the week) or \cs{cuYEARAM} (year Anno Mundi), the later quantities are computed by
+interpreting date as a Gregorian calendar date. Also, if input date is not a valid date, it will be normalized via extrapolation.
+For example, April 32nd will be interpreted as May 2nd.
+
+If your format uses \cs{cuDOW} or \cs{cuYEARAM}, and you date is Julian, not Gregorian, you must use \cs{cuJulianDate} to
+correctly format days of the week and year Anno Mundi.
+
+The best practice is to always use \cs{cuDate} with Gregorian dates and use \cs{cuJulianDate} with Julian dates regardless
+of the current date format. This way you can later on switch date formatting style without worrying about getting wrong output.
+\end{EN}
+
+\begin{RU}
+
 \subsection{\cs{cuDate}}
 Команда форматирует дату (в соответствии с текущим форматом). Аргумент должен иметь вид \texttt{YYYY-MM-DD}. Результат
 может выглядеть примерно так: \textchurchslavonic{\cuDate{2016-04-22}}.
+
+Отметим что значение даты никоем образом не интерпретируется и не нормализируется. Поэтому можно вызывать макрокоманду и с
+невозможными датами, типа 32-е апреля --- така дата будет отформатирована как 32-е апреля. Так что команду \cs{cuDate} можно
+использовать для набора фраз типа ``дата \verb+\cuDate{2016-04-22}+ не существует ни в одном календаре''.
+
+Однако, если вы используете свой формат даты и в этом формате задействованы символические переменные \cs{cuDOW} (день недели) 
+или \cs{cuYEARAM} (год от сотворения мира), то значения этих переменных будут вычислены исходя из даты --- и дата интерпретируется
+как дата грегорианского календаря. Кроме того, невозможные даты будут нормализованы методом экстраполяции. Например, 32 апреля
+будет интерпретировано как 2 мая.
+
+Если ваш формат использует день недели (\cs{cuDOW}) или год от сотворения мира (\cs{cuYEARAM}) и вы указываете дату юлианского календаря,
+вы должны вместо \cs{cuDate} пользоваться макрокомандой \cs{cuJulianDate} для правильной обработки дня недели и года от сотворения мира.
+
+Лучше всего всегда использовать \cs{cuDate} для форматирования грегорианских дат и всегда использовать \cs{cuJulianDate} для
+форматирования юлианских дат --- вне зависимости от значения текущего формата. Таким образом вы можете впоследствии изменить
+формат даты (например, добавив в него день недели) и результат останется правильным.
 \end{RU}
 
 \begin{EN}
 \subsection{\cs{cuDefineDateFormat}}
 Command allows one to define date format. It does not change how \cs{cuDate} formats its output (for that, use \cs{cuUseDateFormat}).
-
 Example:
 \end{EN}
 
 \begin{RU}
 \subsection{\cs{cuDefineDateFormat}}
 Команда определяет формат даты. Она никак не влияет на то как \cs{cuDate} форматирует свой вывод (для этого используется \cs{cuUseDateFormat}).
-
 Пример:
 \end{RU}
 
+\begin{center}
 \begin{churchslavonic}
-\noindent
+\begin{tabular}{l}
 \verb+\cuDefineDateFormat{long}{%+\\
 \verb+  \cuDayName{\cuDOW},+\\
 \verb+  \cuNum{\cuDAY}+_гѡ\verb+~%+\\
@@ -182,20 +236,15 @@ Example:
 \verb+  +лѣ́та ѿ сотворе́нїѧ мі́ра\verb+~%+\\
 \verb+  \cuNum{\cuYEARAM}%+\\
 \verb+}+\\
+\end{tabular}
 \end{churchslavonic}
-%
-\cuDefineDateFormat{long}{%
-  \cuDayName{\cuDOW},
-  \cuNum{\cuDAY}_гѡ~%
-  \cuMonthName{\cuMONTH}~%
-  лѣ́та ѿ сотворе́нїѧ мі́ра~\cuNum{\cuYEARAM}%
-}
+\end{center}
 %
 \begin{EN}
 defines a format with name \texttt{long}. If we use this format to print the same date as before, we will get:
 \textchurchslavonic{\cuUseDateFormat{long}\cuDate{2016-04-22}}.
 \end{EN}
-
+%
 \begin{RU}
 определяет новый формат с именем \texttt{long}. Если мы напечатаем дату этим форматом, то получим:
 \textchurchslavonic{\cuUseDateFormat{long}\cuDate{2016-04-22}}.
@@ -205,79 +254,265 @@ defines a format with name \texttt{long}. If we use this format to print the sam
 Following symbolic names can be used when formatting the date:
 \begin{itemize}
 \item \cs{cuYEAR} --- year part of date (number, like \texttt{2016})
-\item \cs{cuYEARAM} --- year since world creation, aka Anno Mundi (number, like \texttt{7525})
+\item \cs{cuYEARAM}\footnotemark[1] --- year since world creation, aka Anno Mundi (number, like \texttt{7525})
 \item \cs{cuMONTH} --- month part of date (number from 1 to 12)
 \item \cs{cuDAY} --- day of the month
-\item \cs{cuDOW} --- day of the week (number from 0 to 6, where 0 means "Sunday")
+\item \cs{cuDOW}\footnotemark[1] --- day of the week (number from 0 to 6, where 0 means ``Sunday'')
 \item \cs{cuINDICTION} --- indiction year (number from 1 to 15)
 \end{itemize}
+\footnotetext[1]{If your format uses this value, make sure that you format date with a correct macro: you must use
+\cs{cuDate} if passed date is Gregorian, or \cs{cuJulianDate} if you pass Julian date.}
 \end{EN}
 
 \begin{RU}
 При определении формата можно пользоваться следующими символическими именами:
 \begin{itemize}
 \item \cs{cuYEAR} --- год (число, например \texttt{2016})
-\item \cs{cuYEARAM} --- год от сотворения мира, Anno Mundi (число, например \texttt{7525})
+\item \cs{cuYEARAM}\footnotemark[1] --- год от сотворения мира, Anno Mundi (число, например \texttt{7525}).
 \item \cs{cuMONTH} --- месяц (число от 1 до 12)
 \item \cs{cuDAY} --- день месяца
-\item \cs{cuDOW} --- день недели (число от 0 to 6, где 0 означает "воскресение")
+\item \cs{cuDOW}\footnotemark[1] --- день недели (число от 0 to 6, где 0 означает ``воскресение'')
 \item \cs{cuINDICTION} --- индикт (число от 1 до 15)
 \end{itemize}
+\footnotetext[1]{Если ваш формат
+    пользуется этим значением, вы должны форматировать дату правильной макрокомандой: \cs{cuDate} 
+    если вы передаете дату грегорианского календаря, или \cs{cuJulianDate} если используется дата юлианского календаря}
 \end{RU}
 
 \begin{EN}
 \subsection{\cs{cuUseDateFormat}}
+This command sets the date format to be used by the subsequent \cs{cuDate} and \cs{cuJulianDate}.
+
 \subsection{\cs{cuJulianDate}}
-\subsection{\cs{cuIndiction}}
+Formats date, just like \cs{cuDate} does, but argument is interpreted as a Julian calendar date, not a Gregorian calendar one.
+This makes difference only if your format is using symbolic names \cs{cuDOW} and/or \cs{cuYEARAM}.
+
 \subsection{\cs{cuMonthName}}
-\subsection{\cs{cuDayName}}
-\subsection{\cs{cuDayNameAccusative}}
-\subsection{\cs{cuToday}}
+Command expands numeric argument (month number) into textual representation. It is typically used when defining date format.
+For example, date format named \texttt{default} is defined as:
 \end{EN}
 
 \begin{RU}
-\section{Даты}
-\subsection{\cs{cuDate}}
-\subsection{\cs{cuDefineDateFormat}}
 \subsection{\cs{cuUseDateFormat}}
+Макро устанавливает имя текущего формата даты. Этот формат будет использоваться при последующих вызовах макрокоманд
+\cs{cuDate} и \cs{cuJulianDate}.
+
 \subsection{\cs{cuJulianDate}}
-\subsection{\cs{cuIndiction}}
+Форматирует дату в соответствии с текущим форматом подобно команде \cs{cuDate}. Отличие заключается в том, что аргумент
+интерпретируется как дата юлианского а не грегорианского календаря. Это имеет значение только если текущий формат даты
+использует символические имена \cs{cuDOW} (день недели) или \cs{cuYEARAM} (год от сотворения мира).
+
 \subsection{\cs{cuMonthName}}
+Команда раскрывает числовой аргумент в текстовое представление месяца. Команда обычно используется при задании формата
+даты. Например, формат с именем \texttt{default} определен так:
+\end{RU}
+%
+\begin{center}
+\begin{churchslavonic}
+\begin{tabular}{l}
+\verb+\cuDefineDateFormat{default}{%+\\
+\verb+  \cuNum{\cuDAY}~\cuMonthName{\cuMONTH}%+\\
+\verb+  ~+лѣ́та\verb+~\cuNum{\cuYEAR}%+\\
+\verb+}%+\\
+\end{tabular}
+\end{churchslavonic}
+\end{center}
+
+\begin{EN}
 \subsection{\cs{cuDayName}}
+Expands numeric argument into a textual representation of the day of the week using nominative case.
+
 \subsection{\cs{cuDayNameAccusative}}
+Expands numeric argument into a textual representation of the day of the week using accusative case.
+
 \subsection{\cs{cuToday}}
+This macro expands to a triplet \texttt{YYYY-MM-DD}. Date is generated using Gregorian calendar.
+
+\subsection{\cs{cuJulianToday}}
+This macro expands to a triplet \texttt{YYYY-MM-DD}. Date is generated using Julian calendar.
+
+It is a shortcut for \verb+\cuAsJulian{\cuToday}+.
+
+\subsection{\cs{cuAsJulian}}
+Converts Gregorian date to Julian date. Input and output use numeric triplet format \texttt{YYYY-MM-DD}.
+
+Useful when the same date needs to be formatted as Gregorian and as Julian date.
+
+\subsection{\cs{cuAsGegorian}}
+Converts Julian date to Gregorian date. Input and output use numeric triplet format \texttt{YYYY-MM-DD}.
+
+\end{EN}
+
+\begin{RU}
+\subsection{\cs{cuDayName}}
+Команда раскрывает числовой аргумент в текстовое представление дня недели в именительном падеже.
+
+\subsection{\cs{cuDayNameAccusative}}
+Команда раскрывает числовой аргумент в текстовое представление дня недели в винительном падеже.
+
+\subsection{\cs{cuToday}}
+Эта макрокоманда раскрывается в текущую дату в виде триплета \texttt{YYYY-MM-DD}. Используется грегорианский календарь.
+
+\subsection{\cs{cuJulianToday}}
+Эта макрокоманда раскрывается в текущую дату в виде триплета \texttt{YYYY-MM-DD}. Используется юлианский календарь.
+
+Команда просто вызывает следующую последовательность:  \verb+\cuAsJulian{\cuToday}+.
+
+\subsection{\cs{cuAsJulian}}
+Преобразует грегорианскую дату в юлианскую. Дата задается и выводится как числовой триплет \texttt{YYYY-MM-DD}.
+
+Команда полезна когда одну и ту же дату надо представить и в грегорианском и в юлианском календаре.
+
+\subsection{\cs{cuAsGregorian}}
+Преобразует юлианскую дату в грегорианскую. Дата задается и выводится как числовой триплет \texttt{YYYY-MM-DD}.
+
+\end{RU}
+
+\begin{EN}
+\section{Kinovar}
+Printed and hand-written Church Slavonic texts often use color to highlight sectional and paragraph structure. Typical style
+would use red color to write section names, comments, marginal notes. First letter of each paragraph is also colored red.
+
+\subsection{\cs{cuKinovar}}
+Takes a single argument and prints it using red color. For example, explicitly specifying its argument one gets expected result:
+
+\end{EN}
+
+\begin{RU}
+\section{Киноварь}
+Печатные и рукописные книги на церковнославянском часто пользуются красным цветом для выделения структурных элементов текста.
+Обычно заголовки, замечания и пометки на полях печатаются красным цветом. Кроме того, первая буква каждого параграфа тоже
+выделяется красным цветом.
+
+\subsection{\cs{cuKinovar}}
+Команда печатает свой аргумент красным цветом. Например, если мы явно зададим текст аргумента, то получим ожидаемый результат:
 \end{RU}
 
 \begin{center}
 \begin{churchslavonic}
-\begin{tabular}[]{ | r | l | }
+\begin{tabular}[]{ | l | l | }
 \hline
-\cuDate{2016-4-21} & \verb+\cuDate{2016-4-21}+ \\
-\cuJulianDate{2016-4-21} & \verb+\cuJulianDate{2016-4-21}+ \\
-\cuDate{\cuToday} & \verb+\cuDate{\cuToday}+ \\
+\verb+\cuKinovar{+ли́къ:\verb+}+ гдⷭ҇и поми́лꙋй. & \cuKinovar{ли́къ:} гдⷭ҇и поми́лꙋй. \\
 \hline
 \end{tabular}
 \end{churchslavonic}
 \end{center}
 
 \begin{EN}
+If one uses \TeX\ mechanism of implicit argument detection, then, red color will be used for the first character of the
+text after this command. Non-trivial feature of this command is that it will also ``collect'' all diacritical marks that
+belong to this first character, and thus all accents will also use the red color!
+Use this command in the indirect parameter mode to paint red the first letter of each paragraph.\footnote{You can also experiment
+with \TeX\ command \cs{everypar} to autoamte this, but the success or failure of this technique critically depends on the
+\LaTeX\ class used and packages loaded. We found it very fragile and thus \pkg{churchslavonic} package does not offer
+any automation for this. It may be easier and more robust use Search/Replace functionality embedded in any non-trivial text
+editor to just automatically place \cs{cuKinovar} command before every paragraph of the source text.}
+\end{EN}
+
+\begin{RU}
+Если же используется механизм \TeX{} неявного задания аргумента, то команда будет применена к первой букве последующего текста.
+При этом команда ``соберет'' все необходимые выносные символы, так что все акценты первой буквы будут корректно раскрашены!
+Поэтому очень удобно использовать эту команду с нефвным заданием аргумента для раскраски первой буквы параграфа.\footnote{Вы также
+можете поэкспериментировать с встроенной командой \TeX\ \cs{everypar} с целью полностью автоматизировать раскраску первой буквы
+параграфа. Однако успех сильно зависит от того какой класс системы \LaTeX\ используется и от того какие пакеты подгружаются.
+Мы не нашли надежного способа заставить \cs{everypar} работать и поэтому пакет \pkg{churchslavonic} не предлагает никаких
+макрокоманд для дальнейшей автоматизации этого процесса. На практике, часто проще и надежнее воспользоваться функцией
+текстового редактора Найти/Заменить для вставки макрокоманды \cs{cuKinovar} перед каждым параграфом.}
+\end{RU}
+
+\begin{center}
+\begin{churchslavonic}
+\begin{tabular}[]{ | l | l | }
+\hline
+\verb+\cuKinovar+ Пои́мъ гдⷭ҇ви пѣ́снь но́вꙋю & 
+\cuKinovar Пои́мъ гдⷭ҇ви пѣ́снь но́вꙋю \\ 
+\verb+\cuKinovar+ Ꙗ҆́кѡ тꙋ́ча на тро́скотъ & \cuKinovar Ꙗ҆́кѡ тꙋ́ча на тро́скотъ \\
+\hline
+\end{tabular}
+\end{churchslavonic}
+\end{center}
+
+\begin{EN}
+
+\subsection{\cs{cuKinovarColor}}
+Switches current color to red. One would typically use this command inside a group that limits the scope of red text, unless
+you want all subsequent text to be colored red.
+\end{EN}
+
+\begin{RU}
+
+\subsection{\cs{cuKinovarColor}}
+Команда переключает текущий цвет на красный. Должна использоваться внутри группы, которая ограничит ее действие (если вы не хотите
+чтобы весь послеующий текст был напечатан красным цветом).
+\end{RU}
+
+\begin{EN}
 \section{Utilities}
+The mechanism that \cs{cuKinovar} macro is using to collect all accents (when argument is given implicitly) can be useful for
+many other purposes. One example is to typeset a dropletter at the beginning of a chapter (this is often used in Church Slavonic
+texts). For this purpose standard \LaTeX\ package \pkg{lettrine} works fine. The only nuisance is that one have to be careful to
+pass to \cs{lettrine} not just the first letter, but also all diacritical marks for this letter. Naturally, we want to reuse the
+clever mechanism that \cs{cuKinovar} is using to do the collection job.
+
+Here is an example how to accomplish that:
 \end{EN}
 
 \begin{RU}
 \section{Утилиты}
+Механизм используемый командой \cs{cuKinovar} для сбора выносных символов (при неявном задании аргумента) может оказаться полезен
+во многих других случаях. Один из примеров --- это ``буквицы'' в начале разделов. Для набора буквицы отлично работает стандартный
+пакет \pkg{lettrine}. Единственное неудобство --- это необходимость задавать явно первую букву вместе во всеми ее выносными символами.
+Естественно желание упростить и автоматизировать эту работу задействоват тот же механизм что и в \cs{cuKinovar}.
+
+Вот как можно добиться этого:
 \end{RU}
+
+\begin{center}
+\begin{churchslavonic}
+\begin{tabular}{l}
+\verb+\def\cu@lettrine{\lettrine[lines=3,findent=0pt,nindent=0pt]}+\\
+\verb+\def\cuLettrine{\cu@tokenizeletter\cu@lettrine}+\\
+\verb+\renewcommand{\LettrineFontHook}{\cuKinovarColor}+\\
+\end{tabular}
+\end{churchslavonic}
+\end{center}
 
 \begin{EN}
-\section{Kinovar}
-\subsection{\cs{cuKinovar}}
-\subsection{\cs{cuKinovarColor}}
+Once this definition of \verb+\cuLettrine+ is created (put is somewhere in preamble, and do not forget to enclose in \cs{makeatletter} and \cs{makeatother}),
+you can create drop capitals like this:
 \end{EN}
-
+%
 \begin{RU}
-\section{Киноварь}
-\subsection{\cs{cuKinovar}}
-\subsection{\cs{cuKinovarColor}}
+Поместите это определение команды \verb+\cuLettrine+ в преамбулу вашего документа (и не забудьте добавить \cs{makeatletter} и \cs{makeatother}).
+После этого можно набирать буквицы так:
 \end{RU}
+%
+\begin{center}
+\begin{churchslavonic}
+\begin{tabular}{l}
+\verb+\cuLettrine+ И҆́же дх҃а си́ла въ не́мощи соверша́етсѧ\ldots\\
+\end{tabular}
+\end{churchslavonic}
+\end{center}
+
+\begin{churchslavonic}
+\lineskiplimit-10em
+
+\cuLettrine 
+И҆́же дх҃а си́ла въ не́мощи соверша́етсѧ, ꙗ҆́коже пи́сано є҆́сть, и҆ вѣ́рꙋемъ: въ не́мощи же не тѣлесѐ то́чїю, но ᲂу҆́бѡ и҆ сло́ва, 
+и҆ премꙋ́дрости на ѧ҆зы́цѣ лежа́ща. И҆ сѐ ꙗ҆́вѣ ѿ мно́гихъ ᲂу҆́бѡ и҆ны́хъ, па́че же ѿ и҆́же ѡ҆ вели́комъ бг҃осло́вѣ, и҆ бра́тѣ хрⷭ҇то́вѣ, 
+благода́тїю зри́мѣмъ.
+
+\end{churchslavonic}
+
+\begin{thebibliography}{9}
+
+\bibitem{UN41}
+  Aleksandr Andreev, Yuri Shardt, and Nikita Simmons.
+  \emph{Church Slavonic Typography in Unicode},
+  Uncode Technical Note~41,
+  \url{http://www.unicode.org/notes/tn41/}
+
+\end{thebibliography}
 
 \end{document}

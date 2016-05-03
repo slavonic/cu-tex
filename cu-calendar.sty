@@ -82,6 +82,9 @@
 %
 % User API
 %
+\let\cuAsJulian\cu@julianFromGregorian
+\let\cuAsGregorian\cu@gregorianFromJulian
+%
 \def\cuJulianDate#1{%
   \expandafter\cu@formatDate\number\cu@julianFromGregorian{#1}\relax
 }%
@@ -132,10 +135,10 @@
 }%
 %
 \def\cuDefineDateFormat#1#2{%
-	\expandafter\def\csname cs@dataformat@#1\endcsname{#2}%
+	\expandafter\def\csname cs@dateformat@#1\endcsname{#2}%
 }%
 \def\cuUseDateFormat#1{%
-	\expandafter\let\expandafter\cu@current@dateformat\csname cs@dataformat@#1\endcsname
+	\expandafter\let\expandafter\cu@current@dateformat\csname cs@dateformat@#1\endcsname
 }%
 \def\cu@@formatDate#1-#2-#3\relax{%
 	\edef\cu@JDN{\cu@jdnFromGregorianDate{#1-#2-#3}}%
