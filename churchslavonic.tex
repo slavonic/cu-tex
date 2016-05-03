@@ -2,6 +2,7 @@
 \newfontfamily\russianfonttt[Ligatures=TeX]{lmmono10-regular.otf}
 \newfontfamily\russianfontsf[Ligatures=TeX]{lmsans10-regular.otf}
 \newfontfamily\churchslavonicfont[Script=Cyrillic,Ligatures=TeX,HyphenChar="005F]{PonomarUnicode.otf}
+
 \usepackage{churchslavonic}
 \usepackage{hyperref}
 \usepackage{xltxtra}
@@ -28,12 +29,12 @@
 
 \begin{EN}
 \title{\pkg{churchslavonic} package --- Church Slavonic Typography in \LaTeX}
-\author{Aleksandr Andreev and Mike Kroutikov}
+\author{Aleksandr Andreev and Mike Kroutikov\\version~0.1}
 \end{EN}
 
 \begin{RU}
 \title{Пакет \pkg{churchslavonic} --- верстка церковнославянских текстов в системе \LaTeX}
-\author{Александр Андреев и Михаил Крутиков}
+\author{Александр Андреев и Михаил Крутиков\\версия~0.1}
 \end{RU}
 
 \date{\today}
@@ -98,6 +99,85 @@ engine such as \XeTeX{} or \LuaTeX{}.
 \end{RU}
 
 \begin{EN}
+\section{How to use the package}
+To use \pkg{churchslavonic} package one needs to include the following declarations into the document
+preamble:
+\end{EN}
+
+\begin{RU}
+\section{Как пользоваться пакетом}
+Добавьте следующие определения в преамбулу вашего документа:
+\end{RU}
+
+\begin{verbatim}
+\usepackage{polyglossia}
+\setmainlanguage{churchslavonic} 
+\usepackage{churchslavonic}
+\end{verbatim}
+
+\begin{EN}
+After that, use standard \pkg{polyglossia} commands to control current language.
+\end{EN}
+
+\begin{RU}
+После чего переключайтесь между языками стандартными средствами пакета \pkg{polyglossia}.
+\end{RU}
+
+\begin{EN}
+\subsection{Options \texttt{color}, \texttt{gray}, and \texttt{bw}}
+These options control what color actually being used for text coloring commands like \cs{cuKinovar}.
+
+\begin{itemize}
+\item \texttt{color} this is the default option and it preserves the original color (a shade of red).
+\item \texttt{gray} replaces red color with a gray - useful if you are printing on a media that
+    does not support colors, but is capable of reproduction shades of gray.
+\item \texttt{bw} replaces red color with black (effectively turning off commands like \cs{cuKinovar} and \cs{cuKinovarColor}). Use
+    this option to generate document that will be printed in blank-and-white.
+\end{itemize}
+Example:
+\end{EN}
+
+\begin{RU}
+\subsection{Опции \texttt{color}, \texttt{gray} и \texttt{bw}}
+Опции позволяют отключать цвет раскраски текста в командах типа \cs{cuKinovar}. Полезны для создания версий для печати на
+устройствах которые не поддерживают цветности.
+
+\begin{itemize}
+\item \texttt{color} эта опция используется по умолчанию и означает что используется нормальный красный цвет.
+\item \texttt{gray} заменяет красный цвет серым --- используйте эту опцию если ваше устройство печати не
+    поддерживает цветности, но может качественно передавать градации серого цвета.
+\item \texttt{bw} отключает всякую раскраску --- используйте для создания черно-белой версии документа.
+\end{itemize}
+Пример:
+\end{RU}
+
+\begin{verbatim}
+\usepackage[gray]{churchslavonic}
+\end{verbatim}
+
+\begin{EN}
+\subsection{Underscore}
+Underscore symbol (\texttt{\textunderscore}) is a valid text symbol in Church Slavonic (plays roughly the same role as dash in English). Package
+\pkg{churchslavonic} redefines underscore in a way that it can be directly typed in text mode, for example:
+\end{EN}
+%
+\begin{RU}
+\subsection{Знак подчеркивания}
+Знак подчеркивания (\texttt{\textunderscore}) в церковнославянском языке играет примерно ту же роль что и дефис в русском.
+Пакет \pkg{churchslavonic} переопределяет знак подчеркивания так что его можно набирать и в текстовой моде, например:
+\end{RU}
+%
+\begin{center}
+\begin{churchslavonic}
+\begin{tabular}{l}
+Послѣ́дованїе моле́бнагѡ пѣ́нїѧ ст҃ы́мъ мч҃камъ к҃_гѡ вѣ́ка, \\
+въ Са́нктъ_Петербꙋ́ржстѣй дꙋхо́внѣй а҆каде́мїи \\
+нача́льствовавшимъ, ᲂу҆чи́вшимъ и҆ ᲂу҆чи́вшимсѧ \\
+\end{tabular}
+\end{churchslavonic}
+\end{center}
+
+\begin{EN}
 \section{Numbers}
 
 Church Slavonic numbering system is heavily based on the Old Greek one and uses 
@@ -112,33 +192,10 @@ For more information on the matter, see the appropriate section in \cite{UN41}.
 соответствующей главе \cite{UN41}.
 \end{RU}
 
-\begin{center}
-\begin{churchslavonic}
-\begin{tabular}{| r | l |}
-\hline
-\cuNum{1} & \textenglish{1} \\
-\cuNum{12} & \textenglish{12} \\
-\cuNum{123} & \textenglish{123} \\
-\cuNum{1234} & \textenglish{1234} \\
-\cuNum{10345} & \textenglish{10345} \\
-\cuNum{12345} & \textenglish{12345} \\
-\cuNum{123456} & \textenglish{123456} \\
-\cuNum{800456} & \textenglish{800456} \\
-\cuNum{1234567} & \textenglish{1234567} \\
-\cuNum{1500567} & \textenglish{1500567} \\
-\cuNum{12345678} & \textenglish{12345678} \\
-\cuNum{123456789} & \textenglish{123456789} \\
-\hline
-\end{tabular}
-\end{churchslavonic}
-\end{center}
-
 \begin{EN}
 \subsection{\cs{cuNum}}
 Use this command to typeset a Church Slavonic number.
 The command takes a single argument that should expand to a number (register name works too).
-
-For example, the left column of the third row in the table above was typset as: \verb+\cuNum{123}+.
 \end{EN}
 
 \begin{RU}
@@ -146,10 +203,29 @@ For example, the left column of the third row in the table above was typset as: 
 Команда печатает число в церковнослявянской нотации.
 Она принимает единственный аргумент. Аргументом может быть текст, командная последовательность, или имя 
 целочисленного регистра. Единственное условие --- аргумент должен раскрыться в число.
-
-Например, содержимое левой колонки третьего ряда в таблице было получено с помощью
-следующей команды: \verb+\cuNum{123}+.
 \end{RU}
+
+\begin{center}
+\begin{churchslavonic}
+\begin{tabular}{| l | l |}
+\hline
+\verb+\cuNum{1}+ & \cuNum{1} \\
+\verb+\cuNum{12}+ & \cuNum{12} \\
+\verb+\cuNum{123}+ & \cuNum{123} \\
+\verb+\cuNum{1234}+ & \cuNum{1234} \\
+\verb+\cuNum{10345}+ & \cuNum{10345} \\
+\verb+\cuNum{12345}+ & \cuNum{12345} \\
+\verb+\cuNum{123456}+ & \cuNum{123456} \\
+\verb+\cuNum{800456}+ & \cuNum{800456} \\
+\verb+\cuNum{1234567}+ & \cuNum{1234567} \\
+\verb+\cuNum{1500567}+ & \cuNum{1500567} \\
+\verb+\cuNum{12345678}+ & \cuNum{12345678} \\
+\verb+\cuNum{123456789}+ & \cuNum{123456789} \\
+\hline
+\end{tabular}
+\end{churchslavonic}
+\end{center}
+
 
 \begin{EN}
 \section{Dates}
@@ -182,9 +258,9 @@ makes it possible to use this macro in a phrase like ``date \verb+\cuDate{2016-4
 
 However, if your date format uses \cs{cuDOW} (day of the week) or \cs{cuYEARAM} (year Anno Mundi), the later quantities are computed by
 interpreting date as a Gregorian calendar date. Also, if input date is not a valid date, it will be normalized via extrapolation.
-For example, April 32nd will be interpreted as May 2nd.
+For example, April 32nd will be interpreted as May 2nd for the purpose of determining values of the day of the week and year Anno Mundi.
 
-If your format uses \cs{cuDOW} or \cs{cuYEARAM}, and you date is Julian, not Gregorian, you must use \cs{cuJulianDate} to
+If your format uses \cs{cuDOW} or \cs{cuYEARAM}, and your date is Julian, not Gregorian, you must use \cs{cuJulianDate} to
 correctly format days of the week and year Anno Mundi.
 
 The best practice is to always use \cs{cuDate} with Gregorian dates and use \cs{cuJulianDate} with Julian dates regardless
@@ -198,13 +274,13 @@ of the current date format. This way you can later on switch date formatting sty
 может выглядеть примерно так: \textchurchslavonic{\cuDate{2016-04-22}}.
 
 Отметим что значение даты никоем образом не интерпретируется и не нормализируется. Поэтому можно вызывать макрокоманду и с
-невозможными датами, типа 32-е апреля --- така дата будет отформатирована как 32-е апреля. Так что команду \cs{cuDate} можно
-использовать для набора фраз типа ``дата \verb+\cuDate{2016-04-22}+ не существует ни в одном календаре''.
+невозможными датами, нпример 32-е апреля --- така дата будет отформатирована как 32-е апреля. Так что команду \cs{cuDate} можно
+использовать для набора фраз вроде ``дата \verb+\cuDate{2016-04-22}+ не существует ни в одном календаре''.
 
 Однако, если вы используете свой формат даты и в этом формате задействованы символические переменные \cs{cuDOW} (день недели) 
 или \cs{cuYEARAM} (год от сотворения мира), то значения этих переменных будут вычислены исходя из даты --- и дата интерпретируется
 как дата грегорианского календаря. Кроме того, невозможные даты будут нормализованы методом экстраполяции. Например, 32 апреля
-будет интерпретировано как 2 мая.
+будет интерпретировано как 2 мая для целей определения дня недели и года от сотворения мира.
 
 Если ваш формат использует день недели (\cs{cuDOW}) или год от сотворения мира (\cs{cuYEARAM}) и вы указываете дату юлианского календаря,
 вы должны вместо \cs{cuDate} пользоваться макрокомандой \cs{cuJulianDate} для правильной обработки дня недели и года от сотворения мира.
@@ -356,7 +432,7 @@ Converts Julian date to Gregorian date. Input and output use numeric triplet for
 \subsection{\cs{cuJulianToday}}
 Эта макрокоманда раскрывается в текущую дату в виде триплета \texttt{YYYY-MM-DD}. Используется юлианский календарь.
 
-Команда просто вызывает следующую последовательность:  \verb+\cuAsJulian{\cuToday}+.
+Команда просто ракрывается в:  \verb+\cuAsJulian{\cuToday}+.
 
 \subsection{\cs{cuAsJulian}}
 Преобразует грегорианскую дату в юлианскую. Дата задается и выводится как числовой триплет \texttt{YYYY-MM-DD}.
@@ -412,8 +488,8 @@ editor to just automatically place \cs{cuKinovar} command before every paragraph
 \begin{RU}
 Если же используется механизм \TeX{} неявного задания аргумента, то команда будет применена к первой букве последующего текста.
 При этом команда ``соберет'' все необходимые выносные символы, так что все акценты первой буквы будут корректно раскрашены!
-Поэтому очень удобно использовать эту команду с нефвным заданием аргумента для раскраски первой буквы параграфа.\footnote{Вы также
-можете поэкспериментировать с встроенной командой \TeX\ \cs{everypar} с целью полностью автоматизировать раскраску первой буквы
+Поэтому очень удобно использовать эту команду с неявным заданием аргумента для раскраски первой буквы параграфа.\footnote{Вы также
+можете поэкспериментировать со встроенной командой \TeX\ \cs{everypar} с целью полностью автоматизировать раскраску первой буквы
 параграфа. Однако успех сильно зависит от того какой класс системы \LaTeX\ используется и от того какие пакеты подгружаются.
 Мы не нашли надежного способа заставить \cs{everypar} работать и поэтому пакет \pkg{churchslavonic} не предлагает никаких
 макрокоманд для дальнейшей автоматизации этого процесса. На практике, часто проще и надежнее воспользоваться функцией
@@ -459,10 +535,10 @@ Here is an example how to accomplish that:
 
 \begin{RU}
 \section{Утилиты}
-Механизм используемый командой \cs{cuKinovar} для сбора выносных символов (при неявном задании аргумента) может оказаться полезен
-во многих других случаях. Один из примеров --- это ``буквицы'' в начале разделов. Для набора буквицы отлично работает стандартный
+Механизм, используемый командой \cs{cuKinovar} для сбора выносных символов (при неявном задании аргумента), может оказаться полезен
+в некоторых других случаях. Один из примеров --- это ``буквицы'' в начале разделов. Для набора буквицы отлично работает стандартный
 пакет \pkg{lettrine}. Единственное неудобство --- это необходимость задавать явно первую букву вместе во всеми ее выносными символами.
-Естественно желание упростить и автоматизировать эту работу задействоват тот же механизм что и в \cs{cuKinovar}.
+Естественно желание упростить и автоматизировать эту работу задействовав тот же механизм что и в \cs{cuKinovar}.
 
 Вот как можно добиться этого:
 \end{RU}
@@ -476,14 +552,14 @@ Here is an example how to accomplish that:
 \end{tabular}
 \end{churchslavonic}
 \end{center}
-
+%
 \begin{EN}
 Once this definition of \verb+\cuLettrine+ is created (put is somewhere in preamble, and do not forget to enclose in \cs{makeatletter} and \cs{makeatother}),
 you can create drop capitals like this:
 \end{EN}
 %
 \begin{RU}
-Поместите это определение команды \verb+\cuLettrine+ в преамбулу вашего документа (и не забудьте добавить \cs{makeatletter} и \cs{makeatother}).
+Поместите это определение команды \verb+\cuLettrine+ в преамбулу вашего документа (и не забудьте окружить его командами \cs{makeatletter} и \cs{makeatother}).
 После этого можно набирать буквицы так:
 \end{RU}
 %
@@ -496,7 +572,6 @@ you can create drop capitals like this:
 \end{center}
 
 \begin{churchslavonic}
-\lineskiplimit-10em
 
 \cuLettrine 
 И҆́же дх҃а си́ла въ не́мощи соверша́етсѧ, ꙗ҆́коже пи́сано є҆́сть, и҆ вѣ́рꙋемъ: въ не́мощи же не тѣлесѐ то́чїю, но ᲂу҆́бѡ и҆ сло́ва, 
