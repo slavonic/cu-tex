@@ -121,6 +121,16 @@
     сꙋббѡ́та\fi
 }%
 %
+\def\cuDayNameAccusative#1{%
+  \ifcase#1 недѣ́лю\or%
+    понедѣ́льникъ\or
+    вто́рникъ\or
+    сре́дꙋ\or
+    четверто́къ\or
+    пѧто́къ\or
+    сꙋббѡ́тꙋ\fi
+}%
+%
 \def\cuDefineDateFormat#1#2{%
 	\expandafter\def\csname cs@dataformat@#1\endcsname{#2}%
 }%
