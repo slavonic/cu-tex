@@ -94,6 +94,7 @@
 \def\cuDate#1{%
   \expandafter\cu@formatDate\number #1\relax
 }%
+%
 \def\cuMonthName#1{%
   \ifcase#1\or%
     і҆аннꙋа́рїа\or
@@ -109,6 +110,17 @@
     ное́мврїа\or
     деке́мврїа\fi
 }%
+%
+\def\cuDayName#1{%
+  \ifcase#1 воскресение\or%
+    понедельник\or
+    вторник\or
+    среда\or
+    четверг\or
+    пятница\or
+    суббота\fi
+}%
+%
 \def\cuDefineDateFormat#1#2{%
 	\expandafter\def\csname cs@dataformat@#1\endcsname{#2}%
 }%
@@ -123,8 +135,7 @@
 	\edef\cuMONTH{\number #2}%
 	\edef\cuDAY{\number #3}%
 	\edef\cuDOW{\intcalcMod{1+\cu@JDN}{7}}%
-	\edef\cuINDICTION{\the\numexpr \intcalcMod{#1-312}{15}}%
-	\edef\cuINDICTION{\the\numexpr \cuINDICTION\ifnum\cuINDICTION>0\else + 15\fi}%
+	\edef\cuINDICTION{\intcalcAdd{#1}{15 - 15 * \intcalcDiv{#1+14}{15}}}%
 	\edef\cuDISPLAYDATE{\cu@current@dateformat}%
 }%
 \def\cu@@formatJulianDate#1-#2-#3\relax{%
@@ -135,8 +146,7 @@
 	\edef\cuMONTH{\number #2}%
 	\edef\cuDAY{\number #3}%
 	\edef\cuDOW{\intcalcMod{1+\cu@JDN}{7}}%
-	\edef\cuINDICTION{\the\numexpr \intcalcMod{#1-312}{15}}%
-	\edef\cuINDICTION{\the\numexpr \cuINDICTION\ifnum\cuINDICTION>0\else + 15\fi}%
+	\edef\cuINDICTION{\intcalcAdd{#1}{15 - 15 * \intcalcDiv{#1+14}{15}}}%
 	\edef\cuDISPLAYDATE{\cu@current@dateformat}%
 }%
 \protected\def\cu@formatDate#1-#2-#3\relax{%
@@ -156,14 +166,4 @@
 	\cuNum{\cuDAY}~\cuMonthName{\cuMONTH}~лѣта~\cuNum{\cuYEAR}%
 }%
 \cuUseDateFormat{default}%
-%
-% Indiction "year"
-%
-\def\cuIndiction#1{%
-  \expandafter\@cuIndiction
-  \expandafter{\intcalcMod{#1}{15}}%
-}%
-\def\@cuIndiction#1{%
-  \intcalcAdd{#1}{15 - 15 * \intcalcDiv{#1+14}{15}}%
-}%
 %
