@@ -1,5 +1,11 @@
+\newfontfamily\russianfont[Script=Cyrillic,Ligatures=TeX]{Times New Roman}
+\newfontfamily\russianfonttt[Script=Cyrillic,Ligatures=TeX]{Courier New}
+\newfontfamily\russianfontsf[Script=Cyrillic,Ligatures=TeX]{Arial}
+\newfontfamily\churchslavonicfont[Script=Cyrillic,Ligatures=TeX,HyphenChar="005F]{PonomarUnicode.otf}
 \usepackage{churchslavonic}
 \usepackage{hyperref}
+\usepackage{xltxtra}
+\usepackage{doc}
 
 \def\pkg#1{\textsf{#1}}
 \def\cs#1{\texttt{\textbackslash #1}}
@@ -38,7 +44,7 @@ Church Slavonic texts.
 \begin{EN}
 \section{Introduction}
 Church Slavonic (also called Church Slavic, Old Church Slavonic
-or Old Slavonic; ISO 639-2 code |cu|) is a literary language used by
+or Old Slavonic; ISO 639-2 code \texttt{cu}) is a literary language used by
 the Slavic peoples; presently it is used as a liturgical language by the
 Russian Orthodox Church, other local Orthodox Churches, as well
 as various Byzantine-Rite Catholic and Old Ritualist communities.
@@ -57,7 +63,7 @@ engine such as \XeTeX{} or \LuaTeX{}.
 
 \begin{RU}
 \section{Введение}
-Церковнославянский язык (ISO 639-2 код |cu|) --
+Церковнославянский язык (ISO 639-2 код \texttt{cu}) --
 древний литературный язык славянских народов,
 который теперь используется в основном как богослужебный язык
 в Русской Православной Церкви, других поместных православных
@@ -140,7 +146,81 @@ For example, the left column of the third row in the table above was typset as
 \begin{EN}
 \section{Dates}
 \subsection{\cs{cuDate}}
+Command formats the date (according to the current format). Argument is a triplet of numbers \texttt{YYYY-MM-DD} specifying
+the date. Output will be something like this: \textchurchslavonic{\cuDate{2016-04-22}}.
+\end{EN}
+
+\begin{RU}
+\subsection{\cs{cuDate}}
+Команда форматирует дату (в соответствии с текущим форматом). Аргумент должен иметь вид \texttt{YYYY-MM-DD}. Результат
+может выглядеть примерно так: \textchurchslavonic{\cuDate{2016-04-22}}.
+\end{RU}
+
+\begin{EN}
 \subsection{\cs{cuDefineDateFormat}}
+Command allows one to define date format. It does not change how \cs{cuDate} formats its output (for that, use \cs{cuUseDateFormat}).
+
+Example:
+\end{EN}
+
+\begin{RU}
+\subsection{\cs{cuDefineDateFormat}}
+Команда определяет формат даты. Она никак не влияет на то как \cs{cuDate} форматирует свой вывод (для этого используется \cs{cuUseDateFormat}).
+
+Пример:
+\end{RU}
+
+\begin{verbatim}
+\cuDefineDateFormat{long}{%
+  \cuDayName{\cuDOW},
+  \cuNum{\cuDAY}\_го~%
+  \cuMonthName{\cuMONTH}~лѣта~%
+  \cuNum{\cuYEARAM}~от сотворения мiра%
+}
+\end{verbatim}
+%
+\cuDefineDateFormat{long}{%
+  \cuDayName{\cuDOW},
+  \cuNum{\cuDAY}_го~%
+  \cuMonthName{\cuMONTH}~лѣта~%
+  \cuNum{\cuYEARAM}~от сотворения мiра%
+}
+%
+\begin{EN}
+defines a format with name \texttt{long}. If we use this format to print the same date as before, we will get:
+\textchurchslavonic{\cuUseDateFormat{long}\cuDate{2016-04-22}}.
+\end{EN}
+
+\begin{RU}
+определяет новый формат с именем \texttt{long}. Если мы напечатаем дату этим форматом, то получим:
+\textchurchslavonic{\cuUseDateFormat{long}\cuDate{2016-04-22}}.
+\end{RU}
+
+\begin{EN}
+Following symbolic names can be used when formatting the date:
+\begin{itemize}
+\item \cs{cuYEAR} --- year part of date (number, like \texttt{2016})
+\item \cs{cuYEARAM} --- year since world creation, aka Anno Mundi (number, like \texttt{7525})
+\item \cs{cuMONTH} --- month part of date (number from 1 to 12)
+\item \cs{cuDAY} --- day of the month
+\item \cs{cuDOW} --- day of the week (number from 0 to 6, where 0 means "Sunday")
+\item \cs{cuINDICTION} --- indiction year (number from 1 to 15)
+\end{itemize}
+\end{EN}
+
+\begin{RU}
+При определении формата можно пользоваться следующими символическими именами:
+\begin{itemize}
+\item \cs{cuYEAR} --- год (число, например \texttt{2016})
+\item \cs{cuYEARAM} --- год от сотворения мира, Anno Mundi (число, например \texttt{7525})
+\item \cs{cuMONTH} --- месяц (число от 1 до 12)
+\item \cs{cuDAY} --- день месяца
+\item \cs{cuDOW} --- день недели (число от 0 to 6, где 0 означает "воскресение")
+\item \cs{cuINDICTION} --- индикт (число от 1 до 15)
+\end{itemize}
+\end{RU}
+
+\begin{EN}
 \subsection{\cs{cuUseDateFormat}}
 \subsection{\cs{cuJulianDate}}
 \subsection{\cs{cuIndiction}}
@@ -161,7 +241,7 @@ For example, the left column of the third row in the table above was typset as
 
 \begin{center}
 \begin{churchslavonic}
-\begin{tabular}{| r | l |}
+\begin{tabular}[]{ | r | l | }
 \hline
 \cuDate{2016-4-21} & \verb+\cuDate{2016-4-21}+ \\
 \cuJulianDate{2016-4-21} & \verb+\cuJulianDate{2016-4-21}+ \\

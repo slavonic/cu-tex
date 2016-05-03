@@ -241,5 +241,9 @@
 \def\Proj  {\mathop{\mathrm{Пр}}\nolimits}
 %\DeclareRobustCommand{\No}{№}
 
+\let\cu@oldunderscore=_
+\catcode`\_\active
+\def_{\ifmmode\cu@oldunderscore\else\textunderscore\discretionary{}{}{}\fi}
+
 \endinput
 
