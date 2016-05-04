@@ -1,4 +1,4 @@
-\newfontfamily\russianfont[Script=Cyrillic,Ligatures=TeX]{Times New Roman}
+\newfontfamily\russianfont[Script=Cyrillic,Ligatures=TeX]{Linux Libertine O}
 \newfontfamily\russianfonttt[Ligatures=TeX]{lmmono10-regular.otf}
 \newfontfamily\russianfontsf[Ligatures=TeX]{lmsans10-regular.otf}
 \newfontfamily\churchslavonicfont[Script=Cyrillic,Ligatures=TeX,HyphenChar="005F]{PonomarUnicode.otf}
@@ -212,16 +212,14 @@ For more information on the implementation, consult the appropriate section of \
 \begin{EN}
 \subsection{\cs{cuNum}}
 Use this command to typeset a Cyrillic numeral.
-The command takes a single argument that should expand to a number (register name works too).
+The command takes a single argument that should expand to a number.
 \end{EN}
-% XXX: What is a register name?
 
 \begin{RU}
 \subsection{\cs{cuNum}}
 Команда печатает число кириллической цифирью.
-Она принимает единственный аргумент. Аргументом может быть текст,
-командная последовательность, или имя 
-целочисленного регистра. Единственное условие --- аргумент должен раскрыться в число.
+Она принимает единственный аргумент. Аргументом может быть текст или
+командная последовательность. Единственное условие --- аргумент должен раскрыться в число.
 \end{RU}
 
 \begin{center}
@@ -286,9 +284,6 @@ correctly format days of the week and year Anno Mundi.
 The best practice is to always use \cs{cuDate} with Gregorian calendar dates and use \cs{cuJulianDate} with Julian calendar dates regardless
 of the current date format. This way you can switch the date formatting style without worrying about getting the wrong output.
 \end{EN}
-% XXX: A Julian date is something else: https://en.wikipedia.org/wiki/Julian_day
-% we need to avoid confusion here, so that the user knows he is inputting a date on the Julian calendar
-% Not a Julian date
 
 \begin{RU}
 
@@ -297,7 +292,7 @@ of the current date format. This way you can switch the date formatting style wi
 может выглядеть примерно так: \textchurchslavonic{\cuDate{2016-04-22}}.
 
 Отметим, что значение даты никоем образом не интерпретируется и не нормализируется. Поэтому можно вызывать макрокоманду и с
-невозможными датами, например 32 апреля --- така дата будет отформатирована как 32 апреля. Так что команду \cs{cuDate} можно
+невозможными датами, например 32 апреля --- такая дата будет отформатирована как 32 апреля. Так что команду \cs{cuDate} можно
 использовать для набора фраз вроде ``дата \verb+\cuDate{2016-04-32}+ не существует ни в одном календаре''.
 
 Однако, если вы используете свой формат даты и в этом формате задействованы символические переменные \cs{cuDOW} (день недели) 
@@ -312,9 +307,6 @@ of the current date format. This way you can switch the date formatting style wi
 форматирования дат по юлианскому календарю --- вне зависимости от значения текущего формата. Таким образом вы можете впоследствии изменить
 формат даты (например, добавив в него день недели) и результат останется правильным.
 \end{RU}
-% XXX: тоже с русским термином юлианская дата.
-% предлагаю заменить \cuJulianDate на \cuDateJulian
-
 
 \begin{EN}
 \subsection{\cs{cuDefineDateFormat}}
@@ -361,12 +353,13 @@ The following symbolic names can be used when formatting the date:
 \item \cs{cuMONTH} --- the month part of a date (a number from 1 to 12, with January set to 1)
 \item \cs{cuDAY} --- the day of the month
 \item \cs{cuDOW}\footnotemark[1] --- the day of the week (number from 0 to 6, where 0 means ``Sunday'')
-\item \cs{cuINDICTION} --- the indiction (a number from 1 to 15)
+\footnotetext[1]{If your format uses this value, make sure that you format the date with the correct macro: 
+    you must use \cs{cuDate} for dates on the Gregorian calendar and 
+    \cs{cuJulianDate} for dates on the Julian calendar.}
+\footnotetext[2]{See \url{https://en.wikipedia.org/wiki/Indiction}.}
+\item \cs{cuINDICTION} --- the indiction\footnotemark[2] (a number from 1 to 15)
 \end{itemize}
-% XXX if you want, you can put a link here: https://en.wikipedia.org/wiki/Indiction
 
-\footnotetext[1]{If your format uses this value, make sure that you format the date with the correct macro: you must use
-\cs{cuDate} for dates on the Gregorian calendar and \cs{cuJulianDate} for dates on the Julian calendar.}
 \end{EN}
 
 \begin{RU}
@@ -377,11 +370,12 @@ The following symbolic names can be used when formatting the date:
 \item \cs{cuMONTH} --- месяц (число от 1 до 12, где 1 означает ``январь'')
 \item \cs{cuDAY} --- день месяца
 \item \cs{cuDOW}\footnotemark[1] --- день недели (число от 0 to 6, где 0 означает ``воскресенье'')
-\item \cs{cuINDICTION} --- индикт (число от 1 до 15)
-\end{itemize}
+\item \cs{cuINDICTION} --- индикт\footnotemark[2] (число от 1 до 15)
 \footnotetext[1]{Если ваш формат
     пользуется этим значением, вы должны форматировать дату правильной макрокомандой: \cs{cuDate} 
     для дат по григорианскому календарю и \cs{cuJulianDate} для дат по юлианскому календарю.}
+\footnotetext[2]{См.~\url{https://ru.wikipedia.org/wiki/\%D0\%98\%D0\%BD\%D0\%B4\%D0\%B8\%D0\%BA\%D1\%82}}
+\end{itemize}
 \end{RU}
 
 \begin{EN}
@@ -594,7 +588,7 @@ Here is an example of how to accomplish this:
 \end{tabular}
 \end{churchslavonic}
 \end{center}
-%XXX STOPPED HERE
+%
 \begin{EN}
 Once this definition of \verb+\cuLettrine+ is created (somewhere in the preamble, between the declarations \cs{makeatletter} and \cs{makeatother}),
 you can create drop capitals like this:
