@@ -21,7 +21,7 @@
 }%
 %
 \def\cuDateAssertJulianTest#1#2{%
-  \expandafter\cu@@formatJulianDate\number #1\relax
+  \expandafter\cu@@formatDateJulian\number #1\relax
   \def\@y{#2}%
   \ifnum#2\else
     \errmessage{TEST FAILED: #1: assertion "#2" FAILED}%
@@ -36,10 +36,10 @@
     \fi
 }%
 
-\assertSame{\cu@jdnFromJulianDate{2016-3-30}}{2457491}
-\assertSame{\cu@jdnFromGregorianDate{2016-3-30}}{2457478}
-\assertSame{\cu@jdnFromJulianDate{1582-10-5}}{2299161}
-\assertSame{\cu@jdnFromGregorianDate{1582-10-15}}{2299161}
+\assertSame{\cu@jdnFromDateJulian{2016-3-30}}{2457491}
+\assertSame{\cu@jdnFromDateGregorian{2016-3-30}}{2457478}
+\assertSame{\cu@jdnFromDateJulian{1582-10-5}}{2299161}
+\assertSame{\cu@jdnFromDateGregorian{1582-10-15}}{2299161}
 
 \assertSame{\cu@calendarJulian{2457491}}{2016-3-30}
 \assertSame{\cu@calendarGregorian{2457478}}{2016-3-30}
@@ -61,14 +61,14 @@
 \assertSame{\cu@julianFromGregorian{1582-10-15}}{1582-10-5}
 
 \year=2016\month=4\day=18%
-\assertSame{\cuJulianToday}{2016-4-5}
+\assertSame{\cuTodayJulian}{2016-4-5}
 
 \cuDefineDateFormat{testing}{\cuDAY\space\cuMonthName{\cuMONTH}\space л. \cuYEAR}%
 \cuUseDateFormat{testing}%
 
 \cuDateFormatTest{2016-3-30}{30 ма́рта л. 2016}
 \cuDateFormatTest{\cu@julianFromGregorian{2016-4-5}}{23 ма́рта л. 2016}
-\cuDateFormatTest{\cuJulianToday}{5 а҆прі́ллїа л. 2016}
+\cuDateFormatTest{\cuTodayJulian}{5 а҆прі́ллїа л. 2016}
 
 \cuDateAssertJulianTest{2016-2-29}{\cuYEAR=2016}
 \cuDateAssertJulianTest{2016-2-29}{\cuMONTH=2}

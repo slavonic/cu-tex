@@ -1,0 +1,55 @@
+churchslavonic
+==============
+
+LaTeX package to typeset documents in Church Slavonic language (also known as Church Slavic
+and Old Church Slavonic), ISO 639-1 code "cu". Includes hyphenation patterns,
+fonts, polyglossia driver, and supporting macros.
+
+Only Unicode input encoding is supported. This package requires use of a modern TeX engine that supports
+Unicode, such as XeTeX or LuaTeX.
+
+Installation
+------------
+
+	tlmgr install churchslavonic
+
+
+Dependencies
+------------
+
+tlmgr handles dependencies transparently and required packages will be automatically pulled in - no need to do
+anything else.
+
+The following information is only needed if you do not use tlmgr and install churchslavonic package by directly
+downloading it from CTAN.
+
+Dependencies:
+
+* hyphen-churchslavonic
+* fonts-churchslavonic
+* intcalc
+* etoolbox
+* xcolor
+
+Support
+-------
+
+For bug reports and support questions, please use GitHub issue tracker:
+
+	https://github.com/slavonic/cu-tex/issues
+
+GitHub url
+----------
+
+	https://github.com/slavonic/cu-tex
+
+Authors and maintainers
+-----------------------
+
+Mike Kroutikov <pgmmpk@gmail.com>.
+Aleksandr Andreev <aleksandr.andreev@gmail.com>.
+
+License
+-------
+
+MIT

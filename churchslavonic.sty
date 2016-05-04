@@ -1,11 +1,24 @@
 % Copyright 2016 Slavonic Computing Initialive
 % http://sci.ponomar.net
 % 
-\ProvidesPackage{churchslavonic}[2016/04/19 v1.0 Typesetting in Church Slavonic]
+\ProvidesPackage{churchslavonic}[2016/04/19 v0.1 Typesetting in Church Slavonic]
+
+\DeclareOption*{
+	\PassOptionsToPackage{\CurrentOption}{cu-kinovar}
+}
+\ProcessOptions\relax
 
 \RequirePackage{cu-num}
 \RequirePackage{cu-calendar}
 \RequirePackage{cu-util}
 \RequirePackage{cu-kinovar}
+
+% underscore is a valid character in Church Slavonic
+\let\cu@oldunderscore=_
+\catcode`\_\active
+\def_{\ifmmode\cu@oldunderscore\else\textunderscore\discretionary{}{}{}\fi}
+
+% suppress variable distance between lines 
+\lineskiplimit -1ex
 
 \endinput

@@ -1,4 +1,4 @@
-SRCS = README.md \
+SRCS = README.ctan \
 	LICENSE \
 	cu-num.sty \
 	cu-calendar.sty \
@@ -25,8 +25,14 @@ docs: $(DOCS)
 package: churchslavonic.zip
 
 churchslavonic.zip: $(SRCS) $(DOCS)
+	rm -rf /tmp/churchslavonic
+	mkdir /tmp/churchslavonic
+	cp $^ /tmp/churchslavonic
+	mv /tmp/churchslavonic/README.ctan /tmp/churchslavonic/README
 	rm -f $@
-	zip $@ -j $^
+	(cd /tmp; zip $@ -r churchslavonic)
+	mv /tmp/churchslavonic.zip .
+	rm -rf /tmp/churchslavonic
 
 $(DOCS): $(SRCS)
 
