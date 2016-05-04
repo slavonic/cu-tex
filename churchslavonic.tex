@@ -257,7 +257,7 @@ The command takes a single argument that should expand to a number.
 \begin{tabular}[]{ | l | l | }
 \hline
 \verb+\cuDate{2016-4-21}+ & \cuDate{2016-4-21} \\
-\verb+\cuJulianDate{2016-4-21}+ & \cuJulianDate{2016-4-21} \\
+\verb+\cuDateJulian{2016-4-21}+ & \cuDateJulian{2016-4-21} \\
 \verb+\cuDate{\cuToday}+ & \cuDate{\cuToday} \\
 \hline
 \end{tabular}
@@ -278,11 +278,15 @@ However, if your date format uses \cs{cuDOW} (day of the week) or \cs{cuYEARAM} 
 interpreting the date as a Gregorian calendar date. In this case, if the input date is not a valid date, it will be normalized via extrapolation.
 For example, April 32 will be interpreted as May 2 for the purpose of determining values of the day of the week and year Anno Mundi.
 
-If your format uses \cs{cuDOW} or \cs{cuYEARAM}, and you specify a date according to the Julian, not Gregorian, calendar, you must use \cs{cuJulianDate} to
+If your format uses \cs{cuDOW} or \cs{cuYEARAM}, and you specify a date according to the Julian, not Gregorian, calendar, you must use \cs{cuDateJulian} to
 correctly format days of the week and year Anno Mundi.
 
-The best practice is to always use \cs{cuDate} with Gregorian calendar dates and use \cs{cuJulianDate} with Julian calendar dates regardless
+The best practice is to always use \cs{cuDate} with Gregorian calendar dates and use \cs{cuDateJulian} with Julian calendar dates regardless
 of the current date format. This way you can switch the date formatting style without worrying about getting the wrong output.
+
+\subsection{\cs{cuDateJulian}}
+Formats the date, just like \cs{cuDate} does, but the argument is interpreted as a date on the Julian calendar (``old style'') instead of the Gregorian calendar.
+This makes a difference only if your format is using symbolic names \cs{cuDOW} and/or \cs{cuYEARAM}.
 \end{EN}
 
 \begin{RU}
@@ -301,11 +305,16 @@ of the current date format. This way you can switch the date formatting style wi
 будет интерпретировано как 2 мая для целей определения дня недели и года от сотворения мира.
 
 Если ваш формат использует день недели (\cs{cuDOW}) или год от сотворения мира (\cs{cuYEARAM}), и вы указываете дату по юлианскому календарю (<<старому стилю>>),
-вы должны вместо \cs{cuDate} пользоваться макрокомандой \cs{cuJulianDate} для правильной обработки дня недели и года от сотворения мира.
+вы должны вместо \cs{cuDate} пользоваться макрокомандой \cs{cuDateJulian} для правильной обработки дня недели и года от сотворения мира.
 
-Лучше всего всегда использовать \cs{cuDate} для форматирования дат по григорианскому календарю и всегда использовать \cs{cuJulianDate} для
+Лучше всего всегда использовать \cs{cuDate} для форматирования дат по григорианскому календарю и всегда использовать \cs{cuDateJulian} для
 форматирования дат по юлианскому календарю --- вне зависимости от значения текущего формата. Таким образом вы можете впоследствии изменить
 формат даты (например, добавив в него день недели) и результат останется правильным.
+
+\subsection{\cs{cuDateJulian}}
+Форматирует дату в соответствии с текущим форматом подобно команде \cs{cuDate}. Отличие заключается в том, что аргумент
+интерпретируется как дата по юлианскому, а не григорианскому календарю. Это имеет значение только если текущий формат даты
+использует символические имена \cs{cuDOW} (день недели) или \cs{cuYEARAM} (год от сотворения мира).
 \end{RU}
 
 \begin{EN}
@@ -355,7 +364,7 @@ The following symbolic names can be used when formatting the date:
 \item \cs{cuDOW}\footnotemark[1] --- the day of the week (number from 0 to 6, where 0 means ``Sunday'')
 \footnotetext[1]{If your format uses this value, make sure that you format the date with the correct macro: 
     you must use \cs{cuDate} for dates on the Gregorian calendar and 
-    \cs{cuJulianDate} for dates on the Julian calendar.}
+    \cs{cuDateJulian} for dates on the Julian calendar.}
 \footnotetext[2]{See \url{https://en.wikipedia.org/wiki/Indiction}.}
 \item \cs{cuINDICTION} --- the indiction\footnotemark[2] (a number from 1 to 15)
 \end{itemize}
@@ -373,18 +382,14 @@ The following symbolic names can be used when formatting the date:
 \item \cs{cuINDICTION} --- индикт\footnotemark[2] (число от 1 до 15)
 \footnotetext[1]{Если ваш формат
     пользуется этим значением, вы должны форматировать дату правильной макрокомандой: \cs{cuDate} 
-    для дат по григорианскому календарю и \cs{cuJulianDate} для дат по юлианскому календарю.}
+    для дат по григорианскому календарю и \cs{cuDateJulian} для дат по юлианскому календарю.}
 \footnotetext[2]{См.~\url{https://ru.wikipedia.org/wiki/\%D0\%98\%D0\%BD\%D0\%B4\%D0\%B8\%D0\%BA\%D1\%82}}
 \end{itemize}
 \end{RU}
 
 \begin{EN}
 \subsection{\cs{cuUseDateFormat}}
-This command sets the date format to be used by the subsequent \cs{cuDate} and \cs{cuJulianDate}.
-
-\subsection{\cs{cuJulianDate}}
-Formats the date, just like \cs{cuDate} does, but the argument is interpreted as a date on the Julian calendar (``old style'') instead of the Gregorian calendar.
-This makes a difference only if your format is using symbolic names \cs{cuDOW} and/or \cs{cuYEARAM}.
+This command sets the date format to be used by the subsequent \cs{cuDate} and \cs{cuDateJulian}.
 
 \subsection{\cs{cuMonthName}}
 This command expands a numeric argument (month number) into textual representation. It is typically used when defining a date format.
@@ -394,12 +399,7 @@ For example, a date format named \texttt{default} is defined as:
 \begin{RU}
 \subsection{\cs{cuUseDateFormat}}
 Макро устанавливает имя текущего формата даты. Этот формат будет использоваться при последующих вызовах макрокоманд
-\cs{cuDate} и \cs{cuJulianDate}.
-
-\subsection{\cs{cuJulianDate}}
-Форматирует дату в соответствии с текущим форматом подобно команде \cs{cuDate}. Отличие заключается в том, что аргумент
-интерпретируется как дата по юлианскому, а не григорианскому календарю. Это имеет значение только если текущий формат даты
-использует символические имена \cs{cuDOW} (день недели) или \cs{cuYEARAM} (год от сотворения мира).
+\cs{cuDate} и \cs{cuDateJulian}.
 
 \subsection{\cs{cuMonthName}}
 Команда раскрывает числовой аргумент в текстовое представление месяца. Команда обычно используется при задании формата
@@ -427,7 +427,7 @@ Expands a numeric argument into a textual representation of the day of the week 
 \subsection{\cs{cuToday}}
 This macro expands to a triplet \texttt{YYYY-MM-DD}. The date is generated according to the Gregorian calendar.
 
-\subsection{\cs{cuJulianToday}}
+\subsection{\cs{cuTodayJulian}}
 This macro expands to a triplet \texttt{YYYY-MM-DD}. The date is generated according to the Julian calendar.
 
 It is a shortcut for \verb+\cuAsJulian{\cuToday}+.
@@ -452,7 +452,7 @@ Converts a date according to the Julian calendar to a date according to the Greg
 \subsection{\cs{cuToday}}
 Эта макрокоманда раскрывается в текущую дату в виде триплета \texttt{YYYY-MM-DD}. Дата выводится по григорианскиму календарю (<<новому стилю>>).
 
-\subsection{\cs{cuJulianToday}}
+\subsection{\cs{cuTodayJulian}}
 Эта макрокоманда раскрывается в текущую дату в виде триплета \texttt{YYYY-MM-DD}. Дата выводится по юлианскиму календарю (<<старому стилю>>).
 
 Команда просто раскрывается в:  \verb+\cuAsJulian{\cuToday}+.
