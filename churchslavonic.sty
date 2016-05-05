@@ -15,8 +15,10 @@
 
 % underscore is a valid character in Church Slavonic
 \let\cu@oldunderscore=_
-\catcode`\_\active
-\def_{\ifmmode\cu@oldunderscore\else\textunderscore\discretionary{}{}{}\fi}
+\catcode`\_=11\relax
+\def\cu@textunderscore{_}
+\catcode`\_=13\relax
+\def_{\ifmmode\cu@oldunderscore\else\cu@textunderscore\discretionary{}{}{}\fi}
 
 % suppress variable distance between lines 
 \lineskiplimit -1ex
