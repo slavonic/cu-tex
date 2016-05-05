@@ -1,7 +1,7 @@
 % Copyright 2016 Slavonic Computing Initiative
 % http://sci.ponomar.net
 % 
-\ProvidesPackage{churchslavonic}[2016/04/19 v0.1 Typesetting in Church Slavonic]
+\ProvidesPackage{churchslavonic}[2016/04/19 v0.2 Typesetting in Church Slavonic]
 
 \DeclareOption*{
 	\PassOptionsToPackage{\CurrentOption}{cu-kinovar}
@@ -20,5 +20,21 @@
 
 % suppress variable distance between lines 
 \lineskiplimit -1ex
+
+% margin marks
+\def\cu@mmark@counter{0}%
+\def\cuMarginMarkSkip{0.6em}%
+\def\cuMarginMarkText#1{#1}%
+\protected\def\cuMarginMark#1{%
+\leavevmode
+\global\edef\cu@mmark@counter{\the\numexpr 1 + \cu@mmark@counter}%
+\label{mnote.\cu@mmark@counter}%
+\ifodd\getpagerefnumber{mnote.\cu@mmark@counter}\relax
+  \vadjust{\vbox to 0pt{\vss\hbox to 0pt{\hskip\textwidth\hskip\cuMarginMarkSkip \cuMarginMarkText{#1}\hss}\vskip 0.25\baselineskip}}%
+\else
+  \vadjust{\vbox to 0pt{\vss\hbox to 0pt{\hss \cuMarginMarkText{#1}\hskip\cuMarginMarkSkip}\vskip 0.25\baselineskip}}%
+\fi
+}%
+
 
 \endinput
