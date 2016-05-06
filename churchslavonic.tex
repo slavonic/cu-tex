@@ -185,9 +185,9 @@ underscore in a way that it can be directly entered in text mode, for example:
 \begin{center}
 \begin{churchslavonic}
 \begin{tabular}{l}
-Послѣ́дованїе моле́бнагѡ пѣ́нїѧ ст҃ы́мъ мч҃камъ к҃_гѡ вѣ́ка, \\
+Послѣ́дованїе моле́бнагѡ пѣ́нїѧ ст҃ы̑мъ мч҃камъ к҃_гѡ вѣ́ка, \\
 въ Са́нктъ_Петербꙋ́ржстѣй дꙋхо́внѣй а҆каде́мїи \\
-нача́льствовавшимъ, ᲂу҆чи́вшимъ и҆ ᲂу҆чи́вшимсѧ \\
+нача̑льствовавшимъ, ᲂу҆чи̑вшимъ и҆ ᲂу҆чи̑вшимсѧ \\
 \end{tabular}
 \end{churchslavonic}
 \end{center}
@@ -588,17 +588,19 @@ you want all subsequent text to be colored red.
 \end{RU}
 
 \begin{EN}
-\section{Miscellanious}
+\section{Miscellaneous}
 \subsection{\cs{cuMarginMark}, \cs{cuMarginMarkSkip}, \& \cs{cuMarginMarkText}}
-Command \cs{cuMarginMark} is used to place a short text on the margin on the same level as the line where macro is placed.
+The command \cs{cuMarginMark} is used to place short text in the margin
+at the same level as the line where the macro is placed.
 Example:
 \end{EN}
 %
 \begin{RU}
 \section{Разное}
 \subsection{\cs{cuMarginMark}, \cs{cuMarginMarkSkip} и \cs{cuMarginMarkText}}
-Команда \cs{cuMarginMark} используется для печати значка на полях, напротив строки где вызвана эта команда. Например:
-Example:
+Команда \cs{cuMarginMark} используется для печати значков на полях,
+напротив строки, где вызвана эта команда.
+Например:
 \end{RU}
 %
 \begin{center}
@@ -622,7 +624,7 @@ Will result in:
 %
 \begin{RU}
 \noindent
-Получим вот такое:
+Получим такой результат:
 \end{RU}
 
 \begin{center}
@@ -640,10 +642,12 @@ Will result in:
 \end{center}
 
 \begin{EN}
-Mark is placed on the right margin for odd pages and on the left margin for even pages (e.g.~mark is placed on the
-``outer'' margin, not the spine margin), which is usualy a desired behavior.
+The marginal mark is placed on the right margin for odd pages
+and on the left margin for even pages (e.g.~the mark is placed on the
+``outer'' margin, not the spine margin), which is usualy the desired behavior.
 
-The distance between the mark and the text is controlled by the value of \cs{cuMarginMarkSkip}. Default is:
+The distance between the mark and the text is controlled by the value
+of \cs{cuMarginMarkSkip}. The default is:
 \end{EN}
 %
 \begin{RU}
