@@ -193,6 +193,38 @@ underscore in a way that it can be directly entered in text mode, for example:
 \end{center}
 
 \begin{EN}
+\cuKinovar{Attention:} if you have older version of \pkg{fontspec} package installed on your system,
+redefined underscore symbol can not be used in font names and font options in \pkg{fontspec} commands like
+\cs{setXXXfont} and \cs{newfontfamily}.
+
+Typically you need to set underscore as a hyphenation character for Church Slavonic fonts: \texttt{HyphenChar=_}.
+With the older \pkg{fontspec} this will cause errors. This problem exists in \texttt{texlive 2013} and in \pkg{fontspec v2.3c}.
+
+We recommend to upgrade your \TeX\ distribution to at least \texttt{texlive 2015}. Alternatively you can selectively
+upgrade \pkg{fontspec} package to version \texttt{v2.4c} or better.
+
+If upgrade is not an option, you can workaround this problem by either specifying hexadecimal code for hyphenation
+character: \texttt{HyphenChar="005F}, or by declaring all fonts before loading \pkg{churchslavonic}.
+\end{EN}
+
+\begin{RU}
+\cuKinovar{Внимание:} если у вас установлена старая версия пакета \pkg{fontspec}, 
+переопределенный знак подчеркивания нельзя использовать при задании имен и параметров шрифтов в командах \pkg{fontspec} типа
+\cs{setXXXfont} и \cs{newfontfamily}.
+
+Обычно для церковнославянских шрифтов требуется устаносить подчеркивание символом переноса, указав параметр:
+\texttt{HyphenChar=_}. Старые версии \pkg{fontspec} выдадут ошибку. 
+Эта проблема присутствует в \texttt{texlive 2013} и в \pkg{fontspec v2.3c}.
+
+Мы рекомендуем обновить систему \TeX\ до \texttt{texlive 2015} или свежее. Или же обновить только пакет \pkf{fontenc} до
+версии \texttt{2.4c} или более новой.
+
+Если же вы не можете установить обновления, то можно
+обойти проблему, указав символ переноса как код в шестнадцеричном представлении:
+\texttt{HyphenChar="005F}. Другой подход --- это декларировать все шрифты до загрузки пакета \pkg{churchslavonic}.
+\end{RU}
+
+\begin{EN}
 \section{Numbers}
 
 The Church Slavonic numbering system (Cyrillic numerals)
@@ -625,17 +657,31 @@ The distance between the mark and the text is controlled by the value of \cs{cuM
 \end{verbatim}
 
 \begin{EN}
-To customize the font and color of the margin mark use \cs{cuMarginMarkText}, which is applied to every mark printed.
-For example, to make margin mark appear in red color, redefine \cs{cuMarginMarkText} like this:
+To globally customize the font and color of the margin mark use \cs{cuMarginMarkText}.
+For example, to make margin mark appear in red color, redefine \cs{cuMarginMarkText} in the preamble of your
+document like this:
 \end{EN}
 %
 \begin{RU}
-Шрифт и цвет пометы можно изменять переопределив команду \cs{cuMarginMarkText}, которая применяется к каждой помете.
-Например, если мы хотим чтобы пометы печатались кпасным цветом, то достаточно переопределить \cs{cuMarginMarkText} 
-следующим образом: 
+Шрифт и цвет пометы можно изменить переопределив команду \cs{cuMarginMarkText}.
+Например, если мы хотим чтобы все пометы печатались кпасным цветом, то достаточно поместить
+в преамбулу вашего документа следующее определение: 
 \end{RU}
 \begin{verbatim}
 \def\cuMarginMarkText#1{\cuKinovar{#1}}
+\end{verbatim}
+
+\begin{EN}
+If you need to change fint/size/color just for a single mark, just do it with \cs{cuMarginMark}:
+\end{EN}
+
+\begin{RU}
+Если надо поменять размер, цвет, или шрифт для какой-то одной пометы, то проще всего это сделать при
+вызове \cs{cuMarginMark}:
+\end{RU}
+
+\begin{verbatim}
+\cuMarginMark{{\tiny *}}
 \end{verbatim}
 
 \begin{EN}
