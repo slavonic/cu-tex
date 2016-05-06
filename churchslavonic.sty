@@ -30,9 +30,9 @@
 \global\edef\cu@mmark@counter{\the\numexpr 1 + \cu@mmark@counter}%
 \label{mnote.\cu@mmark@counter}%
 \ifodd\getpagerefnumber{mnote.\cu@mmark@counter}\relax
-  \vadjust{\vbox to 0pt{\vss\hbox to 0pt{\hskip\textwidth\hskip\cuMarginMarkSkip \cuMarginMarkText{#1}\hss}\vskip 0.25\baselineskip}}%
+  \vadjust{\hbox{\vbox to 0pt{\vss\hbox to 0pt{\hskip\textwidth\hskip\cuMarginMarkSkip \cuMarginMarkText{#1}\hss}\vskip 0.25\baselineskip}}}%
 \else
-  \vadjust{\vbox to 0pt{\vss\hbox to 0pt{\hss \cuMarginMarkText{#1}\hskip\cuMarginMarkSkip}\vskip 0.25\baselineskip}}%
+  \vadjust{\hbox{\vbox to 0pt{\vss\hbox to 0pt{\hss \cuMarginMarkText{#1}\hskip\cuMarginMarkSkip}\vskip 0.25\baselineskip}}}%
 \fi
 }%
 
