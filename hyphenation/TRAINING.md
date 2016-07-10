@@ -13,7 +13,7 @@ Quick overview of steps:
 Rationale for using this procedure is below.
 
 ## Cross-validation of hyphenation patterns
-It is easy to build TeX hyphenation patterns that cover the whole dictionary and produce no errors or produce negligible 
+It is easy to build TeX hyphenation patterns that cover the whole dictionary and produce no errors or produce negligible
 number of errors. The real question is: how well do the patterns behave on data that was not in the training dictionary?
 In other words, how well patterns generalize to the new data?
 
@@ -76,9 +76,9 @@ selector.
 Important to note that the `threshold` parameter depends on the dataset size. As the dictionary grows, `threshold` must be scaled proportionally
 in order for the selector to keep its selectivity at the same level. This is important for cross-validation, where the training dataset is smaller
 than the full dataset. Therefore, when applying learned parameters to a new dataset this has to be kept in mind. Note also that large
-values of `threashold` are most susceptible to this scaling effect.
+values of `threshold` are most susceptible to this scaling effect.
 
-Interestingly, in our case this scaling effect can be completely ignored, because we use only selectors where `threshold` value is small 
+Interestingly, in our case this scaling effect can be completely ignored, because we use only selectors where `threshold` value is small
 - and we use threshold value of 1 for all corss-validation dataset.
 
 ## Experience of parameter selection for best generalization
@@ -109,11 +109,11 @@ dataset it is impossible to build a good set of inhibition patterns. And, conver
 we need to give it an input with many false hits, which means that we need to make hyphenation level more lax.
 
 The idea of mixing-and-matching inhibition levels tries to overcome this limitation. To do this, we train two independent pattern sets - base and auxiliary.
-Base pattern set we train with highly-selective criteria in order to get good hyphenation patterns. We do not care much for the inhibition level in the base. 
+Base pattern set we train with highly-selective criteria in order to get good hyphenation patterns. We do not care much for the inhibition level in the base.
 
 The  auxiliary pattern set is trained
 with very lax selector for covering level and very selective one for the inhibition level. We then construct the final pattern set
-by replacing inhibition level in the base with the inhibition level from the auxiliary one! In practice, this technique is very effective, 
+by replacing inhibition level in the base with the inhibition level from the auxiliary one! In practice, this technique is very effective,
 shaving off 30-50% of errors.
 
 ## Cross-validation scripts
@@ -124,14 +124,14 @@ Scripts that were used for cross-validation are:
 * `cv3.sh` - does three-fold cross-validation
 * `cv4.sh` - does four-fold cross-validation
 
-See corresponding `cv-?.log` files for the results. Summary is below (note that total weighted number of hyphens in the 
-dictionary is 40458 - it is used to compute percentages below).
+See corresponding `cv-?.log` files for the results. Summary is below (note that total weighted number of hyphens in the
+dictionary is 40462 - it is used to compute percentages below).
 
 |  script  | total number of missed | total number of false | percent missed | percent false |
 |----------|------------------------|-----------------------|----------------|---------------|
-|  `cv2`   |  3879                  |  1252                 |  9.6           | 3.1           |
-|  `cv3`   |  3132                  |  1217                 |  7.7           | 3.0           |
-|  `cv4`   |  3172                  |  1186                 |  7.8           | 2.9           |
+|  `cv2`   |  4223                  |  1824                 |  10.4          | 4.5           |
+|  `cv3`   |  3508                  |  1679                 |  8.7           | 4.1           |
+|  `cv4`   |  3564                  |  1686                 |  8.8           | 4.2           |
 
 Number of words in the dictionary is 17525. This gives on average 2 hyphens per word. Therefore, 75% of new words
 will be hyphenated correctly. Other 25% of new words will have some deficiency - either a missing hyphen or an incorrectly
@@ -142,7 +142,7 @@ probability of error than word-level statistics.
 
 Since our dictionary covers 90% of words in the corpus (and since all words in the dictionary will be 100% correct due to the
 exception list), the overall expected performance on the text is 0.8% probability of missing a hyphen, and 0.35% probability
-of incorrect hyphenation. 
+of incorrect hyphenation.
 
 Only incorrect hyphenation is really important, as it easily catches the eye of the reader (whereas missed hyphenation
 just makes TeX pick another hyphenation point - just a less optimal one).
