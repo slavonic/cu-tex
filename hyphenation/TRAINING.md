@@ -141,10 +141,10 @@ Since hyphenation algorithm selects a single hyphen from a word, the per-hyphen 
 probability of error than word-level statistics.
 
 Since our dictionary covers 90% of words in the corpus (and since all words in the dictionary will be 100% correct due to the
-exception list), the overall expected performance on the text is 0.8% probability of missing a hyphen, and 0.35% probability
+exception list), the overall expected performance on the text is 0.87% probability of missing a hyphen, and 0.41% probability
 of incorrect hyphenation.
 
 Only incorrect hyphenation is really important, as it easily catches the eye of the reader (whereas missed hyphenation
 just makes TeX pick another hyphenation point - just a less optimal one).
 Assuming that we will need at most 10 hyphenations per page, the risk of getting an incorrect hyphenation is approximately
-3-4% per page.
+4% per page.
