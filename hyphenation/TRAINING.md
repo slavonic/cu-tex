@@ -125,13 +125,13 @@ Scripts that were used for cross-validation are:
 * `cv4.sh` - does four-fold cross-validation
 
 See corresponding `cv-?.log` files for the results. Summary is below (note that total weighted number of hyphens in the
-dictionary is 40462 - it is used to compute percentages below).
+dictionary is 40468 - it is used to compute percentages below).
 
 |  script  | total number of missed | total number of false | percent missed | percent false |
 |----------|------------------------|-----------------------|----------------|---------------|
-|  `cv2`   |  4223                  |  1824                 |  10.4          | 4.5           |
-|  `cv3`   |  3508                  |  1679                 |  8.7           | 4.1           |
-|  `cv4`   |  3564                  |  1686                 |  8.8           | 4.2           |
+|  `cv2`   |  4222                  |  1825                 |  10.4          | 4.5           |
+|  `cv3`   |  3508                  |  1680                 |  8.7           | 4.1           |
+|  `cv4`   |  3566                  |  1687                 |  8.8           | 4.2           |
 
 Number of words in the dictionary is 17525. This gives on average 2 hyphens per word. Therefore, 75% of new words
 will be hyphenated correctly. Other 25% of new words will have some deficiency - either a missing hyphen or an incorrectly
