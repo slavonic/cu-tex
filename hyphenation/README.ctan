@@ -18,6 +18,10 @@ Installation:
 Manual installation (not recommended):
 --------------------------------------
 
+Find out where file "language.dat" is located in your TeX distribution:
+
+       kpsewhich language.dat
+
 Edit "language.dat" to add the following lines:
 
 	% from hyphen-churchslavonic:
@@ -26,7 +30,6 @@ Edit "language.dat" to add the following lines:
 Then rebuild xelatex and lualatex formats:
 
 	fmtutil --byfmt xelatex lualatex     # rebuild xelatex and lualatex formats
-
 
 Using patterns
 --------------
