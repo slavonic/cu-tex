@@ -12,8 +12,8 @@ Installation:
 -------------
 
 	tlmgr install hyphen-churchslavonic  # install necessary files
-	fmtutil --byfmt xelatex lualatex     # rebuild xelatex and lualatex formats
-
+	fmtutil --byfmt xelatex     # rebuild xelatex and lualatex formats
+	fmtutil --byfmt lualatex
 
 Manual installation (not recommended):
 --------------------------------------
@@ -29,7 +29,8 @@ Edit "language.dat" to add the following lines:
 
 Then rebuild xelatex and lualatex formats:
 
-	fmtutil --byfmt xelatex lualatex     # rebuild xelatex and lualatex formats
+	fmtutil --byfmt xelatex     # rebuild xelatex and lualatex formats
+	fmtutil --byfmt lualatex 
 
 Using patterns
 --------------
