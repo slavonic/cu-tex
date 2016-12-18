@@ -7,7 +7,8 @@ SRCS = README.ctan \
 	churchslavonic.sty \
 	churchslavonic.tex \
 	churchslavonic-en.tex \
-	churchslavonic-ru.tex
+	churchslavonic-ru.tex \
+	gloss-churchslavonic.ldf
 
 DOCS = churchslavonic-en.pdf \
 	churchslavonic-ru.pdf
