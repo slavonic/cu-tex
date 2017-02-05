@@ -1,6 +1,6 @@
 % Copyright 2016 Slavonic Computing Initiative
 % http://sci.ponomar.net
-% 
+%
 \ProvidesPackage{churchslavonic}[2016/04/19 v0.2 Typesetting in Church Slavonic]
 
 \DeclareOption*{
@@ -15,10 +15,13 @@
 
 % underscore is a valid character in Church Slavonic
 \let\cu@oldunderscore=_
+{%
 \catcode`\_\active
-\protected\def_{\ifmmode\cu@oldunderscore\else\textunderscore\discretionary{}{}{}\fi}
+\global\protected\def_{\ifmmode\cu@oldunderscore\else\textunderscore\discretionary{}{}{}\fi}%
+}%
+\AtBeginDocument{\catcode`\_\active}%
 
-% suppress variable distance between lines 
+% suppress variable distance between lines
 \lineskiplimit -1ex
 
 % margin marks
