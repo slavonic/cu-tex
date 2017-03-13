@@ -10,7 +10,7 @@
 \define@key[psset]{cuGraphics}{scale}{\def\@cuGraphicsBox##1{\scalebox{#1}{##1}}}%
 \define@key[psset]{cuGraphics}{width}{%
  \def\@cuGraphicsWidth{#1}%
- \ifx\@cuGraphicsHeight\empty\def\@cuGraphicsxBox##1{\resizebox*{#1}{!}{##1}}%
+ \ifx\@cuGraphicsHeight\empty\def\@cuGraphicsBox##1{\resizebox*{#1}{!}{##1}}%
  \else\def\@cuGraphicsBox##1{\resizebox*{#1}{\@cuGraphicsHeight}{##1}}%
  \fi
  }%
@@ -26,13 +26,13 @@
 \define@key[psset]{cuGraphics}{opacity}{\def\@cuGraphicsOpacity{#1}}%%
 %
 \define@boolkey[psset]{cuGraphics}[Pst@]{flip}[true]{%
- \ifPst@flip\def\@cuGraphicsflip##1{\rotatebox{180}{\reflectbox{##1}}}%
- \else      \def\@cuGraphicsflip##1{##1}%
+ \ifPst@flip\def\@cuGraphicsFlip##1{\reflectbox{\rotatebox{180}{##1}}}%
+ \else      \def\@cuGraphicsFlip##1{##1}%
  \fi}%
 %
 \define@boolkey[psset]{cuGraphics}[Pst@]{mirror}[true]{%
- \ifPst@mirror\let\@cuGraphicsmirror\reflectbox%
- \else        \def\@cuGraphicsmirror##1{##1}%
+ \ifPst@mirror\let\@cuGraphicsMirror\reflectbox%
+ \else        \def\@cuGraphicsMirror##1{##1}%
  \fi}
 %
 \newcommand*\cuGraphics[2][]{%
@@ -45,7 +45,7 @@
   \psset[cuGraphics]{scale=1,opacity=1,color=\cuGraphicsDefaultColor,flip=false,mirror=false}{}%
   \ifx\relax#1\relax\else\psset[cuGraphics]{#1}\fi%
   \psset{linecolor=\@cuGraphicsColor,opacity=\@cuGraphicsOpacity}%
-  \@cuGraphicsBox{\@cuGraphicsmirror{\@cuGraphicsflip{\@cuGraphicsDraw{#2}}}}%
+  \@cuGraphicsBox{\@cuGraphicsMirror{\@cuGraphicsFlip{\@cuGraphicsDraw{#2}}}}%
 \egroup%
 }%
 %
@@ -74,8 +74,5 @@ grestore
 \end@SpecialObj
 \end{pspicture}%
 }%
-%
-%%% lets define few shapes here %%%
-\cuDefineShape{triangle}{20}{20}{n 0 0 m 20 20 l 20 0 l h f}%
 %
 \endinput%
