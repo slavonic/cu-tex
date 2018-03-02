@@ -2,6 +2,7 @@
 \newfontfamily\russianfonttt[Ligatures=TeX]{lmmono10-regular.otf}
 \newfontfamily\russianfontsf[Ligatures=TeX]{lmsans10-regular.otf}
 \newfontfamily\churchslavonicfont[Script=Cyrillic,Ligatures=TeX,HyphenChar=_]{PonomarUnicode.otf}
+\newfontfamily\musicFont[Scale=1.5]{MezenetsUnicode}
 
 \usepackage{churchslavonic}
 \usepackage{hyperref}
@@ -9,6 +10,7 @@
 \usepackage{doc}
 \usepackage{lettrine}
 
+\let\cuKrukFont=\musicFont
 \def\pkg#1{\textsf{#1}}
 \def\cs#1{\texttt{\textbackslash #1}}
 %
@@ -578,6 +580,8 @@ editor to just automatically place a \cs{cuKinovar} command before every paragra
 Switches the current color to red. One would typically use this command
 inside a group that limits the scope of red text, unless
 you want all subsequent text to be colored red.
+
+The particular shade of red used by \cs{cuKinovar} is defined as a new color called \verb+kinovar+. This can be used manually with the \cs{textcolor} command of the \pkg{xcolor} package, for example, to color cinnabar marks in Znamenny Notation (see p.~\pageref{znamenny}).
 \end{EN}
 
 \begin{RU}
@@ -586,6 +590,8 @@ you want all subsequent text to be colored red.
 Команда переключает текущий цвет на красный. Должна использоваться
 внутри группы, которая ограничит ее действие (если вы не хотите
 чтобы весь последующий текст был напечатан красным цветом).
+
+Оттенок красного цвета, используемый коммандой \cs{cuKinovar} объявляется в пакете новым цветом с названием \verb+kinovar+. Этот цвет может быть использован вручную с коммандой \cs{textcolor} пакета \pkg{xcolor}, например для раскраски киноварных помет в Знаменной нотации (см. с.~\pageref{znamenny}).
 \end{RU}
 
 \begin{EN}
@@ -754,6 +760,154 @@ you can create drop capitals like this:
 }%
 \end{churchslavonic}
 \end{center}
+
+\begin{EN}
+\section{Znamenny Notation}
+\subsection{Typesetting Znamenny Notation}
+The package offers two commands for typesetting Znamenny Notation and other neumatic notation systems. First you will need to declare the font that will be used to typeset the musical notation and set the \cs{cuKrukFont} parameter, which is usually done in the preamble of the document. Example:
+\end{EN}
+%
+\begin{RU}
+\section{Знаменная нотация}
+\subsection{Набор Знаменной нотации}
+Пакет предлагает две макрокомманды для набора Знаменной и других музыкальных нотаций. Для начала следует декларировать шрифт, которым будет набираться нотация, и установить параметр \cs{cuKrukFont}; это обычно делается в преамбуле документа. Например:
+\end{RU}
+
+\label{znamenny}
+\begin{verbatim}
+\newfontfamily\musicFont[Scale=1.5]{MezenetsUnicode}
+\let\cuKrukFont=\musicFont
+\end{verbatim}
+
+\begin{EN}
+The command \cs{cuKruk} is used to typeset a syllable of text with a musical neume above it. It takes the neume as its first argument and the text as its second argument. This can be used to typeset Znamenny notation inline with text or to typeset relatively short passages, for example, the code:
+
+\verb+Here is a Podchashie: \textchurchslavonic{\cuKruk{+{\musicFont }\verb+}{+\textchurchslavonic{Тво}\verb+}}+
+
+will produce:
+
+Here is a Podchashie: \textchurchslavonic{\cuKruk{}{Тво}}
+
+The \cs{cuKrukPara} command is used to typeset longer, independent passages of Znamenny Notation. The command takes as an argument a line of neumes, followed by \verb+\\+, followed by a line of lyrics. Groups of neumes are separated by spaces and syllables are separated by the \verb+-+ character. The \verb+_+ character can be used when a neume appears without any syllable below it or when a syllable appears without any neume above it. Here we use the command to typeset a piece in Znamenny Notation:
+\end{EN}
+%
+\begin{RU}
+Команда \cs{cuKruk} используется для набора одного слога с размещением над ним невменной нотации. Она принимает два аргумента: в первом аргументе указываются невмы, во втором аргументе -- текст. Этот подход может быть использован для набора Знаменной нотации в строке текста или для набора достаточно кратких отрывков. Например, набор комманд:
+
+Вот подчашие: \verb+\textchurchslavonic{\cuKruk{+{\musicFont }\verb+}{+\textchurchslavonic{Тво}\verb+}}+
+
+дает такой результат:
+
+Вот подчашие: \textchurchslavonic{\cuKruk{}{Тво}}
+
+Комманда \cs{cuKrukPara} используется для набора более длинных песнопений в Знаменной нотации. В качестве аргумента комманда принимает строку невм, затем разрыв \verb+\\+ и затем строку текста. Группы невм разделяются пробелами, а слоги разделяются символом \verb+-+. Символ \verb+_+ может быть использован, если какая-то невма стоит самостоятельно, а не над слогом текста, или если, наоборот, какой-то слог не сопровождается невмой. Приведем пример того, как набрать песнопение в Знаменной нотации:
+\end{RU}
+
+\verb+\cuKrukPara{+ {\musicFont                                                        } \verb+\\+ \textchurchslavonic{Хри-сто́съ ра-жда́-ет-сѧ, сла́-ви-те: Хри-сто́съ съ нб҃съ, срѧ́-щи-те: Хри-сто́съ на зе-млѝ, воз-но-си́-те-сѧ. по́й-те Го́-спо-де-ви всѧ̀-_ зе-млѧ̀, и҆ ве-се́-лї-емъ вос-по́-_-йте лю́-дї-е, ꙗ҆́-кѡ про-сла́-ви-сѧ.}\verb+}+
+
+\medskip
+
+\begin{churchslavonic}
+\noindent
+\cuKrukPara{
+                                                      
+\\
+Хри-сто́съ ра-жда́-ет-сѧ, сла́-ви-те: Хри-сто́съ съ нб҃съ, срѧ́-щи-те: Хри-сто́съ на зе-млѝ, воз-но-си́-те-сѧ. по́й-те Го́-спо-де-ви всѧ̀-_ зе-млѧ̀, и҆ ве-се́-лї-емъ вос-по́-_-йте лю́-дї-е, ꙗ҆́-кѡ про-сла́-ви-сѧ.
+}
+\end{churchslavonic}
+
+\medskip
+
+\begin{EN}
+\textbf{Note that} the number of neume groups needs equal the number of syllables, otherwise the command will return a compile-time error, such as: \verb+! Too many kruk groups.+
+
+\textbf{Limitations}: fonts for Znamenny Notation usually provide color information for certain glyphs (such as the cinnabar marks) via data in the COLR and CPAL tables. However, COLR / CPAL technology is not supported by \XeTeX{} or \LuaTeX{}. As a workaround, you can colorize cinnabar marks manually, for example, using the \cs{textcolor} command from the \pkg{xcolor} package:
+\end{EN}
+%
+\begin{RU}
+\textbf{Обратите внимание}, что количество групп невм должно равняться количеству слогов, в противном случае при компиляции макрокомманда выдаст ошибку, например: \verb+! Too many kruk groups.+
+
+\textbf{Ограничения}: шрифты для Знаменной нотации обычно предоставляют информацию о цветах некоторых глифов (например, киноварных помет) в таблицах COLR и CPAL. Однако технология COLR и CPAL не поддерживается в \XeTeX{} и \LuaTeX{}. В качестве решения проблемы цвета, Вы можете раскрасить киноварные пометы вручную используя, например, комманду \cs{textcolor} из пакета \pkg{xcolor}:
+\end{RU}
+
+\begin{tabular}{cc}
+\verb+\cuKruk{+{\musicFont } \verb+\textcolor{kinovar}{+ {\musicFont } \verb+}}{+ \textchurchslavonic{жда} \verb+}+ &  \textchurchslavonic{\cuKruk{\textcolor{kinovar}{}}{жда}} \\
+\end{tabular}
+
+\smallskip
+
+\begin{EN}
+However, this appears to break normal OpenType positioning rules for the marks in \XeTeX{} (though it does appear to work correctly in \LuaTeX{}).
+
+\cs{cuKruk} commands may be nested, which can be used to produce `explanatory marks' (\textrussian{<<подобные пометы>>}):
+
+\end{EN}
+%
+\begin{RU}
+Однако данный подход приведет к неправильному позиционированию раскрашенных глифов в \XeTeX{} (похоже, правильных результатов можно достичь используя \LuaTeX{}).
+
+Макрокомманды \cs{cuKruk} могут вкладываться друг в друга, что позволяет набирать текст с <<подобными пометами>>:
+\end{RU}
+
+\begin{tabular}{lc}
+\verb+\cuKruk{\cuKruk{\textcolor{kinovar}{\tiny + {\musicFont } \verb+}}+ &  \textchurchslavonic{\cuKruk{\cuKruk[krukRaise=0.5em]{\textcolor{kinovar}{\tiny  }}{\Large }}{ла}} \\
+\verb+{\Large + {\musicFont } \verb+}}{+ \textchurchslavonic{ла} \verb+}+ & \\
+\end{tabular}
+
+\medskip
+
+\begin{EN}
+\subsection{Controlling the Appearance of Znamenny Notation}
+
+A number of parameters may be used to control the positioning and appearance of Znamenny neumes:
+
+\begin{center}
+\begin{tabular}{lp{3.5in}}
+\hline
+\verb+krukFont+ & Specifies the font that is used to typeset the Znamenny neumes \\
+\verb+sylSpace+ & Specifies the amount of spacing around a syllable (default is \verb+0.2em+) \\
+\verb+topMargin+ & Specifies the amount of space (margin) above the neumes (default is \verb+0.3em+) \\
+\verb+krukRaise+ & Specifies the amount of space between the neumes and lyrics (default is \verb+1em+) \\
+\verb+sylRuleHeight+ & Specifies the thikness of the rule used when no syllable appears below a neume (default is \verb+0.08em+) \\
+\hline
+\end{tabular}
+\end{center}
+
+\noindent The parameters are passed as options to the \cs{cuKruk} and \cs{cuKrukPara} commands, separated by commas. For example, we can modify the spacing of neumes in the above example:
+\end{EN}
+%
+\begin{RU}
+\subsection{Управление внешним видом знаменных текстов}
+
+Значение нескольких параметров может быть задано чтобы повлиять на позиционирование и внешинй вид текстов со Знаменной нотацией:
+
+\begin{center}
+\begin{tabular}{lp{3.5in}}
+\hline
+\verb+krukFont+ & Указывает шрифт, исользуемый для отображения невм \\
+\verb+sylSpace+ & Указывает количество пустого пространства вокруг слога (по умолчанию -- \verb+0.2em+) \\
+\verb+topMargin+ & Указывает количество пустого пространства (поле) над невмами (по умолчанию -- \verb+0.3em+) \\
+\verb+krukRaise+ & Указывает длину разрыва между текстом и невмами (по умолчанию -- \verb+1em+) \\
+\verb+sylRuleHeight+ & Указывает толщину горизонтальной черты, используемой, когда под невмой нет слога (по умолчанию -- \verb+0.08em+) \\
+\hline
+\end{tabular}
+\end{center}
+
+\noindent Эти параметры могут быть заданы как опции к макрокоммандам \cs{cuKruk} и \cs{cuKrukPara}, разделенные запятыми. К примеру, повлияем на разрывы и поля в приведенном выше примере:
+\end{RU}
+
+\noindent \verb+\cuKrukPara[krukRaise=1.5em,topMargin=0.6em,sylRuleHeight=0.2em]{+ {\musicFont   } \verb+... \\+ \textchurchslavonic{Хри-сто́съ}\verb+... }+
+
+\medskip
+
+\begin{churchslavonic}
+\noindent
+\cuKrukPara[krukRaise=1.5em,topMargin=0.6em,sylRuleHeight=0.2em]{
+                                                      
+\\
+Хри-сто́съ ра-жда́-ет-сѧ, сла́-ви-те: Хри-сто́съ съ нб҃съ, срѧ́-щи-те: Хри-сто́съ на зе-млѝ, воз-но-си́-те-сѧ. по́й-те Го́-спо-де-ви всѧ̀-_ зе-млѧ̀, и҆ ве-се́-лї-емъ вос-по́-_-йте лю́-дї-е, ꙗ҆́-кѡ про-сла́-ви-сѧ.
+}
+\end{churchslavonic}
 
 \begin{thebibliography}{9}
 
