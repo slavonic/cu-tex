@@ -71,8 +71,10 @@
 }%
 %
 \def\cu@KrukAction#1{%
-\expandafter\expandafter\expandafter\ifx\expandafter\csname \detokenize{#1}cu@@@\endcsname\cu@Tilda
+\edef\cu@tmp{\csname \detokenize{#1}cu@@@\endcsname}%
+\ifx\cu@tmp\cu@Tilda
   \expandafter\edef\csname cu@@\thecu@KrukPos\endcsname{}%
+  \message{KRUK-tilda}%
 \else
   \expandafter\def\csname cu@@\thecu@KrukPos\endcsname{#1}%
 \fi
@@ -103,7 +105,13 @@
 \ifnum\thecu@SylPos>\thecu@KrukPos
   \errmessage{Too few kruk groups. Seen {\thecu@KrukPos} kruk groups and {\thecu@SylPos} text groups}%
 \fi
-\expandafter\cuKruk\expandafter{\csname cu@@\thecu@SylPos\endcsname}{#1}%
+\edef\cu@tmp{\csname \detokenize{#1}cu@@@\endcsname}%
+\ifx\cu@tmp\cu@Tilda
+  \expandafter\cuKruk\expandafter{\csname cu@@\thecu@SylPos\endcsname}{}%
+  \message{TILDA-syl}%
+\else
+  \expandafter\cuKruk\expandafter{\csname cu@@\thecu@SylPos\endcsname}{#1}%
+\fi
 \stepcounter{cu@SylPos}%
 }%
 %
