@@ -81,6 +81,7 @@
 }
 %
 \edef\cu@Tilda{\csname \detokenize{~}cu@@@\endcsname}%
+\edef\cu@Empty{\csname \detokenize{}cu@@@\endcsname}%
 %
 \def\cu@Text#1 #2\cu@EndText{%
 \if\relax\detokenize{#1}\relax\else
@@ -92,9 +93,7 @@
 }%
 %
 \def\cu@TextDash#1-#2\cu@EndText{%
-\if\relax\detokenize{#1}\relax\else
-  \cu@TextAction{#1}%
-\fi
+\cu@TextAction{#1}%
 \if\relax\detokenize{#2}\relax\else
   \cu@TextDash#2\cu@EndText
 \fi
@@ -105,10 +104,14 @@
   \errmessage{Too few kruk groups. Seen {\thecu@KrukPos} kruk groups and {\thecu@SylPos} text groups}%
 \fi
 \edef\cu@tmp{\csname \detokenize{#1}cu@@@\endcsname}%
-\ifx\cu@tmp\cu@Tilda
+\ifx\cu@tmp\cu@Empty
   \expandafter\cuKruk\expandafter{\csname cu@@\thecu@SylPos\endcsname}{}%
 \else
-  \expandafter\cuKruk\expandafter{\csname cu@@\thecu@SylPos\endcsname}{#1}%
+  \ifx\cu@tmp\cu@Tilda
+    \expandafter\cuKruk\expandafter{\csname cu@@\thecu@SylPos\endcsname}{}%
+  \else
+    \expandafter\cuKruk\expandafter{\csname cu@@\thecu@SylPos\endcsname}{#1}%
+  \fi
 \fi
 \stepcounter{cu@SylPos}%
 }%
