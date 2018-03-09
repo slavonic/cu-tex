@@ -27,12 +27,17 @@
   \egroup
 }%
 \def\cu@@Kruk#1#2{{%
+  \edef\cu@tmp{\csname \detokenize{#2}cu@@@\endcsname}%
   \setbox1=\hbox{{\cuKrukFont#1}}%
   \dimen0=\ht1\advance\dimen0 by \cuKrukTopMargin\ht1=\dimen0%
   \if\relax\detokenize{#2}\relax
     \setbox2=\hbox{\vrule height \cuKrukSylRuleHeight width \wd1}%
   \else
-    \setbox2=\hbox{#2}%
+    \ifx\cu@tmp\cu@Tilda
+      \setbox2=\hbox{\vrule height \cuKrukSylRuleHeight width \wd1}%
+    \else
+      \setbox2=\hbox{#2}%
+    \fi
   \fi
   \ifdim\wd1>\wd2%
     \setbox2=\hbox to \wd1{\hss\box2\hss}%
