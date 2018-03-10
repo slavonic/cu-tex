@@ -27,12 +27,17 @@
   \egroup
 }%
 \def\cu@@Kruk#1#2{{%
+  \edef\cu@tmp{\csname \detokenize{#2}cu@@@\endcsname}%
   \setbox1=\hbox{{\cuKrukFont#1}}%
   \dimen0=\ht1\advance\dimen0 by \cuKrukTopMargin\ht1=\dimen0%
   \if\relax\detokenize{#2}\relax
     \setbox2=\hbox{\vrule height \cuKrukSylRuleHeight width \wd1}%
   \else
-    \setbox2=\hbox{#2}%
+    \ifx\cu@tmp\cu@Tilda
+      \setbox2=\hbox{\vrule height \cuKrukSylRuleHeight width \wd1}%
+    \else
+      \setbox2=\hbox{#2}%
+    \fi
   \fi
   \ifdim\wd1>\wd2%
     \setbox2=\hbox to \wd1{\hss\box2\hss}%
@@ -71,7 +76,8 @@
 }%
 %
 \def\cu@KrukAction#1{%
-\expandafter\expandafter\expandafter\ifx\expandafter\csname \detokenize{#1}cu@@@\endcsname\cu@Tilda
+\edef\cu@tmp{\csname \detokenize{#1}cu@@@\endcsname}%
+\ifx\cu@tmp\cu@Tilda
   \expandafter\edef\csname cu@@\thecu@KrukPos\endcsname{}%
 \else
   \expandafter\def\csname cu@@\thecu@KrukPos\endcsname{#1}%
@@ -80,6 +86,7 @@
 }
 %
 \edef\cu@Tilda{\csname \detokenize{~}cu@@@\endcsname}%
+\edef\cu@Empty{\csname \detokenize{}cu@@@\endcsname}%
 %
 \def\cu@Text#1 #2\cu@EndText{%
 \if\relax\detokenize{#1}\relax\else
@@ -91,9 +98,7 @@
 }%
 %
 \def\cu@TextDash#1-#2\cu@EndText{%
-\if\relax\detokenize{#1}\relax\else
-  \cu@TextAction{#1}%
-\fi
+\cu@TextAction{#1}%
 \if\relax\detokenize{#2}\relax\else
   \cu@TextDash#2\cu@EndText
 \fi
@@ -103,7 +108,16 @@
 \ifnum\thecu@SylPos>\thecu@KrukPos
   \errmessage{Too few kruk groups. Seen {\thecu@KrukPos} kruk groups and {\thecu@SylPos} text groups}%
 \fi
-\expandafter\cuKruk\expandafter{\csname cu@@\thecu@SylPos\endcsname}{#1}%
+\edef\cu@tmp{\csname \detokenize{#1}cu@@@\endcsname}%
+\ifx\cu@tmp\cu@Empty
+  \expandafter\cuKruk\expandafter{\csname cu@@\thecu@SylPos\endcsname}{}%
+\else
+  \ifx\cu@tmp\cu@Tilda
+    \expandafter\cuKruk\expandafter{\csname cu@@\thecu@SylPos\endcsname}{}%
+  \else
+    \expandafter\cuKruk\expandafter{\csname cu@@\thecu@SylPos\endcsname}{#1}%
+  \fi
+\fi
 \stepcounter{cu@SylPos}%
 }%
 %
