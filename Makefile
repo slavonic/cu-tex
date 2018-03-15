@@ -39,5 +39,5 @@ $(DOCS): $(SRCS)
 
 # run xelatex twice to generate toc and references
 %.pdf: %.tex
-	xelatex --interaction=nonstopmode $<
-	xelatex --interaction=nonstopmode $<
+	lualatex --interaction=nonstopmode $<
+	lualatex --interaction=nonstopmode $<
