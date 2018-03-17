@@ -3,6 +3,10 @@
 \RequirePackage{cu-util}
 \RequirePackage{etoolbox}
 \RequirePackage{xcolor}
+\RequirePackage{ifluatex}
+\ifluatex
+  \RequirePackage{luacolor}
+\fi
 
 %% 'color' option (default)
 \def\cu@kinovar{\relax}
