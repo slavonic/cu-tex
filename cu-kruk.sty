@@ -1,7 +1,26 @@
 \NeedsTeXFormat{LaTeX2e}%
 \RequirePackage{keyval}%
+\RequirePackage{ifluatex}%
 \ProvidesPackage{cu-kruk}[2018/03/01 v0.1 support for kruk music notations]%
 %
+%% 'autocolormarks' and noautocolormarks options
+\newif\ifcu@autocolormarks
+\ifluatex
+  \cu@autocolormarkstrue
+\else
+  \cu@autocolormarksfalse
+\fi
+
+\DeclareOption{autocolormarks}{
+  \cu@autocolormarkstrue
+  \ifluatex\relax\else\message{WARNING: autocolormarks option may not work correctly with this TeX engine. See documentation for more details.}\fi
+}
+\DeclareOption{noautocolormarks}{
+  \cu@autocolormarksfalse
+}
+
+\ProcessOptions\relax
+
 \let\cuKrukFont\relax %% to be defined by the user
 %
 \newlength{\cuKrukSylSpace}  %% spacing around kruk syllable
@@ -122,6 +141,7 @@
 }%
 %
 % Automatic coloring of kruk marks (pometa)
+\ifcu@autocolormarks
 \catcode`\active\def{\cuKinovar{\detokenize{}}}%
 \catcode`\active\def{\cuKinovar{\detokenize{}}}%
 \catcode`\active\def{\cuKinovar{\detokenize{}}}%
@@ -186,5 +206,6 @@
 \catcode`\active\def{\cuKinovar{\detokenize{}}}%
 \catcode`\active\def{\cuKinovar{\detokenize{}}}%
 \catcode`\active\def{\cuKinovar{\detokenize{}}}%
+\fi
 %
 \endinput%
