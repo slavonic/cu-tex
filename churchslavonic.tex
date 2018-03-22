@@ -7,11 +7,14 @@
 \newfontfamily\churchslavonicfont[Script=Cyrillic,Ligatures=TeX,HyphenChar=_]{PonomarUnicode.otf}
 \newfontfamily\musicFont[Scale=1.5]{MezenetsUnicode}
 
-\usepackage{luacolor}
 \usepackage{churchslavonic}
 \usepackage{doc}
 \usepackage{lettrine}
-\usepackage{hyperref}
+\usepackage[unicode,
+  pdftitle={churchslavonic: a package for typesetting Church Slavonic documents in TeX},
+  pdfauthor={Aleksandr Andreev and Mike Kroutikov},
+  pdfkeywords={Church Slavonic, Old Church Slavonic, Church Slavic, Znamenny Notation, LaTeX, TeX, XeTeX, LuaTeX, OpenType, Unicode, церковнославянский, старославянский, знаменная нотация, крюки, столповая нотация}
+]{hyperref}
 
 \def\fileversion{0.3}
 \let\cuKrukFont=\musicFont
@@ -844,17 +847,17 @@ The \cs{cuKrukPara} command is used to typeset longer, independent passages of m
 \end{tabular}
 
 \begin{EN}
-\cuKinovar{Note 3}: fonts for Znamenny Notation usually provide color information for certain glyphs (such as the cinnabar marks) via data in the COLR and CPAL tables. However, COLR / CPAL technology is presently not supported in \XeTeX{} or \LuaTeX{}. The \cs{cuKruk} and \cs{cuKrukPara} commands will automatically typeset the cinnabar marks in red by internally invoking the \cs{cuKinovar} macro. To render the cinnabar marks in grayscale or black, load the \pkg{churchslavonic} package with the \texttt{gray} or \texttt{bw} options, respectively. 
+\cuKinovar{Note 3}: fonts for Znamenny Notation usually provide color information for certain glyphs (such as the cinnabar marks) via data in the COLR and CPAL tables. However, COLR / CPAL technology is presently not supported in \XeTeX{} or \LuaTeX{}. When the \pkg{churchslavonic} package is loaded with the \texttt{autocolormarks} option, the \cs{cuKruk} and \cs{cuKrukPara} commands will automatically typeset the cinnabar marks in red by internally invoking the \cs{cuKinovar} macro. Additionally, if the \pkg{churchslavonic} package is loaded with the \texttt{gray} or \texttt{bw} options, the cinnabar marks will be typeset in grayscale or black, respectively. 
 
-\cuKinovar{Limitations}: The use of color breaks normal OpenType positioning rules for marks in \XeTeX{}. You can obtain correct positioning of marks in \LuaTeX{} by loading the \pkg{luacolor} package in the preamble of your document.
+\cuKinovar{Limitations}: When a document is processed using \XeTeX{}, attempting to render marks in color breaks normal OpenType glyph positioning rules. Loading the \pkg{churchslavonic} package with the \texttt{autocolormarks} option when \XeTeX{} is used will produce a warning. Presently, you can only render marks in red and maintain correct positioning when using \LuaTeX{}. When a document is processed using \LuaTeX{}, the \pkg{churchslavonic} package by default loads with the \texttt{autocolormarks} option. If automatic coloring is not desired, it can be turned off in this case by loading the \pkg{churchslavonic} package with the \texttt{noautocolormarks} option.
 
 The \cs{cuKruk} commands may be nested, which can be used to produce `explanatory marks' (\textrussian{<<подобные пометы>>}):
 \end{EN}
 %
 \begin{RU}
-\cuKinovar{Примечание 3}: шрифты для Знаменной нотации обычно предоставляют информацию о цветах некоторых глифов (например, киноварных помет) в таблицах COLR и CPAL. Однако технология COLR и CPAL на данный момент не поддерживается в \XeTeX{} и \LuaTeX{}. Команды \cs{cuKruk} и \cs{cuKrukPara} автоматически раскрашивают киноварные пометы, внутренне вызывая для этого команду \cs{cuKinovar}. Чтобы набрать киноварные пометы в оттенках серого или черным цветом, следует загрузить пакет \pkg{churchslavonic} с опциями \texttt{gray} или \texttt{bw}, соответственно.
+\cuKinovar{Примечание 3}: шрифты для Знаменной нотации обычно предоставляют информацию о цветах некоторых глифов (например, киноварных помет) в таблицах COLR и CPAL. Однако технология COLR и CPAL на данный момент не поддерживается в \XeTeX{} и \LuaTeX{}. Если пакет \pkg{churchslavonic} загружен с опцией \texttt{autocolormarks}, команды \cs{cuKruk} и \cs{cuKrukPara} автоматически раскрашивают киноварные пометы, внутренне вызывая для этого команду \cs{cuKinovar}. К тому же, если пакет \pkg{churchslavonic} также загружен с опциями \texttt{gray} или \texttt{bw}, киноварные пометы будут набраны в оттенках серого или черным цветом, соответственно.
 
-\cuKinovar{Ограничения}: автоматическая раскраска киноварных помет  в \XeTeX{} нарушает работу правил позиционирования глифов в таблицах OpenType. Правильного позицинирования раскрашенных помет можно достичь в \LuaTeX{}, загрузив в преамбуле документа пакет \pkg{luacolor}.
+\cuKinovar{Ограничения}: автоматическая раскраска киноварных помет  в \XeTeX{} нарушает работу правил позиционирования глифов в таблицах OpenType. Попытка загрузить пакет \pkg{churchslavonic} с опцией \texttt{autocolormarks} когда используется \XeTeX{} выдаст предупреждение. Правильного позиционирования раскрашенных помет можно достичь в \LuaTeX{}. Когда для верстки документа используется \LuaTeX{}, пакет \pkg{churchslavonic} загружается с опцией \texttt{autocolormarks} по умолчанию. В этом случае автоматическое раскрашивание помет можно отключить, загрузив пакет \pkg{churchslavonic} с опцией \texttt{noautocolormarks}.
 
 Макрокоманды \cs{cuKruk} могут вкладываться друг в друга, что позволяет набирать текст с <<подобными пометами>>:
 \end{RU}
