@@ -1,3 +1,6 @@
+\usepackage{fontspec,metalogo}
+
+\newfontfamily\englishfont[Script=Latin,Ligatures=TeX,HyphenChar=-]{Linux Libertine O}
 \newfontfamily\russianfont[Script=Cyrillic,Ligatures=TeX]{Linux Libertine O}
 \newfontfamily\russianfonttt[Ligatures=TeX]{lmmono10-regular.otf}
 \newfontfamily\russianfontsf[Ligatures=TeX]{lmsans10-regular.otf}
@@ -5,10 +8,13 @@
 \newfontfamily\musicFont[Scale=1.5]{MezenetsUnicode}
 
 \usepackage{churchslavonic}
-\usepackage{hyperref}
-\usepackage{xltxtra}
 \usepackage{doc}
 \usepackage{lettrine}
+\usepackage[unicode,
+  pdftitle={churchslavonic: a package for typesetting Church Slavonic documents in TeX},
+  pdfauthor={Aleksandr Andreev and Mike Kroutikov},
+  pdfkeywords={Church Slavonic, Old Church Slavonic, Church Slavic, Znamenny Notation, LaTeX, TeX, XeTeX, LuaTeX, OpenType, Unicode, церковнославянский, старославянский, знаменная нотация, крюки, столповая нотация}
+]{hyperref}
 
 \def\fileversion{0.3}
 \let\cuKrukFont=\musicFont
@@ -824,45 +830,34 @@ The \cs{cuKrukPara} command is used to typeset longer, independent passages of m
 \begin{EN}
 \cuKinovar{Note 1}: the number of neume groups needs to equal the number of syllables, otherwise the \cs{cuKrukPara} command will return a compile-time error, such as: \verb+! Too many kruk groups.+
 
-\cuKinovar{Note 2}: In both the \cs{cuKruk} and \cs{cuKrukPara} commands, the \verb+~+ character can be used when a neume appears without any syllable below it. The command will draw an underline under the relevant neume. Leaving a syllable empty will produce the same result. An empty neume block or the \verb+~+ character can also be used to produce a syllable with no neume above it (in this case, the neume block is left blank). To produce a neume with empty space (and no underline) below it, use the \cs{space} command. The following examples demonstrate the functionality:
+\cuKinovar{Note 2}: In both the \cs{cuKruk} and \cs{cuKrukPara} commands, the \verb+~+ character can be used when a neume appears without any syllable below it. The command will draw an underline under the relevant neume. Leaving a syllable empty will produce the same result. An empty neume block or the \verb+~+ character can also be used to produce a syllable with no neume above it (in this case, the neume block is left blank). To produce a neume with empty space (and no underline) below it, use any other command that is rendered as a space (for example, \cs{thinspace}). The following examples demonstrate the functionality:
 \end{EN}
 %
 \begin{RU}
 \cuKinovar{Примечание 1}: количество групп невм должно равняться количеству слогов, в противном случае при компиляции макрокоманда выдаст ошибку, например: \verb+! Too many kruk groups.+
 
-\cuKinovar{Примечание 2}: Как в макрокоманде \cs{cuKruk}, так и в макрокоманде \cs{cuKrukPara}, символ \verb+~+ может быть использован, если какая-то невма стоит самостоятельно, а не над слогом текста. В этом случае под невмой будет нарисована горизонтальная черта. Горизонтальная черта также будет нарисована, если указан пустой слог. Если символ \verb+~+ введен в блок для невмы (или блок для невмы оставлен пустым), команды производят слог без невмы над ним (в этом случае, место для невмы остается пустым). Чтобы расположить невму над пустым текстовым блоком (без горизонтальной черты), можно ввести макрокоманду \cs{space}. Следующие примеры иллюстрируют эти возможности:
+\cuKinovar{Примечание 2}: Как в макрокоманде \cs{cuKruk}, так и в макрокоманде \cs{cuKrukPara}, символ \verb+~+ может быть использован, если какая-то невма стоит самостоятельно, а не над слогом текста. В этом случае под невмой будет нарисована горизонтальная черта. Горизонтальная черта также будет нарисована, если указан пустой слог. Если символ \verb+~+ введен в блок для невмы (или блок для невмы оставлен пустым), команды производят слог без невмы над ним (в этом случае, место для невмы остается пустым). Чтобы расположить невму над пустым текстовым блоком (без горизонтальной черты), можно ввести либо другую макрокоманду, раскрывающуюся в пробел (например, \cs{thinspace}). Следующие примеры иллюстрируют эти возможности:
 \end{RU}
 
 \begin{tabular}{ll}
 \verb+\cuKruk{+ {\musicFont } \verb+}{}+ & \cuKruk{}{} \\
 \verb+\cuKruk{+ {\musicFont } \verb+}{~}+ & \cuKruk{}{~} \\
-\verb+\cuKruk{+ {\musicFont } \verb+}{\space}+ & \cuKruk{}{\space} \\
+\verb+\cuKruk{+ {\musicFont } \verb+}{\thinspace}+ & \cuKruk{}{\thinspace} \\
 \verb+\cuKruk{~}{text}+ & \cuKruk{~}{text} \\
 \end{tabular}
 
 \begin{EN}
-\cuKinovar{Limitations}: fonts for Znamenny Notation usually provide color information for certain glyphs (such as the cinnabar marks) via data in the COLR and CPAL tables. However, COLR / CPAL technology is still not supported by \XeTeX{} or \LuaTeX{}. As a workaround, you can colorize cinnabar marks manually using the \cs{cuKinovar} command:
+\cuKinovar{Note 3}: fonts for Znamenny Notation usually provide color information for certain glyphs (such as the cinnabar marks) via data in the COLR and CPAL tables. However, COLR / CPAL technology is presently not supported in \XeTeX{} or \LuaTeX{}. When the \pkg{churchslavonic} package is loaded with the \texttt{autocolormarks} option, the \cs{cuKruk} and \cs{cuKrukPara} commands will automatically typeset the cinnabar marks in red by internally invoking the \cs{cuKinovar} macro. Additionally, if the \pkg{churchslavonic} package is loaded with the \texttt{gray} or \texttt{bw} options, the cinnabar marks will be typeset in grayscale or black, respectively. 
+
+\cuKinovar{Limitations}: When a document is processed using \XeTeX{}, attempting to render marks in color breaks normal OpenType glyph positioning rules. Loading the \pkg{churchslavonic} package with the \texttt{autocolormarks} option when \XeTeX{} is used will produce a warning. Presently, you can only render marks in red and maintain correct positioning when using \LuaTeX{}. When a document is processed using \LuaTeX{}, the \pkg{churchslavonic} package by default loads with the \texttt{autocolormarks} option. If automatic coloring is not desired, it can be turned off in this case by loading the \pkg{churchslavonic} package with the \texttt{noautocolormarks} option.
+
+The \cs{cuKruk} commands may be nested, which can be used to produce `explanatory marks' (\textrussian{<<подобные пометы>>}):
 \end{EN}
 %
 \begin{RU}
-\cuKinovar{Ограничения}: шрифты для Знаменной нотации обычно предоставляют информацию о цветах некоторых глифов (например, киноварных помет) в таблицах COLR и CPAL. Однако технология COLR и CPAL пока не поддерживается в \XeTeX{} и \LuaTeX{}. В качестве решения проблемы раскраски глифов, Вы можете раскрасить киноварные пометы вручную используя команду \cs{cuKinovar}:
-\end{RU}
+\cuKinovar{Примечание 3}: шрифты для Знаменной нотации обычно предоставляют информацию о цветах некоторых глифов (например, киноварных помет) в таблицах COLR и CPAL. Однако технология COLR и CPAL на данный момент не поддерживается в \XeTeX{} и \LuaTeX{}. Если пакет \pkg{churchslavonic} загружен с опцией \texttt{autocolormarks}, команды \cs{cuKruk} и \cs{cuKrukPara} автоматически раскрашивают киноварные пометы, внутренне вызывая для этого команду \cs{cuKinovar}. К тому же, если пакет \pkg{churchslavonic} также загружен с опциями \texttt{gray} или \texttt{bw}, киноварные пометы будут набраны в оттенках серого или черным цветом, соответственно.
 
-\begin{tabular}{cc}
-\verb+\cuKruk{+{\musicFont } \verb+\cuKinovar{+ {\musicFont } \verb+}}{+ \textchurchslavonic{жда} \verb+}+ &  \textchurchslavonic{\cuKruk{\cuKinovar{}}{жда}} \\
-\end{tabular}
-
-\smallskip
-
-\begin{EN}
-However, this approach breaks normal OpenType positioning rules for the marks in \XeTeX{} (though it does appear to work correctly in \LuaTeX{} using the \pkg{luacolor} package).
-
-\cs{cuKruk} commands may be nested, which can be used to produce `explanatory marks' (\textrussian{<<подобные пометы>>}):
-
-\end{EN}
-%
-\begin{RU}
-Однако данный подход приведет к неправильному позиционированию раскрашенных глифов в \XeTeX{} (похоже, правильных результатов можно достичь используя \LuaTeX{} и пакет \pkg{luacolor}).
+\cuKinovar{Ограничения}: автоматическая раскраска киноварных помет  в \XeTeX{} нарушает работу правил позиционирования глифов в таблицах OpenType. Попытка загрузить пакет \pkg{churchslavonic} с опцией \texttt{autocolormarks} когда используется \XeTeX{} выдаст предупреждение. Правильного позиционирования раскрашенных помет можно достичь в \LuaTeX{}. Когда для верстки документа используется \LuaTeX{}, пакет \pkg{churchslavonic} загружается с опцией \texttt{autocolormarks} по умолчанию. В этом случае автоматическое раскрашивание помет можно отключить, загрузив пакет \pkg{churchslavonic} с опцией \texttt{noautocolormarks}.
 
 Макрокоманды \cs{cuKruk} могут вкладываться друг в друга, что позволяет набирать текст с <<подобными пометами>>:
 \end{RU}
