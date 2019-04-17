@@ -704,6 +704,50 @@ If you need to change the font/size/color just for a single mark, you can do it 
 \end{verbatim}
 
 \begin{EN}
+\subsection{Superscripts}
+The \cs{cuSup} macro can be used to place arbitrary superscript text above the
+baseline text, a feature that can be useful in editing Slavonic manuscripts.
+The macro takes two parameters: the first parameter is the superscripted text,
+the second parameter is the baseline text. For example:
+\end{EN}
+
+\begin{RU}
+\subsection{Надстрочный текст}
+Макрокоманда \cs{cuSup} может быть использована для размещения произвольного
+надстрочного текста над текстом в строке, что бывает необходимо при издании текстов
+из славянских рукописей. Макрокоманда принимает два параметра: первый параметр -- 
+надстрочный текст, второй параметр -- текст в строке. Например:
+\end{RU}
+
+\begin{verbatim}
+мол\cuSup{ва}{и́т}
+\end{verbatim}
+
+\begin{churchslavonic}
+мол\cuSup{ва}{и́т}
+\end{churchslavonic}
+
+\begin{EN}
+The macro accepts an optional parameter \verb+raise+, which controls the vertical
+space between the base characters and the superscript. The formatting of the
+base and superscript texts can also be controlled directly:
+\end{EN}
+
+\begin{RU}
+Макрокоманда принимает необязательный параметр \verb+raise+, который управляет
+вертикальным пространством между текстом в строке и надстрочным текстом.
+Форматирование строчного и надстрочного текстов также можно контролировать напрямую:
+\end{RU}
+
+\begin{verbatim}
+по\cuSup[raise=0.75ex]{\kern2em \cuKinovar{лага́етъ}}{\cuKinovar{ложѝ}} на́мъ
+\end{verbatim}
+
+\begin{churchslavonic}
+по\cuSup[raise=0.75ex]{\kern2em \cuKinovar{лага́етъ}}{\cuKinovar{ложѝ}} на́мъ
+\end{churchslavonic}
+
+\begin{EN}
 \subsection{Dropcaps}
 The mechanism that the \cs{cuKinovar} macro is using to collect all accents
 (when the argument is specified implicitly) can be useful for

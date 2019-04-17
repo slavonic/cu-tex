@@ -67,6 +67,29 @@
   }\penalty10000\hskip\cuKrukSylSpace
 }}%
 %
+\newlength{\cuSupRaise} %% controls extra vertical space between Sup and Base
+\setlength{\cuSupRaise}{0ex}
+\define@key{cuSup}{raise}{\setlength{\cuSupRaise}{#1}}%
+
+\newcommand{\cuSup}[3][]{%
+  \bgroup
+  \setkeys{cuSup}{#1}%
+  \cu@@Sup{#2}{#3}%
+  \egroup
+}%
+\def\cu@@Sup#1#2{{%
+  \leavevmode
+  \setbox1=\hbox{#1}%
+  \setbox2=\hbox{#2}%
+  \dimen0=\ht2%
+  \message{\the\dimen0}%
+  \advance\dimen0 by \cuSupRaise
+  \advance\dimen0 by -0.25\ht1%
+  \hbox to \wd2{%
+  \hskip0.5\wd2\hskip-0.5\wd1\raise\dimen0\copy1\kern-0.5\wd2\kern-0.5\wd1\copy2\hss
+  }%
+}}
+%
 \newcounter{cu@KrukPos}%
 \newcounter{cu@SylPos}%
 %
