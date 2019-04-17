@@ -82,6 +82,7 @@
   \setbox1=\hbox{#1}%
   \setbox2=\hbox{#2}%
   \dimen0=\ht2%
+  \advance\dimen0 by \dp1%
   \message{\the\dimen0}%
   \advance\dimen0 by \cuSupRaise
   \advance\dimen0 by -0.25\ht1%
