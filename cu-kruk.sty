@@ -1,7 +1,8 @@
 \NeedsTeXFormat{LaTeX2e}%
 \RequirePackage{keyval}%
 \RequirePackage{ifluatex}%
-\ProvidesPackage{cu-kruk}[2018/03/01 v0.1 support for kruk music notations]%
+\RequirePackage{cu-kinovar}%
+\ProvidesPackage{cu-kruk}[2019/04/18 v0.2 support for kruk music notations]%
 %
 %% 'autocolormarks' and noautocolormarks options
 \newif\ifcu@autocolormarks
@@ -27,17 +28,25 @@
 \newlength{\cuKrukTopMargin} %% top margin ensures that lines are nicely separated
 \newlength{\cuKrukSylRuleHeight}  %% how thick placeholder rule is
 \newlength{\cuKrukRaise} %% distance between text and kruk baselines
+\newif{\ifcuKrukInvertColor}  %% invert pometa colors
 %
 \setlength{\cuKrukSylSpace}{0.2em}
 \setlength{\cuKrukTopMargin}{0.3em}
 \setlength{\cuKrukSylRuleHeight}{0.08em}
 \setlength{\cuKrukRaise}{1em}
+\cuKrukInvertColorfalse
 
 \define@key{cuKruk}{krukFont}{\def\cuKrukFont{#1}}%
 \define@key{cuKruk}{sylSpace}{\setlength{\cuKrukSylSpace}{#1}}%
 \define@key{cuKruk}{topMargin}{\setlength{\cuKrukTopMargin}{#1}}%
 \define@key{cuKruk}{sylRuleHeight}{\setlength{\cuKrukSylRuleHeight}{#1}}%
 \define@key{cuKruk}{krukRaise}{\setlength{\cuKrukRaise}{#1}}%
+\define@key{cuKruk}{invertColor}{%
+  \ifcu@autocolormarks
+    \cuKrukInvertColortrue
+  \fi
+}
+\definecolor{black}{rgb}{0.00,0.00,0.00}
 
 \newcommand{\cuKruk}[3][]{%
   \bgroup
@@ -101,6 +110,11 @@
 \def\cu@KrukPara[#1]#2\\#3\cu@End{%
 \bgroup
 \setkeys{cuKruk}{#1}%
+\ifcuKrukInvertColor
+  \def\cu@kinovar#1{\textcolor{black}{#1}}%
+  \def\cu@kinovar@color#1{\color{black}}%
+  \cu@kinovar@color
+\fi
 \setcounter{cu@KrukPos}{0}%
 \setcounter{cu@SylPos}{0}%
 \cu@Kruk #2 \cu@EndKruk
