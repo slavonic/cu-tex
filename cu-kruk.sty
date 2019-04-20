@@ -51,7 +51,6 @@
   \edef\cu@tmp{\csname \detokenize{#2}cu@@@\endcsname}%
   \setbox1=\hbox{{%
     \ifKV@cuKruk@invertColor
-      \message{inverting colors}%
       \colorlet{tmp}{.}\color{kinovar}\colorlet{kinovar}{tmp}%
     \fi
     \cuKrukFont#1
