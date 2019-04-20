@@ -2,7 +2,7 @@
 \RequirePackage{keyval}%
 \RequirePackage{ifluatex}%
 \RequirePackage{cu-kinovar}%
-\ProvidesPackage{cu-kruk}[2019/04/18 v0.2 support for kruk music notations]%
+\ProvidesPackage{cu-kruk}[2019/04/20 v0.2 support for kruk music notations]%
 %
 %% 'autocolormarks' and noautocolormarks options
 \newif\ifcu@autocolormarks
@@ -28,25 +28,18 @@
 \newlength{\cuKrukTopMargin} %% top margin ensures that lines are nicely separated
 \newlength{\cuKrukSylRuleHeight}  %% how thick placeholder rule is
 \newlength{\cuKrukRaise} %% distance between text and kruk baselines
-\newif{\ifcuKrukInvertColor}  %% invert pometa colors
 %
 \setlength{\cuKrukSylSpace}{0.2em}
 \setlength{\cuKrukTopMargin}{0.3em}
 \setlength{\cuKrukSylRuleHeight}{0.08em}
 \setlength{\cuKrukRaise}{1em}
-\cuKrukInvertColorfalse
 
 \define@key{cuKruk}{krukFont}{\def\cuKrukFont{#1}}%
 \define@key{cuKruk}{sylSpace}{\setlength{\cuKrukSylSpace}{#1}}%
 \define@key{cuKruk}{topMargin}{\setlength{\cuKrukTopMargin}{#1}}%
 \define@key{cuKruk}{sylRuleHeight}{\setlength{\cuKrukSylRuleHeight}{#1}}%
 \define@key{cuKruk}{krukRaise}{\setlength{\cuKrukRaise}{#1}}%
-\define@key{cuKruk}{invertColor}{%
-  \ifcu@autocolormarks
-    \cuKrukInvertColortrue
-  \fi
-}
-\definecolor{black}{rgb}{0.00,0.00,0.00}
+\define@boolkey{cuKruk}{invertColor}[true]{}%
 
 \newcommand{\cuKruk}[3][]{%
   \bgroup
@@ -56,7 +49,13 @@
 }%
 \def\cu@@Kruk#1#2{{%
   \edef\cu@tmp{\csname \detokenize{#2}cu@@@\endcsname}%
-  \setbox1=\hbox{{\cuKrukFont#1}}%
+  \setbox1=\hbox{{%
+    \ifKV@cuKruk@invertColor
+      \message{inverting colors}%
+      \colorlet{tmp}{.}\color{kinovar}\colorlet{kinovar}{tmp}%
+    \fi
+    \cuKrukFont#1
+  }}%
   \dimen0=\ht1\advance\dimen0 by \cuKrukTopMargin\ht1=\dimen0%
   \if\relax\detokenize{#2}\relax
     \setbox2=\hbox{\vrule height \cuKrukSylRuleHeight width \wd1}%
@@ -110,11 +109,6 @@
 \def\cu@KrukPara[#1]#2\\#3\cu@End{%
 \bgroup
 \setkeys{cuKruk}{#1}%
-\ifcuKrukInvertColor
-  \def\cu@kinovar#1{\textcolor{black}{#1}}%
-  \def\cu@kinovar@color#1{\color{black}}%
-  \cu@kinovar@color
-\fi
 \setcounter{cu@KrukPos}{0}%
 \setcounter{cu@SylPos}{0}%
 \cu@Kruk #2 \cu@EndKruk
