@@ -1,4 +1,4 @@
-\ProvidesPackage{cu-kinovar}[2016/03/31 v1.0 CU Kinovar]
+\ProvidesPackage{cu-kinovar}[2019/04/20 v1.1 CU Kinovar]
 
 \RequirePackage{cu-util}
 \RequirePackage{etoolbox}
@@ -8,38 +8,31 @@
   \RequirePackage{luacolor}
 \fi
 
-%% 'color' option (default)
-\def\cu@kinovar{\relax}
-\def\cu@kinovar@color{\relax}
+\newcommand{\cu@kinovar}[1]{\textcolor{kinovar}{#1}}
+\newcommand{\cuKinovarColor}{\color{kinovar}}
 
 \DeclareOption{color}{
-  \renewcommand{\cu@kinovar}[1]{\textcolor{kinovar}{#1}}
-  \renewcommand{\cu@kinovar@color}{\color{kinovar}}
+  \colorlet{kinovar}{kinovar-red}
 }
 \DeclareOption{gray}{
-  \renewcommand{\cu@kinovar}[1]{\textcolor{kinovar-gray}{#1}}
-  \renewcommand{\cu@kinovar@color}{\color{kinovar-gray}}
+  \colorlet{kinovar}{kinovar-gray}
 }
 \DeclareOption{grey}{
-  \renewcommand{\cu@kinovar}[1]{\textcolor{kinovar-gray}{#1}}
-  \renewcommand{\cu@kinovar@color}{\color{kinovar-gray}}
+  \colorlet{kinovar}{kinovar-gray}
 }
 \DeclareOption{bw}{
-  \renewcommand{\cu@kinovar}[1]{#1}
-  \renewcommand{\cu@kinovar@color}{\relax}
+  \colorlet{kinovar}{kinovar-black}
 }
+
+% define standard colors
+\definecolor{kinovar-red}{rgb}{0.80,0.03,0.01}
+\colorlet{kinovar-black}{.}
+\definecolor{kinovar-gray}{rgb}{0.45,0.45,0.45}
 
 \ExecuteOptions{color}
 \ProcessOptions\relax
 
-% define standard colors
-\definecolor{kinovar}{rgb}{0.80,0.03,0.01}
-\definecolor{kinovar-gray}{rgb}{0.45,0.45,0.45}
-
 % cuKinovar command colors just one letter with all accents if any
 \newrobustcmd{\cuKinovar}{\cu@tokenizeletter{\cu@kinovar}}
-
-% cuKinovarColorr switches foregrouond color to Kinovar
-\newrobustcmd{\cuKinovarColor}{\cu@kinovar@color}
 
 \endinput
