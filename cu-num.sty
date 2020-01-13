@@ -1,7 +1,7 @@
 % Copyright 2016 Slavonic Computing Initialive
 % http://sci.ponomar.net
 % 
-\ProvidesPackage{cu-num}[2016/03/03 v1.0 CU Numerics]
+\ProvidesPackage{cu-num}[2016/03/03 v1.1 CU Numerics]
 
 \@ifundefined{detokenize}{%
   \PackageError{cu-num}%
@@ -20,17 +20,17 @@
   \fi
 }%
 % 
-\def\@firstoffour\cu@repeat #1\stop@ #2#3#4#5{#2}%
-\def\@firstofthree\cu@repeat@i #1\stop@ #2#3#4{#2}%
+\def\cu@firstoffour\cu@repeat #1\stop@ #2#3#4#5{#2}%
+\def\cu@firstofthree\cu@repeat@i #1\stop@ #2#3#4{#2}%
 \def\cu@switch #1{%
   \if\relax\detokenize{#1}\relax
-    \expandafter\@firstoffour
+    \expandafter\cu@firstoffour
   \fi
   \cu@repeat #1\stop@
 }%
 \def\cu@repeat #1#2\stop@ #3{%
   \if\relax\detokenize{#2}\relax
-    \expandafter\@firstofthree
+    \expandafter\cu@firstofthree
   \fi
   \cu@repeat@i #2\stop@
 }%
