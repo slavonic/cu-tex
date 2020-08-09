@@ -590,7 +590,7 @@ Switches the current color to red. One would typically use this command
 inside a group that limits the scope of red text, unless
 you want all subsequent text to be colored red.
 
-\cuKinovar{Information:} The shade of red used by the \cs{cuKinovar} is declared in the package as a new color called \verb+kinovar+, and is set to (205, 8, 3) in the RGB color space, which has a hexadecimal representation of \verb+#CC0502+.
+\cuKinovar{Information:} The shade of red used by the \cs{cuKinovar} is declared in the package as a new color called \verb+kinovar+, and is set to (205, 8, 3) in the RGB color space, which has a hexadecimal representation of \verb+#CC0502+. The \verb+kinovar+ color may be redefined using the standard tools of the \verb+xcolor+ or \verb+luacolor+ packages, for example:
 \end{EN}
 
 \begin{RU}
@@ -600,8 +600,12 @@ you want all subsequent text to be colored red.
 внутри группы, которая ограничит ее действие (если вы не хотите
 чтобы весь последующий текст был напечатан красным цветом).
 
-\cuKinovar{Справка:} Оттенок красного цвета, используемый командой \cs{cuKinovar} объявляется в пакете новым цветом с названием \verb+kinovar+, и задан как (205, 8, 3) в RGB-цветовом пространстве, что равно \verb+#CC0502+ в шестнадцатиразрядном представлении.
+\cuKinovar{Справка:} Оттенок красного цвета, используемый командой \cs{cuKinovar} объявляется в пакете новым цветом с названием \verb+kinovar+, и задан как (205, 8, 3) в RGB-цветовом пространстве, что равно \verb+#CC0502+ в шестнадцатиразрядном представлении. Цвет \verb+kinovar+ может быть переопределен используя стандартные макрокоманды пакетов \verb+xcolor+ или \verb+luacolor+, например:
 \end{RU}
+
+\begin{verbatim}
+\definecolor{kinovar}{rgb}{0.00,1.0,0.0}
+\end{verbatim}
 
 \begin{EN}
 \section{Miscellaneous}
