@@ -38,7 +38,10 @@
 \newsavebox\cu@box@zero
 \newsavebox\cu@box@one
 \newdimen\cu@kerning
-\newcommand{\cu@kinovar@kern}[2]{%
+\newcommand{\cu@kinovar@kern}{%
+  \cu@ifnextletter{\cu@kinovar@do@kern}{\cu@kinovar}%
+}%
+\newcommand{\cu@kinovar@do@kern}[2]{%
   \sbox\cu@box@zero{#1#2}\sbox\cu@box@one{\mbox{#1}\mbox{#2}}%
   \dimen\cu@kerning=\dimexpr\wd\cu@box@zero-\wd\cu@box@one
   \cu@kinovar{#1}\kern\dimen\cu@kerning #2%
