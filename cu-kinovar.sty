@@ -1,4 +1,4 @@
-\ProvidesPackage{cu-kinovar}[2019/04/20 v1.1 CU Kinovar]
+\ProvidesPackage{cu-kinovar}[2020/10/21 v1.2 CU Kinovar]
 
 \RequirePackage{cu-util}
 \RequirePackage{etoolbox}
@@ -33,6 +33,19 @@
 \ProcessOptions\relax
 
 % cuKinovar command colors just one letter with all accents if any
-\newrobustcmd{\cuKinovar}{\cu@tokenizeletter{\cu@kinovar}}
+\newrobustcmd{\cuKinovar}{\cu@tokenizeletter{\cu@kinovar@kern}}
+
+\newcommand{\cu@kinovar@kern}[1]{%
+  \cu@kinovar{#1}%
+  \cu@ifnextletter{\cu@kinovar@insert@kern{#1}}{}%
+}%
+\newsavebox\cu@box@zero
+\newsavebox\cu@box@one
+\newdimen\cu@kerning
+\newcommand{\cu@kinovar@insert@kern}[2]{%
+  \sbox\cu@box@zero{#1#2}\sbox\cu@box@one{\mbox{#1}\mbox{#2}}%
+  \dimen\cu@kerning=\dimexpr\wd\cu@box@zero-\wd\cu@box@one
+  \kern\dimen\cu@kerning #2%
+}%
 
 \endinput
