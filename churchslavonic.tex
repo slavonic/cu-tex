@@ -7,6 +7,7 @@
 \newfontfamily\russianfontsf[Ligatures=TeX]{lmsans10-regular.otf}
 \newfontfamily\churchslavonicfont[Script=Cyrillic,Ligatures=TeX,Scale=MatchLowercase,HyphenChar=_]{PonomarUnicode.otf}
 \newfontfamily\musicFont[Scale=1.5]{MezenetsUnicode}
+\newfontfamily\demestvo[Scale=1.5,StylisticSet=2]{MezenetsUnicode}
 
 \usepackage{churchslavonic}
 \usepackage{doc}
@@ -17,7 +18,7 @@
   pdfkeywords={Church Slavonic, Old Church Slavonic, Church Slavic, Znamenny Notation, LaTeX, TeX, XeTeX, LuaTeX, OpenType, Unicode, церковнославянский, старославянский, знаменная нотация, крюки, столповая нотация}
 ]{hyperref}
 
-\def\fileversion{0.4}
+\def\fileversion{0.2.2}
 \let\cuKrukFont=\musicFont
 \def\pkg#1{\textsf{#1}}
 \def\cs#1{\texttt{\textbackslash #1}}
@@ -828,6 +829,7 @@ The package offers two commands for typesetting liturgical music in Znamenny Not
 \label{znamenny}
 \begin{verbatim}
 \newfontfamily\musicFont[Scale=1.5]{MezenetsUnicode}
+\newfontfamily\demestvo[Scale=1.5,StylisticSet=2]{MezenetsUnicode}
 \let\cuKrukFont=\musicFont
 \end{verbatim}
 
@@ -935,6 +937,7 @@ A number of parameters may be used to control the positioning and appearance of 
 \verb+topMargin+ & Specifies the amount of space (margin) above the neumes (default is \verb+0.3em+) \\
 \verb+krukRaise+ & Specifies the amount of space between the neumes and lyrics (default is \verb+1em+) \\
 \verb+sylRuleHeight+ & Specifies the thickness of the rule used when no syllable appears below a neume (default is \verb+0.08em+) \\
+\verb+invertColor+ & Inverts the colorization of the neumes, rendering the cinnabar marks in black and the black neumes in red (useful for typesetting Demestvenny Notation) \\
 \hline
 \end{tabular}
 \end{center}
@@ -955,6 +958,7 @@ A number of parameters may be used to control the positioning and appearance of 
 \verb+topMargin+ & Контролирует количество пустого пространства (поле) над невмами (по умолчанию: \verb+0.3em+) \\
 \verb+krukRaise+ & Контролирует длину разрыва между текстом и невмами (по умолчанию: \verb+1em+) \\
 \verb+sylRuleHeight+ & Указывает толщину горизонтальной черты, используемой, когда под невмой нет слога (по умолчанию: \verb+0.08em+) \\
+\verb+invertColor+ & Инвертирует раскраску крюков, выводя киноварные пометы в черном цвете, а невмы в красном (удобно для набора демественной нотации) \\
 \hline
 \end{tabular}
 \end{center}
@@ -975,6 +979,37 @@ A number of parameters may be used to control the positioning and appearance of 
 𜽟 𜾆𜼱𜼇 𜽗𜼆 𜽐𜼱𜼢 𜽖𜼅 𜽜𜼄𜼦 𜾖𜼆𜼤 𜽝𜼅𜼤𜽘 𜾆𜼱𜼈 𜽞 𜾬𜼈𜼤 𜽖𜼅 𜾒𜼰𜼺𜼆𜼣 𜾖𜼆𜼤 𜾋𜼅 𜾆𜼄 𜽝𜼄 𜽐𜼅 𜽗𜼄 𜽞 𜽐𜼰𜼅 𜽖𜼢 𜽗𜼢 𜾆𜾅𜼇 𜽝𜼄𜼤𜽘 𜾆𜼱𜼇 𜾒𜼱𜼈𜼤 𜽗𜼇 𜽐𜼱𜼢 𜽖𜼆 𜽗𜼅 𜽞 𜾒𜼰𜼺𜼆 𜽝𜼄 𜽜𜼅 𜾆𜼄 𜽗𜼅 𜽞 𜽐𜼱𜼇 𜽜𜼆 𜾆𜼅 𜽞 𜽐𜼱𜼈 𜽗𜼇 𜽞 𜽐𜼱𜼇 𜽖𜼆 𜽗𜼅 𜽐𜼱𜼆 𜽖𜼅 𜽜𜼄𜼶 𜾖𜼆𜼤 𜾋𜼅 𜾁
 \\
 Хри-сто́съ ра-жда́-ет-сѧ, сла́-ви-те: Хри-сто́съ съ нб҃съ, срѧ́-щи-те: Хри-сто́съ на зе-млѝ, воз-но-си́-те-сѧ. по́й-те Го́-спо-де-ви всѧ̀-~ зе-млѧ̀, и҆ ве-се́-лї-емъ вос-по́--йте лю́-дї-е, ꙗ҆́-кѡ про-сла́-ви-сѧ.
+}
+\end{churchslavonic}
+
+\medskip
+
+\begin{EN}
+\noindent Example of Demestvenny Notation and Znamenny Notation side-by-side:
+\end{EN}
+%
+\begin{RU}
+\noindent Пример набора демественной и знаменной нотаций бок о бок:
+\end{RU}
+
+\begin{verbatim}
+\cuKrukPara[invertColor,krukFont=\demestvo]{𜾧𜼾𜼆𜽝𜼐 \\ ла}
+\cuKrukPara{𜽐𜼱𜼳𜼆 𜽽𜼳𜼅𜼣 \\ ла-~}
+\end{verbatim}
+
+\medskip
+
+\begin{churchslavonic}
+\noindent
+\cuKrukPara[invertColor,krukFont=\demestvo]{
+𜾧𜼾𜼆𜽝𜼐
+\\
+ла
+}
+\cuKrukPara{
+𜽐𜼱𜼳𜼆 𜽽𜼳𜼅𜼣
+\\
+ла-~
 }
 \end{churchslavonic}
 
