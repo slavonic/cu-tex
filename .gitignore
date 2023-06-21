@@ -6,6 +6,7 @@
 *.out
 *.toc
 *.fmt
+*.hd
 
 ## Intermediate documents:
 *.dvi
