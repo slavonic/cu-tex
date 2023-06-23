@@ -4,6 +4,7 @@ SRCS = README.ctan \
 	cu-calendar.sty \
 	cu-util.sty \
 	cu-kinovar.sty \
+	cu-kruk.sty \
 	churchslavonic.sty \
 	churchslavonic.tex \
 	churchslavonic-en.tex \
