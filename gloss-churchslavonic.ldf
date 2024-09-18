@@ -1,5 +1,8 @@
 \ProvidesFile{gloss-churchslavonic.ldf}[polyglossia: module for Church Slavonic]
 \PolyglossiaSetup{churchslavonic}{
+  bcp47=cu,
+  bcp47-language=cu,
+  bcp47-script=Cyrl,
   script=Cyrillic,
   scripttag=cyrl,
   langtag=CHU,
@@ -11,35 +14,53 @@
 
 % if spelling is set to modern, Russian date and caption
 % as well as ASCII digits are used.
-\define@key{churchslavonic}{spelling}[modern]{%
-  \ifstrequal{#1}{traditional}%
-    {\def\captionschurchslavonic{\captionschurchslavonic@traditional}%
-     \def\datechurchslavonic{\datechurchslavonic@traditional}}%
-    {\def\captionschurchslavonic{\captionschurchslavonic@modern}%
-     \def\datechurchslavonic{\datechurchslavonic@modern}}%
-}
-
 \newif\ifcyrillic@numerals
-\define@key{churchslavonic}{numerals}[latin]{%
-   \ifstrequal{#1}{cyrillic}%
-      {\cyrillic@numeralstrue}
-      {\cyrillic@numeralsfalse}%
-}
 
-\define@boolkey{churchslavonic}[churchslavonic@]{babelshorthands}[false]{}
+\DeclareKeys[polyglossia/gloss/churchslavonic]
+  {
+    babelshorthands.if = churchslavonic@babelshorthands,
+    babelshorthands.default:n = true,
+    spelling.choice:,
+    spelling / modern.code =
+      {%
+        \def\captionschurchslavonic{\captionschurchslavonic@modern}%
+        \def\datechurchslavonic{\datechurchslavonic@modern}%
+        \SetLanguageKeys{churchslavonic}{bcp47=cu,bcp47-script=Cyrl}%
+      },
+    spelling / traditional.code =
+      {%
+        \def\captionschurchslavonic{\captionschurchslavonic@traditional}%
+        \def\datechurchslavonic{\datechurchslavonic@traditional}%
+        \SetLanguageKeys{churchslavonic}{bcp47=cu-Cyrs,bcp47-sript=Cyrs}%
+      },
+    spelling.default:n = modern,
+    numerals.choice:,
+    numerals / cyrillic.code =
+      {%
+        \cyrillic@numeralstrue%
+        \SetLanguageKeys{churchslavonic}{bcp47-extension-u=nu-cyrl}%
+      },
+    numerals / latin.code =
+      {%
+        \cyrillic@numeralsfalse%
+        \SetLanguageKeys{churchslavonic}{bcp47-extension-u=nu-latn}%
+      },
+    numerals.default:n = latin,
+    numerals/unknown.code = \xpg@warning{Unknown Church Salvonic numerals value `#1'},
+  }
 
-\setkeys{churchslavonic}{spelling,numerals}
+% Register default options
+\InitializeGlossOptions{churchslavonic}{babelshorthands=false,
+                                        spelling=modern,
+                                        numerals=latin}
 
 \ifsystem@babelshorthands
-  \setkeys{churchslavonic}{babelshorthands=true}
+  \SetGlossOptions{churchslavonic}{babelshorthands=true}
 \else
- \setkeys{churchslavonic}{babelshorthands=false}
+  \SetGlossOptions{churchslavonic}{babelshorthands=false}
 \fi
 
-\ifcsundef{initiate@active@char}{%
- \input{babelsh.def}%
-  \initiate@active@char{"}%
-}{}
+\InitializeBabelShorthands
 
 \def\churchslavonic@shorthands{%
   \bbl@activate{"}%
@@ -82,7 +103,6 @@
 \def\nochurchslavonic@shorthands{%
   \@ifundefined{initiate@active@char}{}{\bbl@deactivate{"}}%
 }
-
 
 \def\captionschurchslavonic@modern{%
    \def\prefacename{Предисловие}%
