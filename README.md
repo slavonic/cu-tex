@@ -1,6 +1,6 @@
 # cu-tex
 
-[![Build Status](https://travis-ci.org/slavonic/cu-tex.svg?branch=master)](https://travis-ci.org/slavonic/cu-tex)
+![Test status](https://github.com/github/slavonic/cu-tex/actions/workflows/test.yml/badge.svg)
 
 Church Slavonic support for TeX and derivatives
 
