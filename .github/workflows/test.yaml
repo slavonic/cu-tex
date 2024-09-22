@@ -18,4 +18,4 @@ jobs:
         tlmgr install comment polyglossia xkeyval metalogo fonts-churchslavonic libertine luacolor lettrine hypdoc hyphen-russian hyphen-churchslavonic
 
     - name: Run TeX tests
-      run: make tests
+      run: make test
