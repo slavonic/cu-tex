@@ -10,10 +10,11 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
     
-    - name: Install TinyTeX and required TeX packages
+    - name: Install TinyTeX and required TeX packages, test
       run: |
         sh tools/install-bin-unix.sh
         export PATH=/home/runner/.TinyTeX/bin/x86_64-linux/:$PATH
         echo $PATH
         tlmgr install comment polyglossia xkeyval metalogo fonts-churchslavonic libertine luacolor lettrine hypdoc hyphen-russian hyphen-churchslavonic
         make test
+        make docs
