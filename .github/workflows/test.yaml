@@ -16,6 +16,4 @@ jobs:
         export PATH=/home/runner/.TinyTeX/bin/x86_64-linux/:$PATH
         echo $PATH
         tlmgr install comment polyglossia xkeyval metalogo fonts-churchslavonic libertine luacolor lettrine hypdoc hyphen-russian hyphen-churchslavonic
-
-    - name: Run TeX tests
-      run: make test
+        make test
