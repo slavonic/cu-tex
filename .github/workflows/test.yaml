@@ -1,0 +1,25 @@
+name: Test
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Install required system packages
+      run: sudo apt install perl wget fontconfig vim build-essential -y
+
+    - name: Checkout
+      uses: actions/checkout@v4
+    
+    - name: Install TinyTeX
+      run: |
+        sh tools/install-bin-unix.sh
+        echo "PATH=~/.TinyTeX/bin:$PATH" >> $GITHUB_ENV
+
+    - name: Install required packages
+      run: tlmgr install comment polyglossia xkeyval metalogo fonts-churchslavonic libertine luacolor lettrine hypdoc hyphen-russian hyphen-churchslavonic
+
+    - name: Run TeX tests
+      run: make tests
