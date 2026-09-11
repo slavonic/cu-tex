@@ -1,4 +1,4 @@
-\ProvidesFile{gloss-churchslavonic.ldf}[polyglossia: module for Church Slavonic]
+\ProvidesFile{gloss-churchslavonic.ldf}[2024/09/18 v1.0 polyglossia: module for Church Slavonic]
 \PolyglossiaSetup{churchslavonic}{
   bcp47=cu,
   bcp47-language=cu,
